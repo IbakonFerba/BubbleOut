@@ -10,7 +10,7 @@ void Engine::run()
 {
 	//======================================
 	//TESTING AREA
-	std::vector<ObjectPoolTypes> pools;
+	/*std::vector<ObjectPoolTypes> pools;
 	ObjectPool<int> p;
 	ObjectPool<float> p2;
 	pools.emplace_back(&p);
@@ -44,7 +44,7 @@ void Engine::run()
 	std::cout << pool2->isFull() << std::endl;
 	std::cout << pool2->getTypeInfo().name() << std::endl;
 	std::cout << pool2->getDummy() << std::endl;
-
+*/
 
 	//======================================
 
