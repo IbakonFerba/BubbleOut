@@ -1,2 +1,3 @@
-﻿  main.cpp
+﻿  Engine.cpp
+c:\users\rhino\documents\studium\c++\bubbleout\bubbleout\bubbleout\engine.h(17): warning C4305: 'initializing': truncation from 'double' to 'const float'
   BubbleOut.vcxproj -> C:\Users\Rhino\Documents\Studium\C++\BubbleOut\BubbleOut\Debug\BubbleOut.exe
