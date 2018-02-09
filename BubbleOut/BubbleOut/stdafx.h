@@ -5,5 +5,6 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <variant>
 
 #endif
