@@ -15,6 +15,9 @@
     <ClCompile Include="Engine.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -27,6 +30,9 @@
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="ObjectPool.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
       <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>

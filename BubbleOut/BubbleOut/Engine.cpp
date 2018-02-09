@@ -1,8 +1,6 @@
 #include "stdafx.h"
 #include "Engine.h"
 
-#include "ObjectPool.h"
-
 //----------------------------------------------------------------------
 //main loop of the engine
 void Engine::run()
