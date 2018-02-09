@@ -1,10 +1,18 @@
 #include "stdafx.h"
 #include "Engine.h"
 
+#include "ObjectPool.h"
+
 //----------------------------------------------------------------------
 //main loop of the engine
 void Engine::run()
 {
+	//======================================
+	//TESTING AREA
+
+
+	//======================================
+
 	sf::Clock clock;
 	double lag = 0.0;
 	while (m_window.isOpen())
@@ -17,6 +25,7 @@ void Engine::run()
 		while (lag >= MS_PER_UPDATE)
 		{
 			update();
+			//TODO: DELETE SCHEDULED OBJECTS
 			lag -= MS_PER_UPDATE;
 		}
 		

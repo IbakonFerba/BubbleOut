@@ -23,5 +23,11 @@
     <ClInclude Include="Engine.h">
       <Filter>Header</Filter>
     </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectPool.h">
+      <Filter>Header</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
