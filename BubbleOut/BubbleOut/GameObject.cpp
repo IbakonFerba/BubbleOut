@@ -1,11 +1,11 @@
 #include "stdafx.h"
 #include "GameObject.h"
 
-bool GameObject::isInheritedFrom(const std::size_t& typeHash)
+bool GameObject::isInheritedFrom(const std::size_t& rTypeHash)
 {
 	for (unsigned i = 0; i < m_inheritanceChain.size(); ++i)
 	{
-		if (typeHash == m_inheritanceChain.at(i))
+		if (rTypeHash == m_inheritanceChain.at(i))
 		{
 			return true;
 		}
@@ -14,8 +14,8 @@ bool GameObject::isInheritedFrom(const std::size_t& typeHash)
 	return false;
 }
 
-void GameObject::setObjectManager(ObjectManager* objManager)
+void GameObject::setObjectManager(ObjectManager* rObjManager)
 {
-	m_objManager = objManager;
+	m_ptr_objManager = rObjManager;
 }
 

@@ -24,26 +24,26 @@ public:
 	{
 		const std::type_info& typeInfo = typeid(T);
 
-		for (unsigned i = 0; i < m_pools->size(); ++i)
+		for (unsigned i = 0; i < m_ptr_pools->size(); ++i)
 		{
-			ObjectPoolBase* poolBase = m_pools->at(i);
-			ObjectPool<T>* pool = static_cast<ObjectPool<T>*>(poolBase);
-			if (pool->getTypeInfo().hash_code() == typeInfo.hash_code())
+			ObjectPoolBase* ptrPoolBase = m_ptr_pools->at(i);
+			ObjectPool<T>* ptrPool = static_cast<ObjectPool<T>*>(ptrPoolBase);
+			if (ptrPool->getTypeInfo().hash_code() == typeInfo.hash_code())
 			{
-				if (!pool->isFull())
+				if (!ptrPool->isFull())
 				{
-					return pool->getNewObject();
+					return ptrPool->getNewObject();
 				}
 			}
 		}
 
-		ObjectPool<T>* pool = new ObjectPool<T>();
-		m_pools->push_back(pool);
+		ObjectPool<T>* ptrPool = new ObjectPool<T>();
+		m_ptr_pools->push_back(ptrPool);
 
 		std::cout << "Created new Pool of type ";
 		std::cout << typeInfo.name() << std::endl;
 
-		return pool->getNewObject();
+		return ptrPool->getNewObject();
 	}
 
 	template <typename T>
@@ -53,24 +53,44 @@ public:
 
 		const std::type_info& typeInfo = typeid(T);
 
-		for (unsigned i = 0; i < m_pools->size(); ++i)
+		for (unsigned i = 0; i < m_ptr_pools->size(); ++i)
 		{
-			ObjectPoolBase* poolBase = m_pools->at(i);
-			ObjectPool<T>* pool = static_cast<ObjectPool<T>*>(poolBase);
-			std::cout << pool->getTypeInfo().name() << std::endl;
+			ObjectPoolBase* ptrPoolBase = m_ptr_pools->at(i);
+			ObjectPool<T>* ptrPool = static_cast<ObjectPool<T>*>(ptrPoolBase);
 
-			if (pool->getTypeInfo().hash_code() == typeInfo.hash_code() || pool->getDummy()->isInheritedFrom(typeInfo.hash_code()))
+			if (ptrPool->getTypeInfo().hash_code() == typeInfo.hash_code() || ptrPool->getDummy()->isInheritedFrom(typeInfo.hash_code()))
 			{
-				objectCollection.object_list_starts.push_back(pool->getObjects());
-				objectCollection.object_list_ends.push_back(pool->getLastObject());
+				objectCollection.object_list_starts.push_back(ptrPool->getObjects());
+				objectCollection.object_list_ends.push_back(ptrPool->getLastObject());
 			}
 		}
 
 		return objectCollection;
 	}
 
-	//delete object
+	//deletion
+	template <typename T>
+	void destroyObject(T* obj)
+	{
+		const std::type_info& typeInfo = typeid(T);
+
+		for (unsigned i = 0; i < m_ptr_pools->size(); ++i)
+		{
+			ObjectPoolBase* ptrPoolBase = m_ptr_pools->at(i);
+			ObjectPool<T>* ptrPool = static_cast<ObjectPool<T>*>(ptrPoolBase);
+
+			if (ptrPool->getTypeInfo().hash_code() == typeInfo.hash_code() || ptrPool->getDummy()->isInheritedFrom(typeInfo.hash_code()))
+			{
+				if(ptrPool->containsObject(obj))
+				{
+					ptrPool->markForDelete(obj);
+				}
+			}
+		}
+	}
+
+	void deleteObjects();
 private:
-	std::vector<ObjectPoolBase*>* m_pools;
+	std::vector<ObjectPoolBase*>* m_ptr_pools;
 };
 #endif
