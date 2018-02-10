@@ -4,6 +4,11 @@
 #define OBJECT_POOL_H
 
 #include "stdafx.h"
+
+/*
+ * Base classs for pooling objects in the
+ * Object manager
+ */
 class ObjectPoolBase
 {
 public:
@@ -13,6 +18,10 @@ public:
 	virtual void deleteMarkedObjects() {};
 };
 
+/*
+ * actual object pool class to store
+ * objects of give type linearly in memory
+ */
 template <typename T>
 class ObjectPool : public ObjectPoolBase
 {
@@ -70,12 +79,15 @@ ObjectPool<T>::~ObjectPool()
 
 //----------------------------------------------------------------------
 //object management
+
+//mark given object for deletion
 template <typename T>
 void ObjectPool<T>::markForDelete(T* ptrObj)
 {
 	m_markedForDelete.push_back(ptrObj);
 }
 
+//delete all marked objects
 template <typename T>
 void ObjectPool<T>::deleteMarkedObjects()
 {
@@ -87,7 +99,7 @@ void ObjectPool<T>::deleteMarkedObjects()
 	m_markedForDelete.clear();
 }
 
-
+//delete given object
 template <typename T>
 void ObjectPool<T>::deleteObject(T* ptrObj)
 {
@@ -98,12 +110,17 @@ void ObjectPool<T>::deleteObject(T* ptrObj)
 
 //----------------------------------------------------------------------
 //checks
+
+//is the pool full?
 template <typename T>
 bool ObjectPool<T>::isFull() const
 {
 	return m_ptr_objects_end == m_ptr_last_spot;
 }
 
+/*does the pool contain the given object?
+ * (returns the object pointer if true or nullptr if false)
+ */
 template <typename T>
 T* ObjectPool<T>::containsObject(T* ptrObj) const
 {
@@ -120,6 +137,8 @@ T* ObjectPool<T>::containsObject(T* ptrObj) const
 
 //----------------------------------------------------------------------
 //getter
+
+//get a new object
 template <typename T>
 T* ObjectPool<T>::getNewObject()
 {
@@ -132,24 +151,28 @@ T* ObjectPool<T>::getNewObject()
 	return nullptr;
 }
 
+//get the dummy object
 template <typename T>
 T* ObjectPool<T>::getDummy()
 {
 	return &m_dummy;
 }
 
+//get last object pointer in the Pool
 template <typename T>
 T* ObjectPool<T>::getLastObject() const
 {
 	return m_ptr_objects_end - 1;
 }
 
+//get first object pointer in the pool
 template <typename T>
 T* ObjectPool<T>::getObjects() const
 {
 	return m_ptr_objects_start;
 }
 
+//get typeinfo of the object type of the pool
 template <typename T>
 const std::type_info& ObjectPool<T>::getTypeInfo() const
 {

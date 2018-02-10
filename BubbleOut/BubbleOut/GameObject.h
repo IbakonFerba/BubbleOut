@@ -6,6 +6,10 @@
 #include "stdafx.h"
 #include "ObjectManager.h"
 
+/*
+ * Base class for all objects that can
+ * be used in the engine
+ */
 class GameObject
 {
 public:
@@ -15,13 +19,18 @@ public:
 	}
 	virtual ~GameObject() {}
 
+	//give a reference to the object manager into the object
 	void setObjectManager(ObjectManager* ptrObjManager);
-	bool isInheritedFrom(const std::size_t& rTypeHash);
+	//is the object derived from the given type?
+	bool isDerivedFrom(const std::size_t& rTypeHash);
 
 protected:
+	//object manager for creating components
 	ObjectManager* m_ptr_objManager;
+	//stores inheritance information
 	std::vector<std::size_t> m_inheritanceChain;
 
+	//use this function at construction of the object to save inheritance
 	template <typename T>
 	void pushInheritanceChain()
 	{

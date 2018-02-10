@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "GameObject.h"
 
-bool GameObject::isInheritedFrom(const std::size_t& rTypeHash)
+bool GameObject::isDerivedFrom(const std::size_t& rTypeHash)
 {
 	for (unsigned i = 0; i < m_inheritanceChain.size(); ++i)
 	{

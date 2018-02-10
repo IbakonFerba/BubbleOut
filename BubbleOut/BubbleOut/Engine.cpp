@@ -14,6 +14,7 @@ void Engine::run()
 	//object management
 	ObjectManager* objectManager = new ObjectManager();
 
+	//main loop with fixed update rate and variable render time
 	sf::Clock clock;
 	double lag = 0.0;
 	while (m_window.isOpen())
@@ -48,11 +49,13 @@ void Engine::processInput()
 	}
 }
 
+//all updates happen in here
 void Engine::update()
 {
 	
 }
 
+//rendering happens in here
 void Engine::render()
 {
 	//clear window
