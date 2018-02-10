@@ -17,7 +17,6 @@ public:
 	const float MS_PER_UPDATE = 16.66666;
 
 	void run();
-
 private:
 	sf::RenderWindow m_window;
 	sf::Event m_event;

@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "Engine.h"
 
-#include "ObjectPool.h"
 #include "ObjectManager.h"
+#include "GameObject.h"
 
 //----------------------------------------------------------------------
 //main loop of the engine
@@ -10,6 +10,37 @@ void Engine::run()
 {
 	//======================================
 	//TESTING AREA
+	ObjectManager* OBJECT_MANAGER = new ObjectManager();
+	OBJECT_MANAGER->getNewObject<A>();
+	OBJECT_MANAGER->getNewObject<A>()->i = 30;
+	OBJECT_MANAGER->getNewObject<B>()->setObjectManager(OBJECT_MANAGER);
+	OBJECT_MANAGER->getNewObject<C>();
+
+	ObjectCollection<B> collection = OBJECT_MANAGER->getObjectsOfType<B>();
+	for(unsigned i = 0; i < collection.object_list_starts.size(); ++i)
+	{
+		for(B* j = collection.object_list_starts.at(i); j <= collection.object_list_ends.at(i); ++j)
+		{
+			std::cout << j->f << std::endl;
+		}
+	}
+	/*int* i = manager->getNewObject<int>();
+	*i = 10;
+	std::cout << *i << std::endl;
+
+	int* i2 = manager->getNewObject<int>();
+	*i2 = 1;
+	std::cout << *i << std::endl;
+	std::cout << *i2 << std::endl;
+
+	for(int x = 0; x < 200; ++x)
+	{
+		manager->getNewObject<int>();
+	}
+
+	float* f = manager->getNewObject<float>();
+	*f = 3.141;
+	std::cout << *f << std::endl;*/
 	/*std::vector<ObjectPoolTypes> pools;
 	ObjectPool<int> p;
 	ObjectPool<float> p2;

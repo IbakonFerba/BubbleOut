@@ -4,9 +4,15 @@
 #define OBJECT_POOL_H
 
 #include "stdafx.h"
+class ObjectPoolBase
+{
+public:
+	ObjectPoolBase() {}
+	~ObjectPoolBase() {}
+};
 
 template <typename T>
-class ObjectPool
+class ObjectPool : public ObjectPoolBase
 {
 public:
 	ObjectPool();
@@ -18,7 +24,7 @@ public:
 	T* getLastObject() const;
 	T* getNewObject();
 
-	const T& getDummy() const;
+	T* getDummy();
 	const std::type_info& getTypeInfo() const;
 
 	bool isFull() const;
@@ -29,7 +35,7 @@ private:
 	T* m_objects_end;
 	T* m_last_spot;
 	const std::type_info& m_typeid;
-	const T m_dummy;
+	T m_dummy;
 };
 
 //----------------------------------------------------------------------
@@ -88,9 +94,9 @@ T* ObjectPool<T>::getNewObject()
 }
 
 template <typename T>
-const T& ObjectPool<T>::getDummy() const
+T* ObjectPool<T>::getDummy()
 {
-	return m_dummy;
+	return &m_dummy;
 }
 
 template <typename T>
