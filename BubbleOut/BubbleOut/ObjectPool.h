@@ -13,7 +13,7 @@ class ObjectPoolBase
 {
 public:
 	ObjectPoolBase() {}
-	~ObjectPoolBase() {}
+	virtual ~ObjectPoolBase() {}
 
 	virtual void deleteMarkedObjects() {};
 };
@@ -75,6 +75,8 @@ template <typename T>
 ObjectPool<T>::~ObjectPool()
 {
 	delete[] m_ptr_objects_start;
+	delete m_ptr_objects_end;
+	delete m_ptr_last_spot;
 }
 
 //----------------------------------------------------------------------

@@ -21,6 +21,15 @@
     <ClCompile Include="ObjectManager.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="FloatVector2.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="TestObject.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="CircleRenderer.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -36,6 +45,21 @@
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="ObjectManager.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="FloatVector2.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="TestObject.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleRenderer.h">
       <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>

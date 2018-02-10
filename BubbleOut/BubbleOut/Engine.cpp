@@ -2,6 +2,8 @@
 #include "Engine.h"
 
 #include "ObjectManager.h"
+#include "Renderer.h"
+#include "TestObject.h"
 
 //----------------------------------------------------------------------
 //main loop of the engine
@@ -9,10 +11,9 @@ void Engine::run()
 {
 	//======================================
 	//TESTING AREA
+	TestObject* obj = m_objectManager->getNewObject<TestObject>();
+	obj->init(m_objectManager);
 	//======================================
-
-	//object management
-	ObjectManager* objectManager = new ObjectManager();
 
 	//main loop with fixed update rate and variable render time
 	sf::Clock clock;
@@ -27,7 +28,7 @@ void Engine::run()
 		while (lag >= MS_PER_UPDATE)
 		{
 			update();
-			objectManager->deleteObjects();
+			m_objectManager->deleteObjects();
 			lag -= MS_PER_UPDATE;
 		}
 		
@@ -62,6 +63,15 @@ void Engine::render()
 	m_window.clear();
 
 	//draw objects
+	ObjectCollection<Renderer> renderers = m_objectManager->getObjectsOfType<Renderer>();
+
+	for(unsigned i = 0; i < renderers.object_list_starts.size(); ++i)
+	{
+		for(Renderer* r = renderers.object_list_starts.at(i); r <= renderers.object_list_ends.at(i); ++r)
+		{
+			r->render(m_window);
+		}
+	}
 
 	//display image
 	m_window.display();
