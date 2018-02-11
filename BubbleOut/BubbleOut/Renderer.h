@@ -14,9 +14,9 @@ public:
 	{
 		pushInheritanceChain<Renderer>();
 	}
-	~Renderer() {}
+	virtual ~Renderer() {}
 
-	virtual void render(sf::RenderWindow& rWindow) const {}
+	virtual void render(sf::RenderWindow& rWindow) {}
 
 	void setTransform(const Transform* t) { m_ptr_transform = t; }
 

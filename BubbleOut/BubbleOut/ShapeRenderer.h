@@ -15,8 +15,10 @@ public:
 	}
 	~ShapeRenderer();
 
-	void init(const Transform* ptrTrans, sf::Shape* ptrShape);
-	void render(sf::RenderWindow& rWindow) const override;
+	void init(const Transform* ptrTrans, sf::Shape* ptrShape, const Origin& origin);
+	void render(sf::RenderWindow& rWindow) override;
+
+	sf::FloatRect getBounds() const;
 private:
 	sf::Shape* m_ptr_shape;
 };

@@ -10,13 +10,15 @@
 class Transform : public GameObject
 {
 public:
-	Transform() : GameObject()
+	Transform() : GameObject(), position(0,0), scale(1, 1), rotation(0)
 	{
 		pushInheritanceChain<Transform>();
 	}
 	~Transform() {}
 
-	FloatVector2 Position;
+	FloatVector2 position;
+	FloatVector2 scale;
+	float rotation;
 };
 
 #endif

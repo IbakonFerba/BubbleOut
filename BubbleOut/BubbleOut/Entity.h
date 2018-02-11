@@ -13,7 +13,7 @@ public:
 	{
 		pushInheritanceChain<Entity>();
 	}
-	~Entity() {}
+	virtual ~Entity() {}
 
 	Tag tag;
 

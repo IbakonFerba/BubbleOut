@@ -7,6 +7,7 @@
 #include "GameObject.h"
 #include "ShapeRenderer.h"
 #include "Entity.h"
+#include "SpriteRenderer.h"
 
 class TestObject : public Entity
 {
@@ -20,7 +21,7 @@ public:
 	void init(ObjectManager* ptrObjectManager) override;
 private:
 	Transform* m_ptr_trans;
-	ShapeRenderer* m_ptr_rend;
+	SpriteRenderer* m_ptr_rend;
 };
 
 #endif

@@ -4,11 +4,15 @@
 #include "ObjectManager.h"
 #include "Renderer.h"
 #include "TestObject.h"
+#include "TextureCache.h"
 
 //----------------------------------------------------------------------
 //main loop of the engine
 void Engine::run()
 {
+	//setting up of needed systems
+	TextureCache textureChache;
+
 	//======================================
 	//TESTING AREA
 	TestObject* obj = m_objectManager->getNewObject<TestObject>();

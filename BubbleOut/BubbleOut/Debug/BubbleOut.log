@@ -1,2 +1,17 @@
 ﻿  TestObject.cpp
+  SpriteRenderer.cpp
+  ShapeRenderer.cpp
+  Generating Code...
+  Compiling...
+  main.cpp
+c:\users\rhino\documents\studium\c++\bubbleout\bubbleout\bubbleout\engine.h(31): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  TextureCache.cpp
+  Subject.cpp
+  ObjectManager.cpp
+  GameObject.cpp
+  FloatVector2.cpp
+c:\users\rhino\documents\studium\c++\bubbleout\bubbleout\bubbleout\floatvector2.cpp(26): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Engine.cpp
+c:\users\rhino\documents\studium\c++\bubbleout\bubbleout\bubbleout\engine.h(31): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  Generating Code...
   BubbleOut.vcxproj -> C:\Users\Rhino\Documents\Studium\C++\BubbleOut\BubbleOut\Debug\BubbleOut.exe

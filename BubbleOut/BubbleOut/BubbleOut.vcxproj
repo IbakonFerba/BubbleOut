@@ -157,8 +157,10 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="ShapeRenderer.cpp" />
+    <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="Subject.cpp" />
     <ClCompile Include="TestObject.cpp" />
+    <ClCompile Include="TextureCache.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h" />
@@ -170,9 +172,11 @@
     <ClInclude Include="Observer.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="ShapeRenderer.h" />
+    <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Subject.h" />
     <ClInclude Include="TestObject.h" />
+    <ClInclude Include="TextureCache.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
