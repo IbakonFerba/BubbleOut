@@ -27,10 +27,10 @@
     <ClCompile Include="TestObject.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="CircleRenderer.cpp">
+    <ClCompile Include="Subject.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Subject.cpp">
+    <ClCompile Include="ShapeRenderer.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
@@ -62,13 +62,16 @@
     <ClInclude Include="TestObject.h">
       <Filter>Header</Filter>
     </ClInclude>
-    <ClInclude Include="CircleRenderer.h">
-      <Filter>Header</Filter>
-    </ClInclude>
     <ClInclude Include="Subject.h">
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="Observer.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeRenderer.h">
       <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>

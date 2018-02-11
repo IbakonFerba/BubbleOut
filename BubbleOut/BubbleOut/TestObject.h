@@ -5,21 +5,22 @@
 
 #include "stdafx.h"
 #include "GameObject.h"
-#include "CircleRenderer.h"
+#include "ShapeRenderer.h"
+#include "Entity.h"
 
-class TestObject : public GameObject
+class TestObject : public Entity
 {
 public:
-	TestObject() : GameObject()
+	TestObject() : Entity()
 	{
 		pushInheritanceChain<TestObject>();
 	}
 	~TestObject();
 
-	void init(ObjectManager* ptrObjectManager);
+	void init(ObjectManager* ptrObjectManager) override;
 private:
 	Transform* m_ptr_trans;
-	CircleRenderer* m_ptr_rend;
+	ShapeRenderer* m_ptr_rend;
 };
 
 #endif

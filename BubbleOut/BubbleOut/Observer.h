@@ -10,6 +10,7 @@ struct Message
 	float floatVal;
 	bool boolVal;
 	std::string stringVal;
+	Tag tag;
 };
 
 class Observer

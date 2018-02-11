@@ -10,4 +10,9 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+enum class Tag
+{
+	NONE = 0
+};
+
 #endif
