@@ -28,3 +28,4 @@ void TestObject::init(ObjectManager* ptrObjectManager)
 	m_ptr_rend->init(m_ptr_trans, circle);
 }
 
+

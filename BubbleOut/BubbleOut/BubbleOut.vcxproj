@@ -157,6 +157,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="CircleRenderer.cpp" />
+    <ClCompile Include="Subject.cpp" />
     <ClCompile Include="TestObject.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -165,9 +166,11 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="ObjectPool.h" />
+    <ClInclude Include="Observer.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="CircleRenderer.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Subject.h" />
     <ClInclude Include="TestObject.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>

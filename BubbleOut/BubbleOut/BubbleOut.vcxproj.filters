@@ -30,6 +30,9 @@
     <ClCompile Include="CircleRenderer.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Subject.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -60,6 +63,12 @@
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="CircleRenderer.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Subject.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer.h">
       <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>
