@@ -7,7 +7,7 @@
 #include "ObjectManager.h"
 
 /*
- * Main class of the enigne that hosts
+ * Main class of the Chronos enigne that hosts
  * the main loop with updating, rendering and
  * managing objects
  */
