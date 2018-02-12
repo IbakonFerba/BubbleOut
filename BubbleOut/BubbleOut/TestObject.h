@@ -4,7 +4,7 @@
 #define TEST_OBJECT_H
 
 #include "stdafx.h"
-#include "GameObject.h"
+#include "EngineObject.h"
 #include "ShapeRenderer.h"
 #include "Entity.h"
 #include "SpriteRenderer.h"

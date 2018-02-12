@@ -1,7 +1,7 @@
 #include "stdafx.h"
-#include "GameObject.h"
+#include "EngineObject.h"
 
-bool GameObject::isDerivedFrom(const std::size_t& rTypeHash)
+bool EngineObject::isDerivedFrom(const std::size_t& rTypeHash)
 {
 	for (unsigned i = 0; i < m_inheritanceChain.size(); ++i)
 	{
@@ -14,7 +14,7 @@ bool GameObject::isDerivedFrom(const std::size_t& rTypeHash)
 	return false;
 }
 
-void GameObject::setObjectManager(ObjectManager* rObjManager)
+void EngineObject::setObjectManager(ObjectManager* rObjManager)
 {
 	m_ptr_objManager = rObjManager;
 }

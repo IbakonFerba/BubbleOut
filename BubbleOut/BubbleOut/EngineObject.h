@@ -10,14 +10,14 @@
  * Base class for all objects that can
  * be used in the engine
  */
-class GameObject
+class EngineObject
 {
 public:
-	GameObject() : m_ptr_objManager(nullptr)
+	EngineObject() : m_ptr_objManager(nullptr)
 	{
-		pushInheritanceChain<GameObject>();
+		pushInheritanceChain<EngineObject>();
 	}
-	virtual ~GameObject() {}
+	virtual ~EngineObject() {}
 
 	//give a reference to the object manager into the object
 	void setObjectManager(ObjectManager* ptrObjManager);

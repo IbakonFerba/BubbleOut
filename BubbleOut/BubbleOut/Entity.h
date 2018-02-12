@@ -4,12 +4,12 @@
 #define ENTITY_H
 
 #include "stdafx.h"
-#include "GameObject.h"
+#include "EngineObject.h"
 
-class Entity : public GameObject
+class Entity : public EngineObject
 {
 public:
-	Entity() : GameObject()
+	Entity() : EngineObject()
 	{
 		pushInheritanceChain<Entity>();
 	}

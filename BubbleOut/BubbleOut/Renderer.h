@@ -4,13 +4,13 @@
 #define RENDERER_H
 
 #include "stdafx.h"
-#include "GameObject.h"
+#include "EngineObject.h"
 #include "Transform.h"
 
-class Renderer : public GameObject
+class Renderer : public EngineObject
 {
 public:
-	Renderer() : GameObject()
+	Renderer() : EngineObject()
 	{
 		pushInheritanceChain<Renderer>();
 	}

@@ -15,9 +15,6 @@
     <ClCompile Include="Engine.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="ObjectManager.cpp">
       <Filter>Source</Filter>
     </ClCompile>
@@ -39,15 +36,15 @@
     <ClCompile Include="SpriteRenderer.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="EngineObject.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="Engine.h">
-      <Filter>Header</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="ObjectPool.h">
@@ -87,6 +84,9 @@
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="Collider.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineObject.h">
       <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>
