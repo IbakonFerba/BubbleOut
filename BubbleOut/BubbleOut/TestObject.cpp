@@ -5,8 +5,8 @@
 //destructor
 TestObject::~TestObject()
 {
-	delete m_ptr_rend;
-	delete m_ptr_trans;
+	m_ptr_objManager->destroyObject(m_ptr_trans);
+	m_ptr_objManager->destroyObject(m_ptr_rend);
 }
 
 //----------------------------------------------------------------------

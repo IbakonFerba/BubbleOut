@@ -4,6 +4,8 @@
 #define OBSERVER_H
 
 #include "stdafx.h"
+#include "Transform.h"
+
 struct Message
 {
 	int intVal;
@@ -11,6 +13,7 @@ struct Message
 	bool boolVal;
 	std::string stringVal;
 	Tag tag;
+	Transform* transform;
 };
 
 class Observer

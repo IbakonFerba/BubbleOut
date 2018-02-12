@@ -151,6 +151,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CircleCollider.cpp" />
+    <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="FloatVector2.cpp" />
     <ClCompile Include="EngineObject.cpp" />
@@ -163,6 +165,7 @@
     <ClCompile Include="TextureCache.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CircleCollider.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Entity.h" />
