@@ -54,6 +54,8 @@ void Rigidbody::applyPhysics()
 	m_acceleration.y = 0.0;
 
 	m_ptr_transform->position += m_velocity;
+
+	m_velocity *= (1 / (m_drag*0.01f + 1));
 }
 
 //----------------------------------------------------------------------

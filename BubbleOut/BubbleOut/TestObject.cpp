@@ -46,7 +46,7 @@ void TestObject::init(ObjectManager* ptrObjectManager, const FloatVector2& pos, 
 	if(circleCollider)
 	{
 		m_ptr_circleCollider->init(m_ptr_trans, 30);
-		m_ptr_rigidbody->init(this, m_ptr_circleCollider, m_ptr_trans, 0, mass);
+		m_ptr_rigidbody->init(this, m_ptr_circleCollider, m_ptr_trans, 1, mass);
 	} else
 	{
 		m_ptr_collider->init(m_ptr_trans, 60, 60);
