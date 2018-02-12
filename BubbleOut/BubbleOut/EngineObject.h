@@ -23,7 +23,6 @@ public:
 	void setObjectManager(ObjectManager* ptrObjManager);
 	//is the object derived from the given type?
 	bool isDerivedFrom(const std::size_t& rTypeHash);
-
 protected:
 	//object manager for creating components
 	ObjectManager* m_ptr_objManager;

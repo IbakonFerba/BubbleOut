@@ -45,6 +45,18 @@
     <ClCompile Include="CircleCollider.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Rigidbody.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsSystem.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderSystem.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="RectCollider.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -96,6 +108,18 @@
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="CircleCollider.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Rigidbody.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsSystem.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderSystem.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="RectCollider.h">
       <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>

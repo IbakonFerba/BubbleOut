@@ -9,11 +9,12 @@
 class Subject
 {
 public:
-	virtual void notifyObservers() const = 0;
 	void addObserver(Observer* o);
 	void removeObserver(Observer* o);
 protected:
 	std::vector<Observer*> m_observers;
+
+	virtual void notifyObservers() const = 0;
 };
 
 #endif

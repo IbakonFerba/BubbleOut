@@ -5,6 +5,8 @@
 #include "Renderer.h"
 #include "TestObject.h"
 #include "TextureCache.h"
+#include "PhysicsSystem.h"
+#include "RenderSystem.h"
 
 //----------------------------------------------------------------------
 //main loop of the engine
@@ -15,8 +17,13 @@ void Engine::run()
 
 	//======================================
 	//TESTING AREA
+	TestObject* obj2 = m_objectManager->getNewObject<TestObject>();
+	obj2->init(m_objectManager, FloatVector2(100, 100), FloatVector2(-7, 0), 1, true);
+
 	TestObject* obj = m_objectManager->getNewObject<TestObject>();
-	obj->init(m_objectManager);
+	obj->init(m_objectManager, FloatVector2(600, 159), FloatVector2(7, 0), 1, false);
+	obj->m_ptr_rigidbody->kinematic = true;
+	obj->tag = Tag::TEST;
 	//======================================
 
 	//main loop with fixed update rate and variable render time
@@ -57,7 +64,8 @@ void Engine::processInput()
 //all updates happen in here
 void Engine::update()
 {
-	
+	PhysicsSystem::handleCollision(m_objectManager, WINDOW_WIDTH, WINDOW_HEIGHT);
+	PhysicsSystem::applyPhysics(m_objectManager);
 }
 
 //rendering happens in here
@@ -67,15 +75,7 @@ void Engine::render()
 	m_window.clear();
 
 	//draw objects
-	ObjectCollection<Renderer> renderers = m_objectManager->getObjectsOfType<Renderer>();
-
-	for(unsigned i = 0; i < renderers.object_list_starts.size(); ++i)
-	{
-		for(Renderer* r = renderers.object_list_starts.at(i); r <= renderers.object_list_ends.at(i); ++r)
-		{
-			r->render(m_window);
-		}
-	}
+	RenderSystem::render(m_objectManager, m_window);
 
 	//display image
 	m_window.display();

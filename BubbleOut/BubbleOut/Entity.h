@@ -11,6 +11,7 @@ class Entity : public EngineObject
 public:
 	Entity() : EngineObject()
 	{
+		tag = Tag::NONE;
 		pushInheritanceChain<Entity>();
 	}
 	virtual ~Entity() {}

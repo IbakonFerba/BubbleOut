@@ -13,7 +13,6 @@ struct Message
 	bool boolVal;
 	std::string stringVal;
 	Tag tag;
-	Transform* transform;
 };
 
 class Observer
