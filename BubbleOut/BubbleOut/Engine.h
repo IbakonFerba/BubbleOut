@@ -6,6 +6,14 @@
 #include "stdafx.h"
 #include "ObjectManager.h"
 
+enum class GameState
+{
+	PLAYING,
+	WON,
+	GAME_OVER,
+	PAUSED
+};
+
 /*
  * Main class of the Chronos enigne that hosts
  * the main loop with updating, rendering and
@@ -37,9 +45,11 @@ private:
 	sf::RenderWindow m_window;
 	sf::Event m_event;
 
+	GameState m_state;
+
 	//engine functions
 	void processInput();
-	void update();
+	void update() const;
 	void render();
 };
 

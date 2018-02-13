@@ -18,7 +18,7 @@ public:
 	void init(const Transform* ptrTrans, sf::Shape* ptrShape, const Origin& origin);
 	void render(sf::RenderWindow& rWindow) override;
 
-	sf::FloatRect getBounds() const;
+	sf::FloatRect getBounds() const override;
 private:
 	sf::Shape* m_ptr_shape;
 };

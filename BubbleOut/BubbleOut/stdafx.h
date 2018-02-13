@@ -15,7 +15,7 @@
 enum class Tag
 {
 	NONE = 0,
-	TEST = 1
+	PLAYER = 1
 };
 
 enum class Origin

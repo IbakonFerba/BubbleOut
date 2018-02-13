@@ -2,11 +2,12 @@
 #include "Engine.h"
 
 #include "ObjectManager.h"
-#include "Renderer.h"
 #include "TestObject.h"
 #include "TextureCache.h"
 #include "PhysicsSystem.h"
 #include "RenderSystem.h"
+#include "PlayerPlatform.h"
+#include "PlayerSystem.h"
 
 //----------------------------------------------------------------------
 //main loop of the engine
@@ -15,15 +16,22 @@ void Engine::run()
 	//setting up of needed systems
 	TextureCache textureChache;
 
+	m_state = GameState::PLAYING;
+
 	//======================================
 	//TESTING AREA
-	TestObject* obj2 = m_objectManager->getNewObject<TestObject>();
-	obj2->init(m_objectManager, FloatVector2(100, 100), FloatVector2(-7, 0), 1, true);
+	for(int i = 0; i < 100; ++i)
+	{
+		TestObject* obj2 = m_objectManager->getNewObject<TestObject>();
+		obj2->init(m_objectManager, FloatVector2(i, i), FloatVector2(0, 10), 1, true);
+	}
 
 	TestObject* obj = m_objectManager->getNewObject<TestObject>();
 	obj->init(m_objectManager, FloatVector2(600, 159), FloatVector2(7, 0), 1, false);
 	obj->m_ptr_rigidbody->kinematic = true;
-	obj->tag = Tag::TEST;
+
+	PlayerPlatform* player = m_objectManager->getNewObject<PlayerPlatform>();
+	player->init(m_objectManager, sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 50));
 	//======================================
 
 	//main loop with fixed update rate and variable render time
@@ -59,11 +67,34 @@ void Engine::processInput()
 			m_window.close();
 		}
 	}
+
+	if(m_state == GameState::PLAYING)
+	{
+		bool input = false;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		{
+			PlayerSystem::movePlayer(m_objectManager, MovementDirection::LEFT);
+			input = true;
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		{
+			PlayerSystem::movePlayer(m_objectManager, MovementDirection::RIGHT);
+			input = true;
+		}
+
+		if(!input)
+		{
+			PlayerSystem::movePlayer(m_objectManager, MovementDirection::NONE);
+		}
+	}
 }
 
 //all updates happen in here
-void Engine::update()
+void Engine::update() const
 {
+	PlayerSystem::executePlayerMovement(m_objectManager, WINDOW_WIDTH);
+
 	PhysicsSystem::handleCollision(m_objectManager, WINDOW_WIDTH, WINDOW_HEIGHT);
 	PhysicsSystem::applyPhysics(m_objectManager);
 }

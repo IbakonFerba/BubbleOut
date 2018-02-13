@@ -7,6 +7,12 @@
     <Filter Include="Source">
       <UniqueIdentifier>{3aca86cf-90c7-4edb-9a21-d8ab30c515a1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header\BubbleOut">
+      <UniqueIdentifier>{00303605-3b7e-46dc-bd14-ab64814cb97b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\BubbleOut">
+      <UniqueIdentifier>{e973020d-c9d6-4a90-ab4a-9493d9cf7ee8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -56,6 +62,12 @@
     </ClCompile>
     <ClCompile Include="RectCollider.cpp">
       <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerPlatform.cpp">
+      <Filter>Source\BubbleOut</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSystem.cpp">
+      <Filter>Source\BubbleOut</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +133,12 @@
     </ClInclude>
     <ClInclude Include="RectCollider.h">
       <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerPlatform.h">
+      <Filter>Header\BubbleOut</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSystem.h">
+      <Filter>Header\BubbleOut</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

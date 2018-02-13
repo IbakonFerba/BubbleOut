@@ -21,7 +21,7 @@ public:
 	void init(const Transform* ptrTrans, const std::string& rTextureFilePath, const Origin& origin);
 	void render(sf::RenderWindow& rWindow) override;
 
-	sf::FloatRect getBounds() const;
+	sf::FloatRect getBounds() const override;
 private:
 	sf::Sprite* m_ptr_sprite;
 };

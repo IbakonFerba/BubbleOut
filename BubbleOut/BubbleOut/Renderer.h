@@ -20,6 +20,8 @@ public:
 
 	void setTransform(const Transform* t) { m_ptr_transform = t; }
 
+	virtual sf::FloatRect getBounds() const = 0;
+
 protected:
 	const Transform* m_ptr_transform;
 };

@@ -30,7 +30,7 @@ void TestObject::init(ObjectManager* ptrObjectManager, const FloatVector2& pos, 
 	{
 		sf::CircleShape* ptrShape = new sf::CircleShape();
 		ptrShape->setFillColor(sf::Color::Red);
-		ptrShape->setRadius(30);
+		ptrShape->setRadius(10);
 		m_ptr_rend->init(m_ptr_trans, ptrShape, Origin::CENTER);
 	} else
 	{
@@ -45,7 +45,7 @@ void TestObject::init(ObjectManager* ptrObjectManager, const FloatVector2& pos, 
 
 	if(circleCollider)
 	{
-		m_ptr_circleCollider->init(m_ptr_trans, 30);
+		m_ptr_circleCollider->init(m_ptr_trans, 10);
 		m_ptr_rigidbody->init(this, m_ptr_circleCollider, m_ptr_trans, 1, mass);
 	} else
 	{
@@ -60,9 +60,7 @@ void TestObject::init(ObjectManager* ptrObjectManager, const FloatVector2& pos, 
 
 void TestObject::update(const Message& message)
 {
-	std::cout << (int)tag << std::endl;
-	std::cout << "other";
-	std::cout << (int)message.tag << std::endl;
+
 }
 
 
