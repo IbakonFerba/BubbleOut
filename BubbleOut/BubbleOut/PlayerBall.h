@@ -19,8 +19,14 @@ public:
 	}
 	~PlayerBall() {}
 
+	float speed = 10.0f;
+
+	void init(ObjectManager* ptrObjectManager, const float radius);
+
 	void setPosition(const FloatVector2& pos);
-	void setKinematic(const bool& kinematic);
+	
+
+	Rigidbody* getRigidbody();
 
 	void update(const Message& message) override;
 	void notifyObservers() const override;

@@ -11,7 +11,6 @@ enum class GameState
 	PLAYING,
 	WON,
 	GAME_OVER,
-	PAUSED
 };
 
 /*

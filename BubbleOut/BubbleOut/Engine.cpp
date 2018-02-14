@@ -17,13 +17,13 @@ void Engine::run()
 
 	//======================================
 	//TESTING AREA
-	/*for(int i = 0; i < 100; ++i)
+	for(int i = 0; i < 1; ++i)
 	{
-		TestObject* obj2 = m_objectManager->getNewObject<TestObject>();
-		obj2->init(m_objectManager, FloatVector2(i, i), FloatVector2(0, 10), 1, true);
+		/*TestObject* obj2 = m_objectManager->getNewObject<TestObject>();
+		obj2->init(m_objectManager, FloatVector2(WINDOW_WIDTH/2 - 5, 100), FloatVector2(0, 0), 2, true);*/
 	}
 
-	TestObject* obj = m_objectManager->getNewObject<TestObject>();
+	/*TestObject* obj = m_objectManager->getNewObject<TestObject>();
 	obj->init(m_objectManager, FloatVector2(600, 159), FloatVector2(7, 0), 1, false);
 	obj->m_ptr_rigidbody->kinematic = true;*/
 	//======================================
@@ -94,6 +94,11 @@ void Engine::processInput()
 		{
 			PlayerSystem::movePlayer(m_objectManager, MovementDirection::NONE);
 		}
+
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		{
+			PlayerSystem::releaseBall(m_objectManager);
+		}
 	}
 }
 
@@ -113,7 +118,18 @@ void Engine::render()
 	m_window.clear();
 
 	//draw objects
-	RenderSystem::render(m_objectManager, m_window);
+	switch (m_state)
+	{
+	case GameState::PLAYING: 
+		RenderSystem::render(m_objectManager, m_window, RenderTag::INGAME);
+		break;
+	case GameState::WON: 
+		RenderSystem::render(m_objectManager, m_window, RenderTag::INFO_SCREEN);
+		break;
+	case GameState::GAME_OVER: 
+		RenderSystem::render(m_objectManager, m_window, RenderTag::INFO_SCREEN);
+		break;
+	}
 
 	//display image
 	m_window.display();

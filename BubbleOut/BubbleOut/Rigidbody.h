@@ -34,6 +34,9 @@ public:
 	const Entity* getEntity() const;
 	const CircleCollider* getCircleCollider() const;
 	const RectCollider* getRectCollider() const;
+	FloatVector2 getVelocity() const;
+
+	void setVelocity(const FloatVector2& newVel);
 protected:
 	void notifyObservers() const override;
 

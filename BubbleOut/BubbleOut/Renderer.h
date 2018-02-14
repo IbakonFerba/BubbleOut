@@ -7,6 +7,13 @@
 #include "EngineObject.h"
 #include "Transform.h"
 
+enum class RenderTag
+{
+	DEFAULT,
+	INFO_SCREEN,
+	INGAME
+};
+
 class Renderer : public EngineObject
 {
 public:
@@ -15,6 +22,8 @@ public:
 		pushInheritanceChain<Renderer>();
 	}
 	virtual ~Renderer() {}
+
+	RenderTag tag = RenderTag::DEFAULT;
 
 	virtual void render(sf::RenderWindow& rWindow) {}
 

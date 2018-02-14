@@ -26,6 +26,22 @@ void PlayerSystem::movePlayer(ObjectManager* ptrObjManager, const MovementDirect
 	}
 }
 
+void PlayerSystem::releaseBall(ObjectManager* ptrObjManager)
+{
+	ObjectCollection<PlayerPlatform> players = ptrObjManager->getObjectsOfType<PlayerPlatform>();
+
+	for (unsigned i = 0; i < players.object_list_starts.size(); ++i)
+	{
+		for (PlayerPlatform* player = players.object_list_starts.at(i); player <= players.object_list_ends.at(i); ++player)
+		{
+			if(player->holdingBall)
+			{
+				player->releaseBall();
+			}
+		}
+	}
+}
+
 void PlayerSystem::executePlayerMovement(ObjectManager* ptrObjManager, const float windowWidth)
 {
 	ObjectCollection<PlayerPlatform> players = ptrObjManager->getObjectsOfType<PlayerPlatform>();
@@ -47,6 +63,30 @@ void PlayerSystem::executePlayerMovement(ObjectManager* ptrObjManager, const flo
 			}
 
 			player->move();
+		}
+	}
+
+
+	ObjectCollection<PlayerBall> balls = ptrObjManager->getObjectsOfType<PlayerBall>();
+
+	for (unsigned i = 0; i < balls.object_list_starts.size(); ++i)
+	{
+		for (PlayerBall* ball = balls.object_list_starts.at(i); ball <= balls.object_list_ends.at(i); ++ball)
+		{
+			Rigidbody* rb = ball->getRigidbody();
+			FloatVector2 vel = rb->getVelocity();
+			const float desiredSpeed = ball->speed;
+			if(vel.magnitude() < desiredSpeed)
+			{
+				vel.normalize();
+				const FloatVector2 acc = vel;
+				rb->addForce(acc);
+			} else if(vel.magnitude() > desiredSpeed)
+			{
+				vel.normalize();
+				vel *= desiredSpeed;
+				rb->setVelocity(vel);
+			}
 		}
 	}
 }

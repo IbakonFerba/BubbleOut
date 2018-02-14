@@ -21,15 +21,17 @@ public:
 
 	float speed = 10.0;
 	FloatVector2 movementDir;
+	bool holdingBall = true;
 
 	void init(ObjectManager* ptrObjectManager, const sf::Vector2f& pos);
 
 	void move() const;
-
-	void update(const Message& message) override;
+	void releaseBall();
 
 	sf::Vector2f getBounds() const;
 	FloatVector2 getCenter() const;
+
+	void update(const Message& message) override;
 private:
 	Transform* m_ptr_trans;
 	ShapeRenderer* m_ptr_rend;
@@ -37,6 +39,10 @@ private:
 	Rigidbody* m_ptr_rigidbody;
 
 	PlayerBall* m_ptr_ball;
+
+	float m_ballStartOffset = -30;
+
+	void resetBall();
 };
 
 #endif

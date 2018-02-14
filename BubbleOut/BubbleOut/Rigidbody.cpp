@@ -11,6 +11,12 @@ void Rigidbody::init(const Entity* ptrEntity, const CircleCollider* ptrCollider,
 	m_ptr_transform = ptrTransform;
 	m_drag = drag;
 	m_mass = mass;
+
+	m_velocity.x = 0.0f;
+	m_velocity.y = 0.0f;
+
+	m_acceleration.x = 0.0f;
+	m_acceleration.y = 0.0f;
 }
 
 void Rigidbody::init(const Entity* ptrEntity, const RectCollider* ptrCollider, Transform* ptrTransform, const float drag, const float mass)
@@ -21,6 +27,12 @@ void Rigidbody::init(const Entity* ptrEntity, const RectCollider* ptrCollider, T
 	m_ptr_transform = ptrTransform;
 	m_drag = drag;
 	m_mass = mass;
+
+	m_velocity.x = 0.0f;
+	m_velocity.y = 0.0f;
+
+	m_acceleration.x = 0.0f;
+	m_acceleration.y = 0.0f;
 }
 
 
@@ -83,6 +95,17 @@ const RectCollider* Rigidbody::getRectCollider() const
 	return m_ptr_rectCollider;
 }
 
+FloatVector2 Rigidbody::getVelocity() const
+{
+	return m_velocity;
+}
+
+//----------------------------------------------------------------------
+//setter
+void Rigidbody::setVelocity(const FloatVector2& newVel)
+{
+	m_velocity = newVel;
+}
 
 
 

@@ -1,8 +1,2 @@
-﻿  Engine.cpp
-c:\users\rhino\documents\studium\c++\bubbleout\bubbleout\bubbleout\engine.h(39): warning C4305: 'initializing': truncation from 'double' to 'const float'
-c:\users\rhino\documents\studium\c++\bubbleout\bubbleout\bubbleout\engine.cpp(103): warning C4244: 'argument': conversion from 'const int' to 'const float', possible loss of data
-c:\users\rhino\documents\studium\c++\bubbleout\bubbleout\bubbleout\engine.cpp(105): warning C4244: 'argument': conversion from 'const int' to 'const float', possible loss of data
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  main.cpp
+﻿  PlayerBall.cpp
   BubbleOut.vcxproj -> C:\Users\Rhino\Documents\Studium\C++\BubbleOut\BubbleOut\Debug\BubbleOut.exe

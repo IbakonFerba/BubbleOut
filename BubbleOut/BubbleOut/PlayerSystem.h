@@ -18,6 +18,8 @@ class PlayerSystem
 public:
 	static void movePlayer(ObjectManager* ptrObjManager, const MovementDirection& dir);
 	static void executePlayerMovement(ObjectManager* ptrObjManager, const float windowWidth);
+
+	static void releaseBall(ObjectManager* ptrObjManager);
 };
 
 #endif

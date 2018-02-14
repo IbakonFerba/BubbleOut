@@ -5,11 +5,12 @@
 
 #include "stdafx.h"
 #include "ObjectManager.h"
+#include "Renderer.h"
 
 class RenderSystem
 {
 public:
-	static void render(ObjectManager* objectManager, sf::RenderWindow& rWindow);
+	static void render(ObjectManager* objectManager, sf::RenderWindow& rWindow, const RenderTag& tagToRender);
 };
 
 #endif

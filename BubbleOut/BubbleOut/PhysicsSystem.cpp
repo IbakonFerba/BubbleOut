@@ -51,10 +51,10 @@ void PhysicsSystem::handleCollision(ObjectManager* ptrObjectManager, const float
 			FloatVector2 f;
 			if(circleCol1 != nullptr)
 			{
-				f = checkEdges(circleCol1, windowWidth, windowHeight);
+				f = checkEdges(rigidbody1, circleCol1, windowWidth, windowHeight);
 			} else
 			{
-				f = checkEdges(rectCol1, windowWidth, windowHeight);
+				f = checkEdges(rigidbody1, rectCol1, windowWidth, windowHeight);
 			}
 
 			rigidbody1->addForce(f);
@@ -122,11 +122,11 @@ FloatVector2 PhysicsSystem::checkCircleRect(Rigidbody* rb1, Rigidbody* rb2, cons
 			const float distToCenterY = cC.y - rectC.y;
 			const float innerDistX = ((dim.x / 2 - abs(distToCenterX)) + rad) * distToCenterX / abs(distToCenterX);
 			const float innerDistY = ((dim.y / 2 - abs(distToCenterY)) + rad) * distToCenterY / abs(distToCenterY);
-			force.x = innerDistX;
-			force.y = innerDistY;
+			force.x = -innerDistX;
+			force.y = -innerDistY;
 		} else
 		{
-			force = dist.getNormalized() * (rad - dist.magnitude());
+			force = dist.getNormalized() * (-1.0f) * (rad - dist.magnitude());
 		}
 		rb1->collisionWith(rb2);
 		rb2->collisionWith(rb1);

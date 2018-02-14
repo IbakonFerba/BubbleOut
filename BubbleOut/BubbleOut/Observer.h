@@ -6,12 +6,15 @@
 #include "stdafx.h"
 #include "Transform.h"
 
+enum class MessageType
+{
+	DEFAULT,
+	PLAYER_BALL_HIT_BOTTOM,
+};
+
 struct Message
 {
-	int intVal;
-	float floatVal;
-	bool boolVal;
-	std::string stringVal;
+	MessageType type = MessageType::DEFAULT;
 	Tag tag;
 };
 

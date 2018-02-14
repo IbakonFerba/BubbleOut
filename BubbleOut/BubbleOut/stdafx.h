@@ -19,7 +19,7 @@ enum class Tag
 	BORDER_RIGHT,
 	BORDER_BOTTOM,
 	BORDER_LEFT,
-	PLAYER
+	PLAYER,
 };
 
 enum class Origin

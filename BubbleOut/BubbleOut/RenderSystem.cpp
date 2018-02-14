@@ -4,7 +4,7 @@
 #include "ShapeRenderer.h"
 #include "SpriteRenderer.h"
 
-void RenderSystem::render(ObjectManager* objectManager, sf::RenderWindow& rWindow)
+void RenderSystem::render(ObjectManager* objectManager, sf::RenderWindow& rWindow, const RenderTag& tagToRender)
 {
 	ObjectCollection<ShapeRenderer> sr = objectManager->getObjectsOfType<ShapeRenderer>();
 
@@ -12,7 +12,10 @@ void RenderSystem::render(ObjectManager* objectManager, sf::RenderWindow& rWindo
 	{
 		for (ShapeRenderer* r = sr.object_list_starts.at(i); r <= sr.object_list_ends.at(i); ++r)
 		{
-			r->render(rWindow);
+			if (r->tag == tagToRender || r->tag == RenderTag::DEFAULT)
+			{
+				r->render(rWindow);
+			}
 		}
 	}
 
@@ -22,7 +25,10 @@ void RenderSystem::render(ObjectManager* objectManager, sf::RenderWindow& rWindo
 	{
 		for (SpriteRenderer* r = spr.object_list_starts.at(i); r <= spr.object_list_ends.at(i); ++r)
 		{
-			r->render(rWindow);
+			if (r->tag == tagToRender || r->tag == RenderTag::DEFAULT)
+			{
+				r->render(rWindow);
+			}
 		}
 	}
 }
