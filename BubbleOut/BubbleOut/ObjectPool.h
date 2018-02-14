@@ -29,9 +29,9 @@ public:
 	ObjectPool();
 	~ObjectPool();
 
-	void markForDelete(T* ptrObj);
+	/*void markForDelete(T* ptrObj);
 	void deleteMarkedObjects() override;
-	void deleteObject(T* ptrObj);
+	void deleteObject(T* ptrObj);*/
 
 	T* getObjects() const;
 	T* getLastObject() const;
@@ -82,32 +82,32 @@ ObjectPool<T>::~ObjectPool()
 //----------------------------------------------------------------------
 //object management
 
-//mark given object for deletion
-template <typename T>
-void ObjectPool<T>::markForDelete(T* ptrObj)
-{
-	m_markedForDelete.push_back(ptrObj);
-}
-
-//delete all marked objects
-template <typename T>
-void ObjectPool<T>::deleteMarkedObjects()
-{
-	for(unsigned i = 0; i < m_markedForDelete.size(); ++i)
-	{
-		deleteObject(m_markedForDelete.at(i));
-	}
-
-	m_markedForDelete.clear();
-}
-
-//delete given object
-template <typename T>
-void ObjectPool<T>::deleteObject(T* ptrObj)
-{
-	*ptrObj = *(m_ptr_objects_end - 1);
-	--m_ptr_objects_end;
-}
+////mark given object for deletion
+//template <typename T>
+//void ObjectPool<T>::markForDelete(T* ptrObj)
+//{
+//	m_markedForDelete.push_back(ptrObj);
+//}
+//
+////delete all marked objects
+//template <typename T>
+//void ObjectPool<T>::deleteMarkedObjects()
+//{
+//	for(unsigned i = 0; i < m_markedForDelete.size(); ++i)
+//	{
+//		deleteObject(m_markedForDelete.at(i));
+//	}
+//
+//	m_markedForDelete.clear();
+//}
+//
+////delete given object
+//template <typename T>
+//void ObjectPool<T>::deleteObject(T* ptrObj)
+//{
+//	*ptrObj = *(m_ptr_objects_end - 1);
+//	--m_ptr_objects_end;
+//}
 
 
 //----------------------------------------------------------------------

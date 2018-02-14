@@ -46,7 +46,7 @@ void SpriteRenderer::init(const Transform* ptrTrans, const std::string& rTexture
 //render
 void SpriteRenderer::render(sf::RenderWindow& rWindow)
 {
-	m_ptr_sprite->setPosition(m_ptr_transform->position);
+	m_ptr_sprite->setPosition(m_ptr_transform->position + m_offset);
 	m_ptr_sprite->setRotation(m_ptr_transform->rotation);
 	m_ptr_sprite->setScale(m_ptr_transform->scale);
 	rWindow.draw(*m_ptr_sprite);

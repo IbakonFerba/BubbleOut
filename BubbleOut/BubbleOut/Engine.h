@@ -8,6 +8,7 @@
 
 enum class GameState
 {
+	STARTUP,
 	PLAYING,
 	WON,
 	GAME_OVER,
@@ -21,7 +22,7 @@ enum class GameState
 class Engine
 {
 public:
-	Engine() : m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "BubbleOut", sf::Style::Default)
+	Engine() : m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "BubbleOut", sf::Style::Default), m_playerStartPos(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 50)
 	{
 		m_objectManager = new ObjectManager();
 	}
@@ -44,13 +45,18 @@ private:
 	sf::RenderWindow m_window;
 	sf::Event m_event;
 
+	const sf::Vector2f m_playerStartPos;
+
 	GameState m_state;
 
 	//engine functions
 	void setup();
 	void processInput();
-	void update() const;
+	void update();
 	void render();
+
+	//game
+	void reset();
 };
 
 

@@ -42,7 +42,7 @@ void PlayerSystem::releaseBall(ObjectManager* ptrObjManager)
 	}
 }
 
-void PlayerSystem::executePlayerMovement(ObjectManager* ptrObjManager, const float windowWidth)
+void PlayerSystem::updatePlayer(ObjectManager* ptrObjManager, const float windowWidth, GameState& state)
 {
 	ObjectCollection<PlayerPlatform> players = ptrObjManager->getObjectsOfType<PlayerPlatform>();
 
@@ -50,6 +50,11 @@ void PlayerSystem::executePlayerMovement(ObjectManager* ptrObjManager, const flo
 	{
 		for (PlayerPlatform* player = players.object_list_starts.at(i); player <= players.object_list_ends.at(i); ++player)
 		{
+			if(player->lives < 1)
+			{
+				state = GameState::GAME_OVER;
+			}
+
 			const FloatVector2 center = player->getCenter();
 			sf::Vector2f dim = player->getBounds();
 
@@ -91,3 +96,15 @@ void PlayerSystem::executePlayerMovement(ObjectManager* ptrObjManager, const flo
 	}
 }
 
+void PlayerSystem::resetPlayer(ObjectManager* ptrObjManager, const sf::Vector2f& playerPos)
+{
+	ObjectCollection<PlayerPlatform> players = ptrObjManager->getObjectsOfType<PlayerPlatform>();
+
+	for (unsigned i = 0; i < players.object_list_starts.size(); ++i)
+	{
+		for (PlayerPlatform* player = players.object_list_starts.at(i); player <= players.object_list_ends.at(i); ++player)
+		{
+			player->reset(playerPos);
+		}
+	}
+}

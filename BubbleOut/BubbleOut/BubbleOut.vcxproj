@@ -196,6 +196,8 @@
     <ClInclude Include="TestObject.h" />
     <ClInclude Include="TextureCache.h" />
     <ClInclude Include="Transform.h" />
+    <ClInclude Include="UIShapeRenderer.h" />
+    <ClInclude Include="UISpriteRenderer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -14,6 +14,16 @@ void PlayerPlatform::init(ObjectManager* ptrObjectManager, const sf::Vector2f& p
 
 	m_ptr_ball = m_ptr_objManager->getNewObject<PlayerBall>();
 
+	for(int i = 0; i < MAX_LIVES; ++i)
+	{
+		m_liveDisplays[i] = m_ptr_objManager->getNewObject<UIShapeRenderer>();
+		sf::CircleShape* liveBall = new sf::CircleShape(5);
+		liveBall->setFillColor(sf::Color::Red);
+		m_liveDisplays[i]->init(m_ptr_trans, liveBall, Origin::CENTER);
+		m_liveDisplays[i]->setOffset(FloatVector2(-10 + i * 10, 0));
+		m_liveDisplays[i]->tag = RenderTag::INGAME;
+	}
+
 	//init objects
 	m_ptr_trans->position.x = pos.x;
 	m_ptr_trans->position.y = pos.y;
@@ -38,6 +48,19 @@ void PlayerPlatform::init(ObjectManager* ptrObjectManager, const sf::Vector2f& p
 	tag = Tag::PLAYER;
 }
 
+void PlayerPlatform::reset(const sf::Vector2f& pos)
+{
+	m_ptr_trans->position = pos;
+	lives = MAX_LIVES;
+
+	for (int i = 0; i < MAX_LIVES; ++i)
+	{
+		m_liveDisplays[i]->enabled = true;
+	}
+	resetBall();
+}
+
+
 //-----------------------------------------------------------
 //move
 void PlayerPlatform::move() const
@@ -61,6 +84,7 @@ void PlayerPlatform::resetBall()
 
 void PlayerPlatform::releaseBall()
 {
+	m_liveDisplays[lives - 1]->enabled = false;
 	holdingBall = false;
 	m_ptr_ball->getRigidbody()->kinematic = false;
 	m_ptr_ball->getRigidbody()->setVelocity(FloatVector2(0, -m_ptr_ball->speed));
@@ -86,7 +110,8 @@ void PlayerPlatform::update(const Message& message)
 {
 	if(message.type == MessageType::PLAYER_BALL_HIT_BOTTOM)
 	{
-		if(m_ptr_ball != nullptr)
+		lives--;
+		if(lives > 0)
 		{
 			resetBall();
 		}

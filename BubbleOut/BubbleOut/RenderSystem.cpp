@@ -3,6 +3,8 @@
 #include "Renderer.h"
 #include "ShapeRenderer.h"
 #include "SpriteRenderer.h"
+#include "UIShapeRenderer.h"
+#include "UISpriteRenderer.h"
 
 void RenderSystem::render(ObjectManager* objectManager, sf::RenderWindow& rWindow, const RenderTag& tagToRender)
 {
@@ -12,7 +14,7 @@ void RenderSystem::render(ObjectManager* objectManager, sf::RenderWindow& rWindo
 	{
 		for (ShapeRenderer* r = sr.object_list_starts.at(i); r <= sr.object_list_ends.at(i); ++r)
 		{
-			if (r->tag == tagToRender || r->tag == RenderTag::DEFAULT)
+			if (r->enabled && (r->tag == tagToRender || r->tag == RenderTag::DEFAULT))
 			{
 				r->render(rWindow);
 			}
@@ -25,7 +27,37 @@ void RenderSystem::render(ObjectManager* objectManager, sf::RenderWindow& rWindo
 	{
 		for (SpriteRenderer* r = spr.object_list_starts.at(i); r <= spr.object_list_ends.at(i); ++r)
 		{
-			if (r->tag == tagToRender || r->tag == RenderTag::DEFAULT)
+			if (r->enabled && (r->tag == tagToRender || r->tag == RenderTag::DEFAULT))
+			{
+				r->render(rWindow);
+			}
+		}
+	}
+
+
+
+
+
+	ObjectCollection<UIShapeRenderer> uiSr = objectManager->getObjectsOfType<UIShapeRenderer>();
+
+	for (unsigned i = 0; i < uiSr.object_list_starts.size(); ++i)
+	{
+		for (UIShapeRenderer* r = uiSr.object_list_starts.at(i); r <= uiSr.object_list_ends.at(i); ++r)
+		{
+			if (r->enabled && (r->tag == tagToRender || r->tag == RenderTag::DEFAULT))
+			{
+				r->render(rWindow);
+			}
+		}
+	}
+
+	ObjectCollection<UISpriteRenderer> uiSpr = objectManager->getObjectsOfType<UISpriteRenderer>();
+
+	for (unsigned i = 0; i < uiSpr.object_list_starts.size(); ++i)
+	{
+		for (UISpriteRenderer* r = uiSpr.object_list_starts.at(i); r <= uiSpr.object_list_ends.at(i); ++r)
+		{
+			if (r->enabled && (r->tag == tagToRender || r->tag == RenderTag::DEFAULT))
 			{
 				r->render(rWindow);
 			}

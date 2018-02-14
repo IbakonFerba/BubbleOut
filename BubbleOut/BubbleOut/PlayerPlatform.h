@@ -9,6 +9,7 @@
 #include "Rigidbody.h"
 #include "ShapeRenderer.h"
 #include "PlayerBall.h"
+#include "UIShapeRenderer.h"
 
 class PlayerPlatform : public Entity, public Observer
 {
@@ -19,14 +20,19 @@ public:
 	}
 	~PlayerPlatform() {}
 
-	float speed = 10.0;
+	static const int MAX_LIVES = 3;
+	int lives = MAX_LIVES;
+
+	const float speed = 10.0;
 	FloatVector2 movementDir;
 	bool holdingBall = true;
 
 	void init(ObjectManager* ptrObjectManager, const sf::Vector2f& pos);
+	void reset(const sf::Vector2f& pos);
 
 	void move() const;
 	void releaseBall();
+
 
 	sf::Vector2f getBounds() const;
 	FloatVector2 getCenter() const;
@@ -39,6 +45,8 @@ private:
 	Rigidbody* m_ptr_rigidbody;
 
 	PlayerBall* m_ptr_ball;
+
+	UIShapeRenderer* m_liveDisplays[MAX_LIVES];
 
 	float m_ballStartOffset = -30;
 

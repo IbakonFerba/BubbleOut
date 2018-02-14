@@ -13,13 +13,13 @@ public:
 	{
 		pushInheritanceChain<ShapeRenderer>();
 	}
-	~ShapeRenderer();
+	virtual ~ShapeRenderer();
 
 	void init(const Transform* ptrTrans, sf::Shape* ptrShape, const Origin& origin);
 	void render(sf::RenderWindow& rWindow) override;
 
 	sf::FloatRect getBounds() const override;
-private:
+protected:
 	sf::Shape* m_ptr_shape;
 };
 

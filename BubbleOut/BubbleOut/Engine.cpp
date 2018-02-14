@@ -41,7 +41,7 @@ void Engine::run()
 		while (lag >= MS_PER_UPDATE)
 		{
 			update();
-			m_objectManager->deleteObjects();
+			//m_objectManager->deleteObjects();
 			lag -= MS_PER_UPDATE;
 		}
 		
@@ -57,12 +57,18 @@ void Engine::setup()
 	TextureCache textureChache;
 
 	//setup state
-	m_state = GameState::PLAYING;
+	m_state = GameState::STARTUP;
 
 	//setup objects
 	PlayerPlatform* player = m_objectManager->getNewObject<PlayerPlatform>();
 	player->init(m_objectManager, sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 50));
 }
+
+void Engine::reset()
+{
+	PlayerSystem::resetPlayer(m_objectManager, m_playerStartPos);
+}
+
 
 void Engine::processInput()
 {
@@ -75,7 +81,13 @@ void Engine::processInput()
 		}
 	}
 
-	if(m_state == GameState::PLAYING)
+	if(m_state == GameState::STARTUP)
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+		{
+			m_state = GameState::PLAYING;
+		}
+	} else if(m_state == GameState::PLAYING)
 	{
 		bool input = false;
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
@@ -90,25 +102,47 @@ void Engine::processInput()
 			input = true;
 		}
 
-		if(!input)
+		if (!input)
 		{
 			PlayerSystem::movePlayer(m_objectManager, MovementDirection::NONE);
 		}
 
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 		{
 			PlayerSystem::releaseBall(m_objectManager);
+		}
+	} else if(m_state == GameState::GAME_OVER)
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+		{
+			reset();
+			m_state = GameState::PLAYING;
+		}
+	} else if(m_state == GameState::WON)
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+		{
+			reset();
+			m_state = GameState::PLAYING;
 		}
 	}
 }
 
 //all updates happen in here
-void Engine::update() const
+void Engine::update()
 {
-	PlayerSystem::executePlayerMovement(m_objectManager, WINDOW_WIDTH);
+	switch (m_state)
+	{
+	case GameState::STARTUP: break;
+	case GameState::PLAYING:
+		PlayerSystem::updatePlayer(m_objectManager, WINDOW_WIDTH, m_state);
 
-	PhysicsSystem::handleCollision(m_objectManager, WINDOW_WIDTH, WINDOW_HEIGHT);
-	PhysicsSystem::applyPhysics(m_objectManager);
+		PhysicsSystem::handleCollision(m_objectManager, WINDOW_WIDTH, WINDOW_HEIGHT);
+		PhysicsSystem::applyPhysics(m_objectManager);
+		break;
+	case GameState::WON: break;
+	case GameState::GAME_OVER: break;
+	}
 }
 
 //rendering happens in here
@@ -120,6 +154,9 @@ void Engine::render()
 	//draw objects
 	switch (m_state)
 	{
+	case GameState::STARTUP:
+		RenderSystem::render(m_objectManager, m_window, RenderTag::INFO_SCREEN);
+		break;
 	case GameState::PLAYING: 
 		RenderSystem::render(m_objectManager, m_window, RenderTag::INGAME);
 		break;

@@ -52,7 +52,7 @@ void ShapeRenderer::init(const Transform* ptrTrans, sf::Shape* ptrShape, const O
 //render
 void ShapeRenderer::render(sf::RenderWindow& rWindow)
 {
-	m_ptr_shape->setPosition(m_ptr_transform->position);
+	m_ptr_shape->setPosition(m_ptr_transform->position + m_offset);
 	m_ptr_shape->setRotation(m_ptr_transform->rotation);
 	m_ptr_shape->setScale(m_ptr_transform->scale);
 	rWindow.draw(*m_ptr_shape);

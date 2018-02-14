@@ -90,31 +90,31 @@ public:
 
 	//deletion
 
-	//mark the given object for deletion after this frame
-	template <typename T>
-	void destroyObject(T* obj)
-	{
-		//get typeinfo
-		const std::type_info& typeInfo = typeid(T);
+	////mark the given object for deletion after this frame
+	//template <typename T>
+	//void destroyObject(T* obj)
+	//{
+	//	//get typeinfo
+	//	const std::type_info& typeInfo = typeid(T);
 
-		//iterate trhough pools to fins object
-		for (unsigned i = 0; i < m_ptr_pools->size(); ++i)
-		{
-			ObjectPoolBase* ptrPoolBase = m_ptr_pools->at(i);
-			ObjectPool<T>* ptrPool = static_cast<ObjectPool<T>*>(ptrPoolBase);
+	//	//iterate trhough pools to fins object
+	//	for (unsigned i = 0; i < m_ptr_pools->size(); ++i)
+	//	{
+	//		ObjectPoolBase* ptrPoolBase = m_ptr_pools->at(i);
+	//		ObjectPool<T>* ptrPool = static_cast<ObjectPool<T>*>(ptrPoolBase);
 
-			if (ptrPool->getTypeInfo().hash_code() == typeInfo.hash_code() || ptrPool->getDummy()->isDerivedFrom(typeInfo.hash_code()))
-			{
-				if(ptrPool->containsObject(obj))
-				{
-					ptrPool->markForDelete(obj);
-					return;
-				}
-			}
-		}
-	}
+	//		if (ptrPool->getTypeInfo().hash_code() == typeInfo.hash_code() || ptrPool->getDummy()->isDerivedFrom(typeInfo.hash_code()))
+	//		{
+	//			if(ptrPool->containsObject(obj))
+	//			{
+	//				ptrPool->markForDelete(obj);
+	//				return;
+	//			}
+	//		}
+	//	}
+	//}
 
-	void deleteObjects();
+	//void deleteObjects();
 private:
 	std::vector<ObjectPoolBase*>* m_ptr_pools;
 };

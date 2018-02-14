@@ -1,2 +1,3 @@
-﻿  PlayerBall.cpp
+﻿  PlayerPlatform.cpp
+c:\users\rhino\documents\studium\c++\bubbleout\bubbleout\bubbleout\playerplatform.cpp(23): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
   BubbleOut.vcxproj -> C:\Users\Rhino\Documents\Studium\C++\BubbleOut\BubbleOut\Debug\BubbleOut.exe

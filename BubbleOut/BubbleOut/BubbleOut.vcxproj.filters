@@ -146,5 +146,11 @@
     <ClInclude Include="PlayerBall.h">
       <Filter>Header\BubbleOut</Filter>
     </ClInclude>
+    <ClInclude Include="UIShapeRenderer.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="UISpriteRenderer.h">
+      <Filter>Header</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

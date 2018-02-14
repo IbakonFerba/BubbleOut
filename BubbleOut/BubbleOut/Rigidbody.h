@@ -21,6 +21,7 @@ public:
 	~Rigidbody() {}
 
 	bool kinematic;
+	bool enabled = true;
 
 	void init(const Entity* ptrEntity, const CircleCollider* ptrCollider, Transform* ptrTransform, const float drag, const float mass);
 	void init(const Entity* ptrEntity, const RectCollider* ptrCollider, Transform* ptrTransform, const float drag, const float mass);

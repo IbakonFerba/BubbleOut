@@ -10,12 +10,20 @@ void PhysicsSystem::handleCollision(ObjectManager* ptrObjectManager, const float
 	{
 		for (Rigidbody* rigidbody1 = rigidbodys.object_list_starts.at(i); rigidbody1 <= rigidbodys.object_list_ends.at(i); ++rigidbody1)
 		{
+			if(!rigidbody1->enabled)
+			{
+				continue;
+			}
 			const CircleCollider* circleCol1 = rigidbody1->getCircleCollider();
 			const RectCollider* rectCol1 = rigidbody1->getRectCollider();
 			for (unsigned j = i; j < rigidbodys.object_list_starts.size(); ++j)
 			{
 				for (Rigidbody* rigidbody2 = (j==i) ? rigidbody1+1 : rigidbodys.object_list_starts.at(j); rigidbody2 <= rigidbodys.object_list_ends.at(j); ++rigidbody2)
 				{
+					if(!rigidbody2->enabled)
+					{
+						continue;
+					}
 					const CircleCollider* circleCol2 = rigidbody2->getCircleCollider();
 					const RectCollider* rectCol2 = rigidbody2->getRectCollider();
 

@@ -13,7 +13,7 @@ public:
 	{
 		pushInheritanceChain<SpriteRenderer>();
 	}
-	~SpriteRenderer()
+	virtual ~SpriteRenderer()
 	{
 		delete m_ptr_sprite;
 	}
