@@ -103,17 +103,31 @@ FloatVector2 PhysicsSystem::checkCircleRect(Rigidbody* rb1, Rigidbody* rb2, cons
 {
 	FloatVector2 force(0.0, 0.0);
 
-	FloatVector2 rectC = r->getCenter();
-	FloatVector2 dim = r->getDimensions();
+	const FloatVector2 rectC = r->getCenter();
+	const FloatVector2 dim = r->getDimensions();
 
-	FloatVector2 cC = c->getCenter();
-	float rad = c->getRadius();
+	const FloatVector2 cC = c->getCenter();
+	const float rad = c->getRadius();
 
-	FloatVector2 dist(cC.x - std::max(rectC.x - dim.x / 2, std::min(cC.x, rectC.x + dim.x / 2)), cC.y - std::max(rectC.y - dim.y / 2, std::min(cC.y, rectC.y + dim.y / 2)));
+	const float distX = cC.x - std::max(rectC.x - dim.x / 2, std::min(cC.x, rectC.x + dim.x / 2));
+	const float distY = cC.y - std::max(rectC.y - dim.y / 2, std::min(cC.y, rectC.y + dim.y / 2));
+
+	FloatVector2 dist(distX, distY);
 
 	if(dist.magnitude() < rad)
 	{
-		force = dist.getNormalized() * (rad - dist.magnitude());
+		if(distX == 0 && distY == 0)
+		{
+			const float distToCenterX = cC.x - rectC.x;
+			const float distToCenterY = cC.y - rectC.y;
+			const float innerDistX = ((dim.x / 2 - abs(distToCenterX)) + rad) * distToCenterX / abs(distToCenterX);
+			const float innerDistY = ((dim.y / 2 - abs(distToCenterY)) + rad) * distToCenterY / abs(distToCenterY);
+			force.x = innerDistX;
+			force.y = innerDistY;
+		} else
+		{
+			force = dist.getNormalized() * (rad - dist.magnitude());
+		}
 		rb1->collisionWith(rb2);
 		rb2->collisionWith(rb1);
 	}
