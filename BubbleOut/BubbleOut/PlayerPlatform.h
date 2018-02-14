@@ -8,8 +8,9 @@
 #include "RectCollider.h"
 #include "Rigidbody.h"
 #include "ShapeRenderer.h"
+#include "PlayerBall.h"
 
-class PlayerPlatform : public Entity
+class PlayerPlatform : public Entity, public Observer
 {
 public:
 	PlayerPlatform() : Entity()
@@ -25,6 +26,8 @@ public:
 
 	void move() const;
 
+	void update(const Message& message) override;
+
 	sf::Vector2f getBounds() const;
 	FloatVector2 getCenter() const;
 private:
@@ -32,6 +35,8 @@ private:
 	ShapeRenderer* m_ptr_rend;
 	RectCollider* m_ptr_col;
 	Rigidbody* m_ptr_rigidbody;
+
+	PlayerBall* m_ptr_ball;
 };
 
 #endif

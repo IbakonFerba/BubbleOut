@@ -32,6 +32,14 @@ void Rigidbody::collisionWith(const Rigidbody* other)
 	notifyObservers();
 }
 
+void Rigidbody::collisionWith(const Tag& tag)
+{
+	m_observerMessage.tag = tag;
+	notifyObservers();
+}
+
+
+
 //----------------------------------------------------------------------
 //physics
 void Rigidbody::addForce(const FloatVector2& force)

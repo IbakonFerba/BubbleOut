@@ -26,6 +26,7 @@ public:
 	void init(const Entity* ptrEntity, const RectCollider* ptrCollider, Transform* ptrTransform, const float drag, const float mass);
 
 	void collisionWith(const Rigidbody* other);
+	void collisionWith(const Tag& tag);
 	void addForce(const FloatVector2& force);
 
 	void applyPhysics();

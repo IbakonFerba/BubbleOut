@@ -20,8 +20,8 @@ private:
 	static FloatVector2 checkRectRect(Rigidbody* rb1, Rigidbody* rb2, const RectCollider* r1, const RectCollider* r2);
 	static FloatVector2 checkCircleRect(Rigidbody* rb1, Rigidbody* rb2, const CircleCollider* c, const RectCollider* r);
 
-	static FloatVector2 checkEdges(const CircleCollider* c, const float windowWidth, const float windowHeight);
-	static FloatVector2 checkEdges(const RectCollider* r, const float windowWidth, const float windowHeight);
+	static FloatVector2 checkEdges(Rigidbody* rb, const CircleCollider* c, const float windowWidth, const float windowHeight);
+	static FloatVector2 checkEdges(Rigidbody* rb, const RectCollider* r, const float windowWidth, const float windowHeight);
 };
 
 #endif

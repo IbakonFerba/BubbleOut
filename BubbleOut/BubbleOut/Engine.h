@@ -48,6 +48,7 @@ private:
 	GameState m_state;
 
 	//engine functions
+	void setup();
 	void processInput();
 	void update() const;
 	void render();

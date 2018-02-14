@@ -13,14 +13,11 @@
 //main loop of the engine
 void Engine::run()
 {
-	//setting up of needed systems
-	TextureCache textureChache;
-
-	m_state = GameState::PLAYING;
+	setup();
 
 	//======================================
 	//TESTING AREA
-	for(int i = 0; i < 100; ++i)
+	/*for(int i = 0; i < 100; ++i)
 	{
 		TestObject* obj2 = m_objectManager->getNewObject<TestObject>();
 		obj2->init(m_objectManager, FloatVector2(i, i), FloatVector2(0, 10), 1, true);
@@ -28,10 +25,7 @@ void Engine::run()
 
 	TestObject* obj = m_objectManager->getNewObject<TestObject>();
 	obj->init(m_objectManager, FloatVector2(600, 159), FloatVector2(7, 0), 1, false);
-	obj->m_ptr_rigidbody->kinematic = true;
-
-	PlayerPlatform* player = m_objectManager->getNewObject<PlayerPlatform>();
-	player->init(m_objectManager, sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 50));
+	obj->m_ptr_rigidbody->kinematic = true;*/
 	//======================================
 
 	//main loop with fixed update rate and variable render time
@@ -57,6 +51,19 @@ void Engine::run()
 
 //----------------------------------------------------------------------
 //engine functions
+void Engine::setup()
+{
+	//setting up of needed systems
+	TextureCache textureChache;
+
+	//setup state
+	m_state = GameState::PLAYING;
+
+	//setup objects
+	PlayerPlatform* player = m_objectManager->getNewObject<PlayerPlatform>();
+	player->init(m_objectManager, sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 50));
+}
+
 void Engine::processInput()
 {
 	//dispatch events

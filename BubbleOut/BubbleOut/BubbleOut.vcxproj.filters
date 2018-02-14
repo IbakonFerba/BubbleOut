@@ -69,6 +69,9 @@
     <ClCompile Include="PlayerSystem.cpp">
       <Filter>Source\BubbleOut</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerBall.cpp">
+      <Filter>Source\BubbleOut</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -138,6 +141,9 @@
       <Filter>Header\BubbleOut</Filter>
     </ClInclude>
     <ClInclude Include="PlayerSystem.h">
+      <Filter>Header\BubbleOut</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBall.h">
       <Filter>Header\BubbleOut</Filter>
     </ClInclude>
   </ItemGroup>
