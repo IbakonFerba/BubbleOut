@@ -21,6 +21,7 @@ public:
 	~Bubble() {}
 
 	const float MIN_SCALE = 0.5f;
+	const float MAX_SCALE = 1.5;
 	const float SCALE_STEP = 0.1f;
 	const float DRAG_STEP = 0.5;
 	const float MASS_STEP = 0.1;

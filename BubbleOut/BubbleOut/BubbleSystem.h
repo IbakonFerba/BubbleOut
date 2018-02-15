@@ -10,7 +10,7 @@
 class BubbleSystem
 {
 public:
-	static void spawnBubbles(ObjectManager* ptrObjManager);
+	static void spawnBubbles(ObjectManager* ptrObjManager, const int rows, const float spacing, const int windowWidth);
 	static void resetBubbles(ObjectManager* ptrObjManager);
 
 	static void updateBubbles(ObjectManager* ptrObjManager, GameState& gameState);

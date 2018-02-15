@@ -32,27 +32,22 @@ void PhysicsSystem::handleCollision(ObjectManager* ptrObjectManager, const float
 					{
 						if(circleCol2 != nullptr)
 						{
-							f = checkCircleCircle(rigidbody1, rigidbody2, circleCol1, circleCol2);
+							checkCircleCircle(rigidbody1, rigidbody2, circleCol1, circleCol2);
 						} else
 						{
-							f = checkCircleRect(rigidbody1, rigidbody2, circleCol1, rectCol2);
+							checkCircleRect(rigidbody1, rigidbody2, circleCol1, rectCol2);
 						}
 					} else
 					{
 						if (circleCol2 != nullptr)
 						{
-							f = checkCircleRect(rigidbody1, rigidbody2, circleCol2, rectCol1);
+							checkCircleRect(rigidbody2, rigidbody1, circleCol2, rectCol1);
 						}
 						else
 						{
-							f = checkRectRect(rigidbody1, rigidbody2, rectCol1, rectCol2);
+							checkRectRect(rigidbody1, rigidbody2, rectCol1, rectCol2);
 						}
 					}
-
-					f.x *= 0.5;
-					f.y *= 0.5;
-					rigidbody1->addForce(f);
-					rigidbody2->addForce(-f);
 				}
 			}
 
@@ -86,7 +81,7 @@ void PhysicsSystem::applyPhysics(ObjectManager* ptrObjectManager)
 
 //--------------------------------------------------------------------------
 //collision checks
-FloatVector2 PhysicsSystem::checkCircleCircle(Rigidbody* rb1, Rigidbody* rb2, const CircleCollider* c1, const CircleCollider* c2)
+void PhysicsSystem::checkCircleCircle(Rigidbody* rb1, Rigidbody* rb2, const CircleCollider* c1, const CircleCollider* c2)
 {
 	FloatVector2 force;
 
@@ -108,10 +103,12 @@ FloatVector2 PhysicsSystem::checkCircleCircle(Rigidbody* rb1, Rigidbody* rb2, co
 		removeFromCollidingRbs(rb2, rb1);
 	}
 
-	return force;
+	force *= 0.5f;
+	rb1->addForce(force);
+	rb2->addForce(-force);
 }
 
-FloatVector2 PhysicsSystem::checkCircleRect(Rigidbody* rb1, Rigidbody* rb2, const CircleCollider* c, const RectCollider* r)
+void PhysicsSystem::checkCircleRect(Rigidbody* rbC, Rigidbody* rbR, const CircleCollider* c, const RectCollider* r)
 {
 	FloatVector2 force(0.0, 0.0);
 
@@ -138,20 +135,22 @@ FloatVector2 PhysicsSystem::checkCircleRect(Rigidbody* rb1, Rigidbody* rb2, cons
 			force.y = -innerDistY;
 		} else
 		{
-			force = dist.getNormalized() * (-1.0f) * (rad - dist.magnitude());
+			force = dist.getNormalized() * (rad - dist.magnitude());
 		}
-		addToCollidingRbs(rb1, rb2);
-		addToCollidingRbs(rb2, rb1);
+		addToCollidingRbs(rbC, rbR);
+		addToCollidingRbs(rbR, rbC);
 	} else
 	{
-		removeFromCollidingRbs(rb1, rb2);
-		removeFromCollidingRbs(rb2, rb1);
+		removeFromCollidingRbs(rbC, rbR);
+		removeFromCollidingRbs(rbR, rbC);
 	}
 
-	return force;
+	force *= 0.5f;
+	rbC->addForce(force);
+	rbR->addForce(-force);
 }
 
-FloatVector2 PhysicsSystem::checkRectRect(Rigidbody* rb1, Rigidbody* rb2, const RectCollider* r1, const RectCollider* r2)
+void PhysicsSystem::checkRectRect(Rigidbody* rb1, Rigidbody* rb2, const RectCollider* r1, const RectCollider* r2)
 {
 	FloatVector2 force;
 
@@ -194,7 +193,9 @@ FloatVector2 PhysicsSystem::checkRectRect(Rigidbody* rb1, Rigidbody* rb2, const 
 		removeFromCollidingRbs(rb1, rb2);
 		removeFromCollidingRbs(rb2, rb1);
 	}
-	return force;
+	force *= 0.5f;
+	rb1->addForce(force);
+	rb2->addForce(-force);
 }
 
 

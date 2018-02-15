@@ -18,7 +18,7 @@ void Bubble::init(ObjectManager* ptrObjectManager, const float posX, const float
 	m_startPos.y = posY;
 
 	m_startMass = 2;
-	m_startDrag = 3;
+	m_startDrag = 2;
 	tag = Tag::BUBBLE;
 
 	//setup components
@@ -72,10 +72,13 @@ void Bubble::update(const Message& message)
 			{
 				if(message.circle_collider->getScale().x < m_ptr_trans->scale.x)
 				{
-					m_ptr_trans->scale += SCALE_STEP;
-					m_ptr_rigidbody->drag += DRAG_STEP;
-					m_ptr_rigidbody->mass += MASS_STEP;
-				} else if(message.circle_collider->getScale().x > m_ptr_trans->scale.x)
+					if(m_ptr_trans->scale.x < MAX_SCALE)
+					{
+						m_ptr_trans->scale += SCALE_STEP;
+						m_ptr_rigidbody->drag += DRAG_STEP;
+						m_ptr_rigidbody->mass += MASS_STEP;
+					}
+				} else if(message.circle_collider->getScale().x > m_ptr_trans->scale.x && message.circle_collider->getScale().x < MAX_SCALE)
 				{
 					if (m_ptr_trans->scale.x > MIN_SCALE)
 					{

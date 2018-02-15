@@ -18,11 +18,6 @@ void Engine::run()
 
 	//======================================
 	//TESTING AREA
-	Bubble* b = m_objectManager->getNewObject<Bubble>();
-	b->init(m_objectManager, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
-
-	Bubble* b2 = m_objectManager->getNewObject<Bubble>();
-	b2->init(m_objectManager, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 - 100);
 	//======================================
 
 	//main loop with fixed update rate and variable render time
@@ -52,6 +47,7 @@ void Engine::setup()
 {
 	//setting up of needed systems
 	TextureCache textureChache;
+	BubbleSystem::spawnBubbles(m_objectManager, 4, 120, WINDOW_WIDTH);
 
 	//setup state
 	m_state = GameState::STARTUP;

@@ -1,10 +1,20 @@
+
 #include "stdafx.h"
 #include "BubbleSystem.h"
 #include "Bubble.h"
 
-void BubbleSystem::spawnBubbles(ObjectManager* ptrObjManager)
+void BubbleSystem::spawnBubbles(ObjectManager* ptrObjManager, const int rows, const float spacing, const int windowWidth)
 {
-	
+	int cols = (windowWidth / spacing)-1;
+	float freeSpace = windowWidth - (cols-1) * spacing;
+	for(int y = 0; y < rows; ++y)
+	{
+		for(int x = 0; x < cols; ++x)
+		{
+			Bubble* bubble = ptrObjManager->getNewObject<Bubble>();
+			bubble->init(ptrObjManager, (x* spacing) + freeSpace/2, (y*spacing) + spacing);
+		}
+	}
 }
 
 void BubbleSystem::resetBubbles(ObjectManager* ptrObjManager)
