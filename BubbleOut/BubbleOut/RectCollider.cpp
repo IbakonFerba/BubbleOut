@@ -22,7 +22,7 @@ void RectCollider::setDimensions(const float width, const float height)
 
 //----------------------------------------------------------------------
 //getter
-sf::Vector2f RectCollider::getDimensions() const
+FloatVector2 RectCollider::getDimensions() const
 {
-	return m_dimensions;
+	return m_dimensions * (m_ptr_transform->scale);
 }

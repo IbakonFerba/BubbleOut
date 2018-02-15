@@ -27,9 +27,6 @@
     <ClCompile Include="FloatVector2.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="TestObject.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="Subject.cpp">
       <Filter>Source</Filter>
     </ClCompile>
@@ -93,9 +90,6 @@
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="FloatVector2.h">
-      <Filter>Header</Filter>
-    </ClInclude>
-    <ClInclude Include="TestObject.h">
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="Subject.h">

@@ -2,7 +2,6 @@
 #include "Engine.h"
 
 #include "ObjectManager.h"
-#include "TestObject.h"
 #include "TextureCache.h"
 #include "PhysicsSystem.h"
 #include "RenderSystem.h"
@@ -17,15 +16,6 @@ void Engine::run()
 
 	//======================================
 	//TESTING AREA
-	for(int i = 0; i < 1; ++i)
-	{
-		/*TestObject* obj2 = m_objectManager->getNewObject<TestObject>();
-		obj2->init(m_objectManager, FloatVector2(WINDOW_WIDTH/2 - 5, 100), FloatVector2(0, 0), 2, true);*/
-	}
-
-	/*TestObject* obj = m_objectManager->getNewObject<TestObject>();
-	obj->init(m_objectManager, FloatVector2(600, 159), FloatVector2(7, 0), 1, false);
-	obj->m_ptr_rigidbody->kinematic = true;*/
 	//======================================
 
 	//main loop with fixed update rate and variable render time

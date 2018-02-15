@@ -20,7 +20,7 @@ public:
 	void setTransform(const Transform* t) { m_ptr_transform = t; }
 
 	FloatVector2 getCenter() const;
-private:
+protected:
 	const Transform* m_ptr_transform;
 };
 

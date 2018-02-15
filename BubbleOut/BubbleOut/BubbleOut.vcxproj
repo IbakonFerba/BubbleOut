@@ -168,7 +168,6 @@
     <ClCompile Include="ShapeRenderer.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="Subject.cpp" />
-    <ClCompile Include="TestObject.cpp" />
     <ClCompile Include="TextureCache.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -193,7 +192,6 @@
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Subject.h" />
-    <ClInclude Include="TestObject.h" />
     <ClInclude Include="TextureCache.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="UIShapeRenderer.h" />

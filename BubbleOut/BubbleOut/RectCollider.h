@@ -18,9 +18,9 @@ public:
 	void init(const Transform* ptrTransform, const float width, const float height);
 	void setDimensions(const float width, const float height);
 
-	sf::Vector2f getDimensions() const;
+	FloatVector2 getDimensions() const;
 private:
-	sf::Vector2f m_dimensions;
+	FloatVector2 m_dimensions;
 };
 
 #endif

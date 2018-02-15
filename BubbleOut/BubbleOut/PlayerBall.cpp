@@ -19,7 +19,8 @@ void PlayerBall::init(ObjectManager* ptrObjectManager, const float radius)
 	m_ptr_rend->init(m_ptr_transform, ptrShape, Origin::CENTER);
 	m_ptr_rend->tag = RenderTag::INGAME;
 
-	m_ptr_col->init(m_ptr_transform, radius);
+	const sf::FloatRect rendBounds = m_ptr_rend->getBounds();
+	m_ptr_col->init(m_ptr_transform, rendBounds.width/2);
 
 	m_ptr_rigidbody->init(this,m_ptr_col, m_ptr_transform, 0, 1);
 

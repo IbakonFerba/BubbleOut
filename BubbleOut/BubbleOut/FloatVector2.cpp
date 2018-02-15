@@ -28,6 +28,36 @@ float FloatVector2::headingAngle()
 	return m_lastHeading;
 }
 
+//------------------------------------------------------------------------------------------
+//operators
+FloatVector2 FloatVector2::operator*(const FloatVector2& other) const
+{
+	FloatVector2 returnVector;
+	returnVector.x = x * other.x;
+	returnVector.y = y * other.y;
+	return returnVector;
+}
+
+FloatVector2 FloatVector2::operator*(const sf::Vector2f& other) const
+{
+	FloatVector2 returnVector;
+	returnVector.x = x * other.x;
+	returnVector.y = y * other.y;
+	return returnVector;
+}
+
+void FloatVector2::operator*=(const FloatVector2& other)
+{
+	x *= other.x;
+	y *= other.y;
+}
+
+void FloatVector2::operator*=(const sf::Vector2f& other)
+{
+	x *= other.x;
+	y *= other.y;
+}
+
 
 
 //------------------------------------------------------------------------------------------

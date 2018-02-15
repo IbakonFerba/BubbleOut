@@ -21,5 +21,5 @@ void CircleCollider::setRadius(const float radius)
 //getter
 float CircleCollider::getRadius() const
 {
-	return m_radius;
+	return m_radius * ((m_ptr_transform->scale.x >= m_ptr_transform->scale.y) ? m_ptr_transform->scale.x : m_ptr_transform->scale.y);
 }

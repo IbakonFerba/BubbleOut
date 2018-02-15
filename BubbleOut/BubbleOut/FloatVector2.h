@@ -13,6 +13,12 @@ public:
 	FloatVector2(const sf::Vector2f& sfVector) : sf::Vector2f(sfVector) {}
 	FloatVector2(const sf::Vector2i& sfVectori) : sf::Vector2f(sfVectori) {}
 
+	//operators
+	FloatVector2 operator*(const FloatVector2& other) const;
+	FloatVector2 operator*(const sf::Vector2f& other) const;
+	void operator*=(const FloatVector2& other);
+	void operator*=(const sf::Vector2f& other);
+
 	//Functions
 	float magnitude() const;
 	void normalize();
@@ -21,7 +27,6 @@ public:
 	//getter
 	sf::Vector2f getSfVector() const;
 	FloatVector2 getNormalized() const;
-	float getLastHeading() const;
 private:
 	float m_lastHeading;
 };
