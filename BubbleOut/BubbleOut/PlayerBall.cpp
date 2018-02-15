@@ -53,8 +53,20 @@ Rigidbody* PlayerBall::getRigidbody()
 //observer
 void PlayerBall::update(const Message& message)
 {
-	if(message.tag == Tag::BORDER_BOTTOM)
+	if(message.type == MessageType::COLLISION_ENTER)
 	{
+		if (message.tag == Tag::BORDER_BOTTOM)
+		{
+			m_observerMessage.type = MessageType::PLAYER_BALL_HIT_BOTTOM;
+			notifyObservers();
+		} else if(message.tag == Tag::BORDER_LEFT || message.tag == Tag::BORDER_RIGHT || message.tag == Tag::BORDER_TOP)
+		{
+			m_observerMessage.type = MessageType::PLAYER_BALL_IMPACT;
+			notifyObservers();
+		}
+	} else if(message.type == MessageType::COLLISION_EXIT)
+	{
+		m_observerMessage.type = MessageType::PLAYER_BALL_IMPACT;
 		notifyObservers();
 	}
 }
@@ -62,12 +74,9 @@ void PlayerBall::update(const Message& message)
 
 void PlayerBall::notifyObservers() const
 {
-	Message m;
-	m.type = MessageType::PLAYER_BALL_HIT_BOTTOM;
-
 	for (unsigned i = 0; i < m_observers.size(); ++i)
 	{
-		m_observers.at(i)->update(m);
+		m_observers.at(i)->update(m_observerMessage);
 	}
 }
 

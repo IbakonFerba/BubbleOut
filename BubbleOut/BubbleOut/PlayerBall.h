@@ -35,6 +35,8 @@ private:
 	CircleCollider* m_ptr_col;
 	Rigidbody* m_ptr_rigidbody;
 	ShapeRenderer* m_ptr_rend;
+
+	Message m_observerMessage;
 };
 
 #endif

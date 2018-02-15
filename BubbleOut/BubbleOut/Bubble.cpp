@@ -66,6 +66,8 @@ void Bubble::update(const Message& message)
 {
 	if(message.type == MessageType::COLLISION_EXIT)
 	{
+		m_observerMessage.type = MessageType::BUBBLE_IMPACT;
+		notifyObservers();
 		if (message.tag == Tag::BUBBLE)
 		{
 			if(message.circle_collider != nullptr)
@@ -96,6 +98,14 @@ void Bubble::update(const Message& message)
 				m_ptr_rigidbody->mass -= MASS_STEP;
 			}
 		}
+	}
+}
+
+void Bubble::notifyObservers() const
+{
+	for (unsigned i = 0; i < m_observers.size(); ++i)
+	{
+		m_observers.at(i)->update(m_observerMessage);
 	}
 }
 

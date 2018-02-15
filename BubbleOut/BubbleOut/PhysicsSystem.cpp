@@ -87,8 +87,8 @@ void PhysicsSystem::checkCircleCircle(Rigidbody* rb1, Rigidbody* rb2, const Circ
 
 	FloatVector2 dist = c1->getCenter() - c2->getCenter();
 
-	float sumR = c1->getRadius() + c2->getRadius();
-	float distMag = dist.magnitude();
+	const float sumR = c1->getRadius() + c2->getRadius();
+	const float distMag = dist.magnitude();
 	if(distMag < sumR)
 	{
 		dist.normalize();
@@ -155,10 +155,10 @@ void PhysicsSystem::checkRectRect(Rigidbody* rb1, Rigidbody* rb2, const RectColl
 	FloatVector2 force;
 
 	const FloatVector2 center1 = r1->getCenter();
-	sf::Vector2f dim1 = r1->getDimensions();
+	const sf::Vector2f dim1 = r1->getDimensions();
 
 	const FloatVector2 center2 = r2->getCenter();
-	sf::Vector2f dim2 = r2->getDimensions();
+	const sf::Vector2f dim2 = r2->getDimensions();
 
 	FloatVector2 dir = center1 - center2;
 	if(center1.x + dim1.x/2 > center2.x - dim2.x/2 
@@ -168,7 +168,7 @@ void PhysicsSystem::checkRectRect(Rigidbody* rb1, Rigidbody* rb2, const RectColl
 	{
 		addToCollidingRbs(rb1, rb2);
 		addToCollidingRbs(rb2, rb1);
-		float angle = abs(dir.headingAngle());
+		const float angle = abs(dir.headingAngle());
 		if(angle > 135.0 || angle < 45.0)
 		{
 			if(dir.x < 0)
@@ -205,7 +205,7 @@ FloatVector2 PhysicsSystem::checkEdges(Rigidbody* rb, const CircleCollider* c, c
 	FloatVector2 force;
 
 	const FloatVector2 center = c->getCenter();
-	float r = c->getRadius();
+	const float r = c->getRadius();
 	if(center.x - r < 0)
 	{
 		force.x = 0 - (center.x - r);

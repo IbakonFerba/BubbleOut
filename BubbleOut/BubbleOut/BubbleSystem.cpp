@@ -3,7 +3,7 @@
 #include "BubbleSystem.h"
 #include "Bubble.h"
 
-void BubbleSystem::spawnBubbles(ObjectManager* ptrObjManager, const int rows, const float spacing, const int windowWidth)
+void BubbleSystem::spawnBubbles(ObjectManager* ptrObjManager, const int rows, const float spacing, const int windowWidth, SoundSystem& soundSystem)
 {
 	int cols = (windowWidth / spacing)-1;
 	float freeSpace = windowWidth - (cols-1) * spacing;
@@ -12,6 +12,7 @@ void BubbleSystem::spawnBubbles(ObjectManager* ptrObjManager, const int rows, co
 		for(int x = 0; x < cols; ++x)
 		{
 			Bubble* bubble = ptrObjManager->getNewObject<Bubble>();
+			bubble->addObserver(&soundSystem);
 			bubble->init(ptrObjManager, (x* spacing) + freeSpace/2, (y*spacing) + spacing);
 		}
 	}

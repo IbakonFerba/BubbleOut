@@ -75,6 +75,9 @@
     <ClCompile Include="BubbleSystem.cpp">
       <Filter>Source\BubbleOut</Filter>
     </ClCompile>
+    <ClCompile Include="SoundSystem.cpp">
+      <Filter>Source\BubbleOut</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -156,6 +159,9 @@
       <Filter>Header\BubbleOut</Filter>
     </ClInclude>
     <ClInclude Include="BubbleSystem.h">
+      <Filter>Header\BubbleOut</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundSystem.h">
       <Filter>Header\BubbleOut</Filter>
     </ClInclude>
   </ItemGroup>

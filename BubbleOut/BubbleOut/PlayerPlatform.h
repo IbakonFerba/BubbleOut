@@ -10,6 +10,7 @@
 #include "ShapeRenderer.h"
 #include "PlayerBall.h"
 #include "UIShapeRenderer.h"
+#include "SoundSystem.h"
 
 class PlayerPlatform : public Entity, public Observer
 {
@@ -27,7 +28,7 @@ public:
 	FloatVector2 movementDir;
 	bool holdingBall = true;
 
-	void init(ObjectManager* ptrObjectManager, const sf::Vector2f& pos);
+	void init(ObjectManager* ptrObjectManager, const sf::Vector2f& pos, SoundSystem& soundSystem);
 	void reset(const sf::Vector2f& pos);
 
 	void move() const;

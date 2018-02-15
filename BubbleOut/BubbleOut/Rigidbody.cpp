@@ -51,6 +51,7 @@ void Rigidbody::collisionWith(const Rigidbody* other)
 
 void Rigidbody::collisionWith(const Tag& tag)
 {
+	m_observerMessage.type = MessageType::COLLISION_ENTER;
 	m_observerMessage.tag = tag;
 	notifyObservers();
 }

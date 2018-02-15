@@ -11,7 +11,7 @@
 #include "CircleCollider.h"
 #include "Rigidbody.h"
 
-class Bubble : public Entity, public Observer
+class Bubble : public Entity, public Observer, public Subject
 {
 public:
 	Bubble() : Entity()
@@ -32,6 +32,7 @@ public:
 
 	void disable();
 
+	void notifyObservers() const override;
 	void update(const Message& message) override;
 
 	FloatVector2 getScale() const;
@@ -44,6 +45,8 @@ private:
 	FloatVector2 m_startPos;
 	float m_startDrag;
 	float m_startMass;
+
+	Message m_observerMessage;
 };
 
 #endif

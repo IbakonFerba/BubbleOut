@@ -5,6 +5,7 @@
 
 #include "stdafx.h"
 #include "ObjectManager.h"
+#include "SoundSystem.h"
 
 enum class GameState
 {
@@ -44,6 +45,7 @@ private:
 	ObjectManager* m_objectManager;
 	sf::RenderWindow m_window;
 	sf::Event m_event;
+	SoundSystem m_soundSystem;
 
 	const sf::Vector2f m_playerStartPos;
 

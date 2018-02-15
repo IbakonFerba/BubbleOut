@@ -1,5 +1,2 @@
-﻿  BubbleSystem.cpp
-c:\users\rhino\documents\studium\c++\bubbleout\bubbleout\bubbleout\engine.h(39): warning C4305: 'initializing': truncation from 'double' to 'const float'
-c:\users\rhino\documents\studium\c++\bubbleout\bubbleout\bubbleout\bubble.h(27): warning C4305: 'initializing': truncation from 'double' to 'const float'
-c:\users\rhino\documents\studium\c++\bubbleout\bubbleout\bubbleout\bubblesystem.cpp(8): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+﻿  Rigidbody.cpp
   BubbleOut.vcxproj -> C:\Users\Rhino\Documents\Studium\C++\BubbleOut\BubbleOut\Debug\BubbleOut.exe

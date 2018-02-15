@@ -47,14 +47,14 @@ void Engine::setup()
 {
 	//setting up of needed systems
 	TextureCache textureChache;
-	BubbleSystem::spawnBubbles(m_objectManager, 4, 120, WINDOW_WIDTH);
+	BubbleSystem::spawnBubbles(m_objectManager, 4, 120, WINDOW_WIDTH, m_soundSystem);
 
 	//setup state
 	m_state = GameState::STARTUP;
 
 	//setup objects
 	PlayerPlatform* player = m_objectManager->getNewObject<PlayerPlatform>();
-	player->init(m_objectManager, sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 50));
+	player->init(m_objectManager, sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 50), m_soundSystem);
 }
 
 void Engine::reset()

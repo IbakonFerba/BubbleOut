@@ -1,10 +1,11 @@
 #include "stdafx.h"
 #include "PlayerPlatform.h"
 #include "ShapeRenderer.h"
+#include "SoundSystem.h"
 
 //-----------------------------------------------------------
 //init
-void PlayerPlatform::init(ObjectManager* ptrObjectManager, const sf::Vector2f& pos)
+void PlayerPlatform::init(ObjectManager* ptrObjectManager, const sf::Vector2f& pos, SoundSystem& soundSystem)
 {
 	setObjectManager(ptrObjectManager);
 	m_ptr_trans = m_ptr_objManager->getNewObject<Transform>();
@@ -58,6 +59,7 @@ void PlayerPlatform::init(ObjectManager* ptrObjectManager, const sf::Vector2f& p
 
 	m_ptr_ball->init(m_ptr_objManager, 20);
 	m_ptr_ball->addObserver(this);
+	m_ptr_ball->addObserver(&soundSystem);
 
 	resetBall();
 
