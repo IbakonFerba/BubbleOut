@@ -7,6 +7,8 @@
 #include "RenderSystem.h"
 #include "PlayerPlatform.h"
 #include "PlayerSystem.h"
+#include "Bubble.h"
+#include "BubbleSystem.h"
 
 //----------------------------------------------------------------------
 //main loop of the engine
@@ -16,6 +18,11 @@ void Engine::run()
 
 	//======================================
 	//TESTING AREA
+	Bubble* b = m_objectManager->getNewObject<Bubble>();
+	b->init(m_objectManager, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+
+	Bubble* b2 = m_objectManager->getNewObject<Bubble>();
+	b2->init(m_objectManager, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 - 100);
 	//======================================
 
 	//main loop with fixed update rate and variable render time
@@ -57,6 +64,7 @@ void Engine::setup()
 void Engine::reset()
 {
 	PlayerSystem::resetPlayer(m_objectManager, m_playerStartPos);
+	BubbleSystem::resetBubbles(m_objectManager);
 }
 
 
@@ -129,6 +137,8 @@ void Engine::update()
 
 		PhysicsSystem::handleCollision(m_objectManager, WINDOW_WIDTH, WINDOW_HEIGHT);
 		PhysicsSystem::applyPhysics(m_objectManager);
+
+		BubbleSystem::updateBubbles(m_objectManager, m_state);
 		break;
 	case GameState::WON: break;
 	case GameState::GAME_OVER: break;

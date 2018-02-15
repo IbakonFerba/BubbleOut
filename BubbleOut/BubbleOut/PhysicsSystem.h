@@ -22,6 +22,9 @@ private:
 
 	static FloatVector2 checkEdges(Rigidbody* rb, const CircleCollider* c, const float windowWidth, const float windowHeight);
 	static FloatVector2 checkEdges(Rigidbody* rb, const RectCollider* r, const float windowWidth, const float windowHeight);
+
+	static void addToCollidingRbs(Rigidbody* rb, Rigidbody* collidingRb);
+	static void removeFromCollidingRbs(Rigidbody* rb, Rigidbody* collidingRb);
 };
 
 #endif

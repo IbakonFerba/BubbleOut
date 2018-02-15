@@ -3,14 +3,14 @@
 
 //----------------------------------------------------------------------
 //init
-void Rigidbody::init(const Entity* ptrEntity, const CircleCollider* ptrCollider, Transform* ptrTransform, const float drag, const float mass)
+void Rigidbody::init(const Entity* ptrEntity, CircleCollider* ptrCollider, Transform* ptrTransform, const float _drag, const float _mass)
 {
 	m_ptr_entity = ptrEntity;
 	m_ptr_circleCollider = ptrCollider;
 	m_ptr_rectCollider = nullptr;
 	m_ptr_transform = ptrTransform;
-	m_drag = drag;
-	m_mass = mass;
+	drag = _drag;
+	mass = _mass;
 
 	m_velocity.x = 0.0f;
 	m_velocity.y = 0.0f;
@@ -19,14 +19,14 @@ void Rigidbody::init(const Entity* ptrEntity, const CircleCollider* ptrCollider,
 	m_acceleration.y = 0.0f;
 }
 
-void Rigidbody::init(const Entity* ptrEntity, const RectCollider* ptrCollider, Transform* ptrTransform, const float drag, const float mass)
+void Rigidbody::init(const Entity* ptrEntity, RectCollider* ptrCollider, Transform* ptrTransform, const float _drag, const float _mass)
 {
 	m_ptr_entity = ptrEntity;
 	m_ptr_circleCollider = nullptr;
 	m_ptr_rectCollider = ptrCollider;
 	m_ptr_transform = ptrTransform;
-	m_drag = drag;
-	m_mass = mass;
+	drag = _drag;
+	mass = _mass;
 
 	m_velocity.x = 0.0f;
 	m_velocity.y = 0.0f;
@@ -40,14 +40,30 @@ void Rigidbody::init(const Entity* ptrEntity, const RectCollider* ptrCollider, T
 //collision
 void Rigidbody::collisionWith(const Rigidbody* other)
 {
+	m_observerMessage.type = MessageType::COLLISION_ENTER;
 	m_observerMessage.tag = other->getEntity()->tag;
+	m_observerMessage.circle_collider = other->getCircleCollider();
+	m_observerMessage.rect_collider = other->getRectCollider();
+
 	notifyObservers();
+	m_observerMessage.type = MessageType::DEFAULT;
 }
 
 void Rigidbody::collisionWith(const Tag& tag)
 {
 	m_observerMessage.tag = tag;
 	notifyObservers();
+}
+
+void Rigidbody::collisionExitWith(const Rigidbody* other)
+{
+	m_observerMessage.type = MessageType::COLLISION_EXIT;
+	m_observerMessage.tag = other->getEntity()->tag;
+	m_observerMessage.circle_collider = other->getCircleCollider();
+	m_observerMessage.rect_collider = other->getRectCollider();
+
+	notifyObservers();
+	m_observerMessage.type = MessageType::DEFAULT;
 }
 
 
@@ -60,7 +76,7 @@ void Rigidbody::addForce(const FloatVector2& force)
 	{
 		return;
 	}
-	m_acceleration += force/m_mass;
+	m_acceleration += force/mass;
 }
 
 void Rigidbody::applyPhysics()
@@ -75,7 +91,7 @@ void Rigidbody::applyPhysics()
 
 	m_ptr_transform->position += m_velocity;
 
-	m_velocity *= (1 / (m_drag*0.01f + 1));
+	m_velocity *= (1 / (drag*0.01f + 1));
 }
 
 //----------------------------------------------------------------------
@@ -85,12 +101,12 @@ const Entity* Rigidbody::getEntity() const
 	return m_ptr_entity;
 }
 
-const CircleCollider* Rigidbody::getCircleCollider() const
+CircleCollider* Rigidbody::getCircleCollider() const
 {
 	return m_ptr_circleCollider;
 }
 
-const RectCollider* Rigidbody::getRectCollider() const
+RectCollider* Rigidbody::getRectCollider() const
 {
 	return m_ptr_rectCollider;
 }

@@ -69,6 +69,12 @@
     <ClCompile Include="PlayerBall.cpp">
       <Filter>Source\BubbleOut</Filter>
     </ClCompile>
+    <ClCompile Include="Bubble.cpp">
+      <Filter>Source\BubbleOut</Filter>
+    </ClCompile>
+    <ClCompile Include="BubbleSystem.cpp">
+      <Filter>Source\BubbleOut</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -145,6 +151,12 @@
     </ClInclude>
     <ClInclude Include="UISpriteRenderer.h">
       <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Bubble.h">
+      <Filter>Header\BubbleOut</Filter>
+    </ClInclude>
+    <ClInclude Include="BubbleSystem.h">
+      <Filter>Header\BubbleOut</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

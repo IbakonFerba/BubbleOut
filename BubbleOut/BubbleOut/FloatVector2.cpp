@@ -58,6 +58,19 @@ void FloatVector2::operator*=(const sf::Vector2f& other)
 	y *= other.y;
 }
 
+void FloatVector2::operator-=(const float& val)
+{
+	x -= val;
+	y -= val;
+}
+
+void FloatVector2::operator+=(const float& val)
+{
+	x += val;
+	y += val;
+}
+
+
 
 
 //------------------------------------------------------------------------------------------

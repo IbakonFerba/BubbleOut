@@ -9,8 +9,11 @@ void PlayerPlatform::init(ObjectManager* ptrObjectManager, const sf::Vector2f& p
 	setObjectManager(ptrObjectManager);
 	m_ptr_trans = m_ptr_objManager->getNewObject<Transform>();
 	m_ptr_rend = m_ptr_objManager->getNewObject<ShapeRenderer>();
+	m_ptr_rend2 = m_ptr_objManager->getNewObject<ShapeRenderer>();
 	m_ptr_col = m_ptr_objManager->getNewObject<RectCollider>();
+	m_ptr_col2 = m_ptr_objManager->getNewObject<RectCollider>();
 	m_ptr_rigidbody = m_ptr_objManager->getNewObject<Rigidbody>();
+	m_ptr_rigidbody2 = m_ptr_objManager->getNewObject<Rigidbody>();
 
 	m_ptr_ball = m_ptr_objManager->getNewObject<PlayerBall>();
 
@@ -33,11 +36,25 @@ void PlayerPlatform::init(ObjectManager* ptrObjectManager, const sf::Vector2f& p
 	m_ptr_rend->init(m_ptr_trans, shape, Origin::CENTER);
 	m_ptr_rend->tag = RenderTag::INGAME;
 
+	const FloatVector2 shape2Offset(0, -12.5);
+	sf::RectangleShape* shape2 = new sf::RectangleShape(sf::Vector2f(100, 5));
+	shape2->setFillColor(sf::Color::Cyan);
+	m_ptr_rend2->init(m_ptr_trans, shape2, Origin::CENTER);
+	m_ptr_rend2->setOffset(shape2Offset);
+	m_ptr_rend2->tag = RenderTag::INGAME;
+
 	const sf::FloatRect rendBounds = m_ptr_rend->getBounds();
 	m_ptr_col->init(m_ptr_trans, rendBounds.width, rendBounds.height);
 
+	const sf::FloatRect rendBounds2 = m_ptr_rend2->getBounds();
+	m_ptr_col2->init(m_ptr_trans, rendBounds2.width, rendBounds2.height);
+	m_ptr_col2->setOffset(shape2Offset);
+
 	m_ptr_rigidbody->init(this, m_ptr_col, m_ptr_trans, 0, 1);
 	m_ptr_rigidbody->kinematic = true;
+
+	m_ptr_rigidbody2->init(this, m_ptr_col2, m_ptr_trans, 0, 1);
+	m_ptr_rigidbody2->kinematic = true;
 
 	m_ptr_ball->init(m_ptr_objManager, 20);
 	m_ptr_ball->addObserver(this);

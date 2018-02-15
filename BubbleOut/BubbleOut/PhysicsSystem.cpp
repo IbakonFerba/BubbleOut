@@ -100,8 +100,12 @@ FloatVector2 PhysicsSystem::checkCircleCircle(Rigidbody* rb1, Rigidbody* rb2, co
 		dist *= sumR - distMag;
 		force = dist;
 
-		rb1->collisionWith(rb2);
-		rb2->collisionWith(rb1);
+		addToCollidingRbs(rb1, rb2);
+		addToCollidingRbs(rb2, rb1);
+	} else
+	{
+		removeFromCollidingRbs(rb1, rb2);
+		removeFromCollidingRbs(rb2, rb1);
 	}
 
 	return force;
@@ -136,8 +140,12 @@ FloatVector2 PhysicsSystem::checkCircleRect(Rigidbody* rb1, Rigidbody* rb2, cons
 		{
 			force = dist.getNormalized() * (-1.0f) * (rad - dist.magnitude());
 		}
-		rb1->collisionWith(rb2);
-		rb2->collisionWith(rb1);
+		addToCollidingRbs(rb1, rb2);
+		addToCollidingRbs(rb2, rb1);
+	} else
+	{
+		removeFromCollidingRbs(rb1, rb2);
+		removeFromCollidingRbs(rb2, rb1);
 	}
 
 	return force;
@@ -159,8 +167,8 @@ FloatVector2 PhysicsSystem::checkRectRect(Rigidbody* rb1, Rigidbody* rb2, const 
 		&& center1.y + dim1.y/2 > center2.y - dim2.y/2 
 		&& center1.y - dim1.y/2 < center2.y + dim2.y/2)
 	{
-		rb1->collisionWith(rb2);
-		rb2->collisionWith(rb1);
+		addToCollidingRbs(rb1, rb2);
+		addToCollidingRbs(rb2, rb1);
 		float angle = abs(dir.headingAngle());
 		if(angle > 135.0 || angle < 45.0)
 		{
@@ -181,6 +189,10 @@ FloatVector2 PhysicsSystem::checkRectRect(Rigidbody* rb1, Rigidbody* rb2, const 
 				force.y = (center2.y + dim2.y / 2) - (center1.y - dim1.y / 2);
 			}
 		}
+	} else
+	{
+		removeFromCollidingRbs(rb1, rb2);
+		removeFromCollidingRbs(rb2, rb1);
 	}
 	return force;
 }
@@ -222,7 +234,7 @@ FloatVector2 PhysicsSystem::checkEdges(Rigidbody* rb, const RectCollider* r, con
 	FloatVector2 force;
 
 	const FloatVector2 center = r->getCenter();
-	sf::Vector2f dim = r->getDimensions();
+	const FloatVector2 dim = r->getDimensions();
 
 	if(center.x - dim.x/2 < 0)
 	{
@@ -246,4 +258,35 @@ FloatVector2 PhysicsSystem::checkEdges(Rigidbody* rb, const RectCollider* r, con
 	}
 
 	return force;
+}
+
+void PhysicsSystem::addToCollidingRbs(Rigidbody* rb, Rigidbody* collidingRb)
+{
+	bool foundRb = false;
+	for (Rigidbody* rigidbody : rb->collidingRigidbodys)
+	{
+		if (rigidbody == collidingRb)
+		{
+			foundRb = true;
+			break;
+		}
+	}
+	if (!foundRb)
+	{
+		rb->collidingRigidbodys.push_back(collidingRb);
+		rb->collisionWith(collidingRb);
+	}
+}
+
+void PhysicsSystem::removeFromCollidingRbs(Rigidbody* rb, Rigidbody* collidingRb)
+{
+	for (unsigned i = 0; i < rb->collidingRigidbodys.size(); ++i)
+	{
+		if (rb->collidingRigidbodys.at(i) == collidingRb)
+		{
+			rb->collidingRigidbodys.erase(rb->collidingRigidbodys.begin() + i);
+			rb->collisionExitWith(collidingRb);
+			break;
+		}
+	}
 }

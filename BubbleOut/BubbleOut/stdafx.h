@@ -20,6 +20,7 @@ enum class Tag
 	BORDER_BOTTOM,
 	BORDER_LEFT,
 	PLAYER,
+	BUBBLE,
 };
 
 enum class Origin

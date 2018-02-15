@@ -16,8 +16,11 @@ public:
 	//operators
 	FloatVector2 operator*(const FloatVector2& other) const;
 	FloatVector2 operator*(const sf::Vector2f& other) const;
+
 	void operator*=(const FloatVector2& other);
 	void operator*=(const sf::Vector2f& other);
+	void operator-=(const float& val);
+	void operator+=(const float& val);
 
 	//Functions
 	float magnitude() const;

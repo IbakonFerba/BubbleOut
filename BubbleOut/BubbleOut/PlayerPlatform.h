@@ -41,14 +41,17 @@ public:
 private:
 	Transform* m_ptr_trans;
 	ShapeRenderer* m_ptr_rend;
+	ShapeRenderer* m_ptr_rend2;
 	RectCollider* m_ptr_col;
+	RectCollider* m_ptr_col2;
 	Rigidbody* m_ptr_rigidbody;
+	Rigidbody* m_ptr_rigidbody2;
 
 	PlayerBall* m_ptr_ball;
 
 	UIShapeRenderer* m_liveDisplays[MAX_LIVES];
 
-	float m_ballStartOffset = -30;
+	float m_ballStartOffset = -35;
 
 	void resetBall();
 };

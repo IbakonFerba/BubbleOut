@@ -13,6 +13,9 @@ void PlayerBall::init(ObjectManager* ptrObjectManager, const float radius)
 	m_ptr_rigidbody = m_ptr_objManager->getNewObject<Rigidbody>();
 	m_ptr_rend = m_ptr_objManager->getNewObject<ShapeRenderer>();
 
+	//init values
+	tag = Tag::PLAYER;
+
 	//setup objetcs
 	sf::CircleShape* ptrShape = new sf::CircleShape(radius);
 	ptrShape->setFillColor(sf::Color::Cyan);
