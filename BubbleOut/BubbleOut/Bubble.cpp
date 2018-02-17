@@ -9,7 +9,7 @@ void Bubble::init(ObjectManager* ptrObjectManager, const float posX, const float
 
 	//get components
 	m_ptr_trans = m_ptr_objManager->getNewObject<Transform>();
-	m_ptr_rend = m_ptr_objManager->getNewObject<ShapeRenderer>();
+	m_ptr_rend = m_ptr_objManager->getNewObject<SpriteRenderer>();
 	m_ptr_col = m_ptr_objManager->getNewObject<CircleCollider>();
 	m_ptr_rigidbody = m_ptr_objManager->getNewObject<Rigidbody>();
 
@@ -22,9 +22,7 @@ void Bubble::init(ObjectManager* ptrObjectManager, const float posX, const float
 	tag = Tag::BUBBLE;
 
 	//setup components
-	sf::CircleShape* shape = new sf::CircleShape(50);
-	shape->setFillColor(sf::Color::White);
-	m_ptr_rend->init(m_ptr_trans, shape, Origin::CENTER);
+	m_ptr_rend->init(m_ptr_trans, "Assets/graphics/Bubble.png", Origin::CENTER);
 	m_ptr_rend->tag = RenderTag::INGAME;
 
 	sf::FloatRect bounds = m_ptr_rend->getBounds();
@@ -101,14 +99,6 @@ void Bubble::update(const Message& message)
 				m_ptr_rigidbody->mass -= MASS_STEP;
 			}
 		}
-	}
-}
-
-void Bubble::notifyObservers() const
-{
-	for (unsigned i = 0; i < m_observers.size(); ++i)
-	{
-		m_observers.at(i)->update(m_observerMessage);
 	}
 }
 

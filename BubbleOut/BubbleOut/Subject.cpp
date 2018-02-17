@@ -11,3 +11,12 @@ void Subject::removeObserver(Observer* o)
 	m_observers.erase(std::remove(m_observers.begin(), m_observers.end(), o), m_observers.end());
 }
 
+
+void Subject::notifyObservers() const
+{
+	for (unsigned i = 0; i < m_observers.size(); ++i)
+	{
+		m_observers.at(i)->update(m_observerMessage);
+	}
+}
+

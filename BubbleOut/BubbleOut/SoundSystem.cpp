@@ -2,10 +2,19 @@
 #include "SoundSystem.h"
 
 //-----------------------------------------------
-//constructor
-SoundSystem::SoundSystem()
+//init
+
+
+void SoundSystem::loadSounds()
 {
 	sf::SoundBuffer buffer;
+
+	//music
+	m_musicBuffer.loadFromFile("Assets/sound/Music/Sinnoh_Game_Corner_Remix_V_II.wav");
+	m_music.setBuffer(m_musicBuffer);
+	m_music.setLoop(true);
+
+	//sound effects
 	buffer.loadFromFile("Assets/sound/BubbleImpact.wav");
 	m_sounds[MessageType::BUBBLE_IMPACT] = buffer;
 
@@ -42,6 +51,18 @@ void SoundSystem::playSound(const sf::SoundBuffer& sound)
 		}
 	}
 }
+
+void SoundSystem::startMusic()
+{
+	m_music.play();
+}
+
+void SoundSystem::stopMusic()
+{
+	m_music.stop();
+}
+
+
 
 
 //---------------------------------------------

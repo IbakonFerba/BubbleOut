@@ -7,6 +7,7 @@
 #include "ObjectManager.h"
 #include "SoundSystem.h"
 #include "Subject.h"
+#include "SpriteRenderer.h"
 
 enum class GameState
 {
@@ -42,28 +43,27 @@ public:
 
 	//run the engine
 	void run();
-
-	//observer
-	void notifyObservers() const override;
 private:
 	ObjectManager* m_objectManager;
 	sf::RenderWindow m_window;
 	sf::Event m_event;
 	SoundSystem m_soundSystem;
+	SpriteRenderer* m_ptr_infoScreen;
 
 	const sf::Vector2f m_playerStartPos;
 
 	GameState m_state;
 
-	Message m_observerMessage;
-
 	bool m_sentWinEvent = false;
+	bool m_stoppedMusic = false;
 
 	//engine functions
 	void setup();
 	void processInput();
 	void update();
 	void render();
+
+	void startGame();
 
 	//game
 	void reset();

@@ -27,8 +27,7 @@ sf::Texture* TextureCache::getTexture(const std::string& rFilename)
 	//find out wether we found a match
 	if (cacheElement != textureCache.end())
 	{
-		std::cout << "found " + cacheElement->first + " in Cache" << std::endl;
-		return cacheElement->second.get();
+		return cacheElement->second;
 	}
 	else
 	{
@@ -36,7 +35,9 @@ sf::Texture* TextureCache::getTexture(const std::string& rFilename)
 		sf::Texture* ptrTexture = new sf::Texture(); //allocate texture on heap, not on stack (heap is controlled by programmer (there is no garbage collection, we have to manage that ourselfs)(dynamic allocation), stack cannot be controlled (automatic allocation))
 													 //load a graphic into the texture
 		ptrTexture->loadFromFile(rFilename); //that (->) loads the value of the pointer, could also write (*texture)
-		textureCache[rFilename] = std::make_unique<sf::Texture>(*ptrTexture);
+		ptrTexture->setSmooth(false);
+
+		textureCache[rFilename] = ptrTexture;
 
 		return ptrTexture;
 	}

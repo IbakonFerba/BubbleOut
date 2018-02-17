@@ -11,6 +11,7 @@
 #include "PlayerBall.h"
 #include "UIShapeRenderer.h"
 #include "SoundSystem.h"
+#include "UISpriteRenderer.h"
 
 class PlayerPlatform : public Entity, public Observer, public Subject
 {
@@ -41,11 +42,10 @@ public:
 	FloatVector2 getCenter() const;
 
 	void update(const Message& message) override;
-	void notifyObservers() const override;
 private:
 	Transform* m_ptr_trans;
-	ShapeRenderer* m_ptr_rend;
-	ShapeRenderer* m_ptr_rend2;
+	SpriteRenderer* m_ptr_rend;
+	SpriteRenderer* m_ptr_rend2;
 	RectCollider* m_ptr_col;
 	RectCollider* m_ptr_col2;
 	Rigidbody* m_ptr_rigidbody;
@@ -53,11 +53,9 @@ private:
 
 	PlayerBall* m_ptr_ball;
 
-	UIShapeRenderer* m_liveDisplays[MAX_LIVES];
+	UISpriteRenderer* m_liveDisplays[MAX_LIVES];
 
 	float m_ballStartOffset = -35;
-
-	Message m_observerMessage;
 
 	void resetBall();
 };

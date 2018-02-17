@@ -14,7 +14,7 @@ public:
 	static sf::Texture* getTexture(const std::string& rFilename);
 
 private:
-	std::map<std::string, std::unique_ptr<sf::Texture>> m_textures;
+	std::map<std::string, sf::Texture*> m_textures;
 	static TextureCache* m_s_instance_; //singleton
 };
 

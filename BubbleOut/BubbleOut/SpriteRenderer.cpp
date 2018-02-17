@@ -62,3 +62,9 @@ sf::FloatRect SpriteRenderer::getBounds() const
 	return m_ptr_sprite->getGlobalBounds();
 }
 
+//----------------------------------------------------------------------
+//setter
+void SpriteRenderer::setTexture(const std::string& rTextureFilePath) const
+{
+	m_ptr_sprite->setTexture(*TextureCache::getTexture(rTextureFilePath));
+}

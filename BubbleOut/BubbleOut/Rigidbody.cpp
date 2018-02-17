@@ -123,18 +123,3 @@ void Rigidbody::setVelocity(const FloatVector2& newVel)
 {
 	m_velocity = newVel;
 }
-
-
-
-//----------------------------------------------------------------------
-//observers
-void Rigidbody::notifyObservers() const
-{
-	for(unsigned i = 0; i < m_observers.size(); ++i)
-	{
-		m_observers.at(i)->update(m_observerMessage);
-	}
-}
-
-
-

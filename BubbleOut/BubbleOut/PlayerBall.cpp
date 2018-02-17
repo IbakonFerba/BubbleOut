@@ -3,7 +3,7 @@
 
 //-------------------------------------------------------------
 //init
-void PlayerBall::init(ObjectManager* ptrObjectManager, const float radius)
+void PlayerBall::init(ObjectManager* ptrObjectManager)
 {
 	setObjectManager(ptrObjectManager);
 
@@ -11,15 +11,13 @@ void PlayerBall::init(ObjectManager* ptrObjectManager, const float radius)
 	m_ptr_transform = m_ptr_objManager->getNewObject<Transform>();
 	m_ptr_col = m_ptr_objManager->getNewObject<CircleCollider>();
 	m_ptr_rigidbody = m_ptr_objManager->getNewObject<Rigidbody>();
-	m_ptr_rend = m_ptr_objManager->getNewObject<ShapeRenderer>();
+	m_ptr_rend = m_ptr_objManager->getNewObject<SpriteRenderer>();
 
 	//init values
 	tag = Tag::PLAYER;
 
 	//setup objetcs
-	sf::CircleShape* ptrShape = new sf::CircleShape(radius);
-	ptrShape->setFillColor(sf::Color::Cyan);
-	m_ptr_rend->init(m_ptr_transform, ptrShape, Origin::CENTER);
+	m_ptr_rend->init(m_ptr_transform, "Assets/graphics/Ball.png", Origin::CENTER);
 	m_ptr_rend->tag = RenderTag::INGAME;
 
 	const sf::FloatRect rendBounds = m_ptr_rend->getBounds();
@@ -66,14 +64,3 @@ void PlayerBall::update(const Message& message)
 		notifyObservers();
 	}
 }
-
-
-void PlayerBall::notifyObservers() const
-{
-	for (unsigned i = 0; i < m_observers.size(); ++i)
-	{
-		m_observers.at(i)->update(m_observerMessage);
-	}
-}
-
-

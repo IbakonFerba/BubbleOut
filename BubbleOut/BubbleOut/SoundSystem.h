@@ -9,14 +9,22 @@
 class SoundSystem : public Observer
 {
 public:
-	SoundSystem();
+	SoundSystem() {}
 	~SoundSystem(){}
+
+	void loadSounds();
+
+	void startMusic();
+	void stopMusic();
 
 	void update(const Message& message) override;
 private:
 	static const int VOICES = 20;
 	sf::Sound m_voices[VOICES];
 	std::map<MessageType, sf::SoundBuffer> m_sounds;
+
+	sf::SoundBuffer m_musicBuffer;
+	sf::Sound m_music;
 
 	void playSound(const sf::SoundBuffer& sound);
 };

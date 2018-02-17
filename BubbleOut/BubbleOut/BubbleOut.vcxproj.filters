@@ -170,5 +170,8 @@
     <ClInclude Include="Barrier.h">
       <Filter>Header\BubbleOut</Filter>
     </ClInclude>
+    <ClInclude Include="BackgroundSpriteRenderer.h">
+      <Filter>Header</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

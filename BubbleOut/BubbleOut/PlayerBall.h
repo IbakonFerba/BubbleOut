@@ -9,6 +9,7 @@
 #include "ShapeRenderer.h"
 #include "CircleCollider.h"
 #include "Rigidbody.h"
+#include "SpriteRenderer.h"
 
 class PlayerBall : public Entity, public Observer, public Subject
 {
@@ -21,7 +22,7 @@ public:
 
 	float speed = 10.0f;
 
-	void init(ObjectManager* ptrObjectManager, const float radius);
+	void init(ObjectManager* ptrObjectManager) override;
 
 	void setPosition(const FloatVector2& pos);
 	
@@ -29,14 +30,11 @@ public:
 	Rigidbody* getRigidbody();
 
 	void update(const Message& message) override;
-	void notifyObservers() const override;
 private:
 	Transform* m_ptr_transform;
 	CircleCollider* m_ptr_col;
 	Rigidbody* m_ptr_rigidbody;
-	ShapeRenderer* m_ptr_rend;
-
-	Message m_observerMessage;
+	SpriteRenderer* m_ptr_rend;
 };
 
 #endif

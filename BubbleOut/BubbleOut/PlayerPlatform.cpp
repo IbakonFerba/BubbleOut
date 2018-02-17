@@ -9,8 +9,8 @@ void PlayerPlatform::init(ObjectManager* ptrObjectManager, const sf::Vector2f& p
 {
 	setObjectManager(ptrObjectManager);
 	m_ptr_trans = m_ptr_objManager->getNewObject<Transform>();
-	m_ptr_rend = m_ptr_objManager->getNewObject<ShapeRenderer>();
-	m_ptr_rend2 = m_ptr_objManager->getNewObject<ShapeRenderer>();
+	m_ptr_rend = m_ptr_objManager->getNewObject<SpriteRenderer>();
+	m_ptr_rend2 = m_ptr_objManager->getNewObject<SpriteRenderer>();
 	m_ptr_col = m_ptr_objManager->getNewObject<RectCollider>();
 	m_ptr_col2 = m_ptr_objManager->getNewObject<RectCollider>();
 	m_ptr_rigidbody = m_ptr_objManager->getNewObject<Rigidbody>();
@@ -21,10 +21,8 @@ void PlayerPlatform::init(ObjectManager* ptrObjectManager, const sf::Vector2f& p
 	for(int i = 0; i < MAX_LIVES; ++i)
 	{
 		const float lifeRad = 5;
-		m_liveDisplays[i] = m_ptr_objManager->getNewObject<UIShapeRenderer>();
-		sf::CircleShape* liveBall = new sf::CircleShape(lifeRad);
-		liveBall->setFillColor(sf::Color::Red);
-		m_liveDisplays[i]->init(m_ptr_trans, liveBall, Origin::CENTER);
+		m_liveDisplays[i] = m_ptr_objManager->getNewObject<UISpriteRenderer>();
+		m_liveDisplays[i]->init(m_ptr_trans, "Assets/graphics/Life.png", Origin::CENTER);
 		m_liveDisplays[i]->setOffset(FloatVector2(-lifeRad*(MAX_LIVES-1) + i * lifeRad*2, 0));
 		m_liveDisplays[i]->tag = RenderTag::INGAME;
 	}
@@ -33,15 +31,11 @@ void PlayerPlatform::init(ObjectManager* ptrObjectManager, const sf::Vector2f& p
 	m_ptr_trans->position.x = pos.x;
 	m_ptr_trans->position.y = pos.y;
 
-	sf::RectangleShape* shape = new sf::RectangleShape(sf::Vector2f(200, 20));
-	shape->setFillColor(sf::Color::Cyan);
-	m_ptr_rend->init(m_ptr_trans, shape, Origin::CENTER);
+	m_ptr_rend->init(m_ptr_trans, "Assets/graphics/Platform1.png", Origin::CENTER);
 	m_ptr_rend->tag = RenderTag::INGAME;
 
 	const FloatVector2 shape2Offset(0, -12.5);
-	sf::RectangleShape* shape2 = new sf::RectangleShape(sf::Vector2f(100, 5));
-	shape2->setFillColor(sf::Color::Cyan);
-	m_ptr_rend2->init(m_ptr_trans, shape2, Origin::CENTER);
+	m_ptr_rend2->init(m_ptr_trans, "Assets/graphics/Platform2.png", Origin::CENTER);
 	m_ptr_rend2->setOffset(shape2Offset);
 	m_ptr_rend2->tag = RenderTag::INGAME;
 
@@ -58,7 +52,7 @@ void PlayerPlatform::init(ObjectManager* ptrObjectManager, const sf::Vector2f& p
 	m_ptr_rigidbody2->init(this, m_ptr_col2, m_ptr_trans, 0, 1);
 	m_ptr_rigidbody2->kinematic = true;
 
-	m_ptr_ball->init(m_ptr_objManager, 20);
+	m_ptr_ball->init(m_ptr_objManager);
 	m_ptr_ball->addObserver(this);
 	m_ptr_ball->addObserver(&soundSystem);
 
@@ -133,14 +127,6 @@ void PlayerPlatform::sendGameOver()
 {
 	m_observerMessage.type = MessageType::GAME_OVER;
 	notifyObservers();
-}
-
-void PlayerPlatform::notifyObservers() const
-{
-	for (unsigned i = 0; i < m_observers.size(); ++i)
-	{
-		m_observers.at(i)->update(m_observerMessage);
-	}
 }
 
 

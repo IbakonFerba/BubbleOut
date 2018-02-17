@@ -77,7 +77,7 @@ public:
 			ObjectPoolBase* ptrPoolBase = m_ptr_pools->at(i);
 			ObjectPool<T>* ptrPool = static_cast<ObjectPool<T>*>(ptrPoolBase);
 
-			if (ptrPool->getTypeInfo().hash_code() == typeInfo.hash_code() || ptrPool->getDummy()->isDerivedFrom(typeInfo.hash_code()))
+			if (ptrPool->getTypeInfo().hash_code() == typeInfo.hash_code() /*|| ptrPool->getDummy()->isDerivedFrom(typeInfo.hash_code())*/)
 			{
 				objectCollection.object_list_starts.push_back(ptrPool->getObjects());
 				objectCollection.object_list_ends.push_back(ptrPool->getLastObject());

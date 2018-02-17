@@ -22,6 +22,8 @@ public:
 	void render(sf::RenderWindow& rWindow) override;
 
 	sf::FloatRect getBounds() const override;
+
+	void setTexture(const std::string& rTextureFilePath) const;
 private:
 	sf::Sprite* m_ptr_sprite;
 };

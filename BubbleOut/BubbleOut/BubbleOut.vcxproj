@@ -175,6 +175,7 @@
     <ClCompile Include="TextureCache.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BackgroundSpriteRenderer.h" />
     <ClInclude Include="Barrier.h" />
     <ClInclude Include="Bubble.h" />
     <ClInclude Include="BubbleSystem.h" />

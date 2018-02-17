@@ -42,8 +42,6 @@ public:
 	FloatVector2 getVelocity() const;
 
 	void setVelocity(const FloatVector2& newVel);
-protected:
-	void notifyObservers() const override;
 
 private:
 	const Entity* m_ptr_entity;
@@ -52,8 +50,6 @@ private:
 	Transform* m_ptr_transform;
 	FloatVector2 m_velocity;
 	FloatVector2 m_acceleration;
-
-	Message m_observerMessage;
 };
 
 #endif

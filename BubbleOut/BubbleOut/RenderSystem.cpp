@@ -5,9 +5,23 @@
 #include "SpriteRenderer.h"
 #include "UIShapeRenderer.h"
 #include "UISpriteRenderer.h"
+#include "BackgroundSpriteRenderer.h"
 
 void RenderSystem::render(ObjectManager* objectManager, sf::RenderWindow& rWindow, const RenderTag& tagToRender)
 {
+	ObjectCollection<BackgroundSpriteRenderer> bgSpr = objectManager->getObjectsOfType<BackgroundSpriteRenderer>();
+
+	for (unsigned i = 0; i < bgSpr.object_list_starts.size(); ++i)
+	{
+		for (BackgroundSpriteRenderer* r = bgSpr.object_list_starts.at(i); r <= bgSpr.object_list_ends.at(i); ++r)
+		{
+			if (r->enabled && (r->tag == tagToRender || r->tag == RenderTag::DEFAULT))
+			{
+				r->render(rWindow);
+			}
+		}
+	}
+
 	ObjectCollection<ShapeRenderer> sr = objectManager->getObjectsOfType<ShapeRenderer>();
 
 	for (unsigned i = 0; i < sr.object_list_starts.size(); ++i)

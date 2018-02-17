@@ -10,6 +10,7 @@
 #include "ShapeRenderer.h"
 #include "CircleCollider.h"
 #include "Rigidbody.h"
+#include "SpriteRenderer.h"
 
 class Bubble : public Entity, public Observer, public Subject
 {
@@ -32,22 +33,19 @@ public:
 
 	void disable();
 
-	void notifyObservers() const override;
 	void update(const Message& message) override;
 
 	FloatVector2 getScale() const;
 	FloatVector2 getPosition() const;
 private:
 	Transform* m_ptr_trans;
-	ShapeRenderer* m_ptr_rend;
+	SpriteRenderer* m_ptr_rend;
 	CircleCollider* m_ptr_col;
 	Rigidbody* m_ptr_rigidbody;
 
 	FloatVector2 m_startPos;
 	float m_startDrag;
 	float m_startMass;
-
-	Message m_observerMessage;
 };
 
 #endif

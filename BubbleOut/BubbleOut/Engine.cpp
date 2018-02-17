@@ -10,11 +10,14 @@
 #include "Bubble.h"
 #include "BubbleSystem.h"
 #include "Barrier.h"
+#include "BackgroundSpriteRenderer.h"
 
 //----------------------------------------------------------------------
 //main loop of the engine
 void Engine::run()
 {
+	//Setup texture cache
+	TextureCache textureChache;
 	setup();
 
 	//======================================
@@ -46,10 +49,28 @@ void Engine::run()
 //engine functions
 void Engine::setup()
 {
+	Transform* ptrBackgroundTransform = m_objectManager->getNewObject<Transform>();
+
+	//loading screen:
+	SpriteRenderer* ptrLoadingScreen = m_objectManager->getNewObject<SpriteRenderer>();
+	ptrLoadingScreen->init(ptrBackgroundTransform, "Assets/graphics/LoadingScreen.png", Origin::TOP_LEFT);
+	render();
+
 	//setting up of needed systems
-	TextureCache textureChache;
+	m_soundSystem.loadSounds();
 	BubbleSystem::spawnBubbles(m_objectManager, 4, 120, WINDOW_WIDTH, m_soundSystem);
 	addObserver(&m_soundSystem);
+
+	//Setup info screens
+	ptrLoadingScreen->enabled = false;
+	m_ptr_infoScreen = m_objectManager->getNewObject<SpriteRenderer>();
+	m_ptr_infoScreen->init(ptrBackgroundTransform, "Assets/graphics/StartupScreen.png", Origin::TOP_LEFT);
+	m_ptr_infoScreen->tag = RenderTag::INFO_SCREEN;
+
+	//setup game background
+	BackgroundSpriteRenderer* bg = m_objectManager->getNewObject<BackgroundSpriteRenderer>();
+	bg->init(ptrBackgroundTransform, "Assets/graphics/GameBackground.png", Origin::TOP_LEFT);
+	bg->tag = RenderTag::INGAME;
 
 	//setup state
 	m_state = GameState::STARTUP;
@@ -76,6 +97,7 @@ void Engine::setup()
 void Engine::reset()
 {
 	m_sentWinEvent = false;
+	m_stoppedMusic = false;
 	PlayerSystem::resetPlayer(m_objectManager, m_playerStartPos);
 	BubbleSystem::resetBubbles(m_objectManager);
 }
@@ -96,9 +118,7 @@ void Engine::processInput()
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
 		{
-			m_observerMessage.type = MessageType::START_GAME;
-			notifyObservers();
-			m_state = GameState::PLAYING;
+			startGame();
 		}
 	} else if(m_state == GameState::PLAYING)
 	{
@@ -129,18 +149,14 @@ void Engine::processInput()
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
 		{
 			reset();
-			m_observerMessage.type = MessageType::START_GAME;
-			notifyObservers();
-			m_state = GameState::PLAYING;
+			startGame();
 		}
 	} else if(m_state == GameState::WON)
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
 		{
 			reset();
-			m_observerMessage.type = MessageType::START_GAME;
-			notifyObservers();
-			m_state = GameState::PLAYING;
+			startGame();
 		}
 	}
 }
@@ -162,12 +178,23 @@ void Engine::update()
 	case GameState::WON: 
 		if(!m_sentWinEvent)
 		{
+			m_soundSystem.stopMusic();
+			m_ptr_infoScreen->setTexture("Assets/graphics/WinningScreen.png");
+			m_ptr_infoScreen->enabled = true;
 			m_observerMessage.type = MessageType::WIN_GAME;
 			notifyObservers();
 			m_sentWinEvent = true;
 		}
 		break;
-	case GameState::GAME_OVER: break;
+	case GameState::GAME_OVER: 
+		if (!m_stoppedMusic) 
+		{
+			m_soundSystem.stopMusic();
+			m_ptr_infoScreen->setTexture("Assets/graphics/GameOverScreen.png");
+			m_ptr_infoScreen->enabled = true;
+			m_stoppedMusic = true;
+		}
+		break;
 	}
 }
 
@@ -198,12 +225,12 @@ void Engine::render()
 	m_window.display();
 }
 
-//----------------------------------------------------------------------
-//observer
-void Engine::notifyObservers() const
+
+void Engine::startGame()
 {
-	for (unsigned i = 0; i < m_observers.size(); ++i)
-	{
-		m_observers.at(i)->update(m_observerMessage);
-	}
+	m_soundSystem.startMusic();
+	m_ptr_infoScreen->enabled = false;
+	m_observerMessage.type = MessageType::START_GAME;
+	notifyObservers();
+	m_state = GameState::PLAYING;
 }
