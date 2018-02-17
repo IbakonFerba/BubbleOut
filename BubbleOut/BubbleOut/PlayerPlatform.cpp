@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "PlayerPlatform.h"
-#include "ShapeRenderer.h"
 #include "SoundSystem.h"
 
 //-----------------------------------------------------------

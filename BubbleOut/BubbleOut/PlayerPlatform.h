@@ -7,9 +7,7 @@
 #include "Entity.h"
 #include "RectCollider.h"
 #include "Rigidbody.h"
-#include "ShapeRenderer.h"
 #include "PlayerBall.h"
-#include "UIShapeRenderer.h"
 #include "SoundSystem.h"
 #include "UISpriteRenderer.h"
 

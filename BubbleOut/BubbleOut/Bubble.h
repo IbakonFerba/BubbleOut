@@ -7,7 +7,6 @@
 #include "Entity.h"
 #include "Observer.h"
 #include "Transform.h"
-#include "ShapeRenderer.h"
 #include "CircleCollider.h"
 #include "Rigidbody.h"
 #include "SpriteRenderer.h"

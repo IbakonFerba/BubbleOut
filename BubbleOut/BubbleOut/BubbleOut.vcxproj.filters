@@ -30,9 +30,6 @@
     <ClCompile Include="Subject.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="ShapeRenderer.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="TextureCache.cpp">
       <Filter>Source</Filter>
     </ClCompile>
@@ -110,9 +107,6 @@
     <ClInclude Include="Entity.h">
       <Filter>Header</Filter>
     </ClInclude>
-    <ClInclude Include="ShapeRenderer.h">
-      <Filter>Header</Filter>
-    </ClInclude>
     <ClInclude Include="TextureCache.h">
       <Filter>Header</Filter>
     </ClInclude>
@@ -145,9 +139,6 @@
     </ClInclude>
     <ClInclude Include="PlayerBall.h">
       <Filter>Header\BubbleOut</Filter>
-    </ClInclude>
-    <ClInclude Include="UIShapeRenderer.h">
-      <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="UISpriteRenderer.h">
       <Filter>Header</Filter>
