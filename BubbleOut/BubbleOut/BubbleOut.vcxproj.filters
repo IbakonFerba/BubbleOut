@@ -39,9 +39,6 @@
     <ClCompile Include="SpriteRenderer.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="EngineObject.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="Collider.cpp">
       <Filter>Source</Filter>
     </ClCompile>
@@ -123,9 +120,6 @@
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="Collider.h">
-      <Filter>Header</Filter>
-    </ClInclude>
-    <ClInclude Include="EngineObject.h">
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="CircleCollider.h">

@@ -4,20 +4,16 @@
 #define RIGIDBODY_H
 
 #include "stdafx.h"
-#include "EngineObject.h"
 #include "Subject.h"
 #include "Collider.h"
 #include "Entity.h"
 #include "CircleCollider.h"
 #include "RectCollider.h"
 
-class Rigidbody : public EngineObject, public Subject
+class Rigidbody : public Subject
 {
 public:
-	Rigidbody() : EngineObject(), m_velocity(0.0, 0.0), m_acceleration(0.0, 0.0), mass(1), drag(0), kinematic(false)
-	{
-		pushInheritanceChain<Rigidbody>();
-	}
+	Rigidbody() : m_velocity(0.0, 0.0), m_acceleration(0.0, 0.0), mass(1), drag(0), kinematic(false) {}
 	~Rigidbody() {}
 
 	float drag;

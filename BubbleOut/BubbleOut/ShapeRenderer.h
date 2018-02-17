@@ -9,10 +9,7 @@
 class ShapeRenderer : public Renderer
 {
 public:
-	ShapeRenderer() : Renderer()
-	{
-		pushInheritanceChain<ShapeRenderer>();
-	}
+	ShapeRenderer() : Renderer() {}
 	virtual ~ShapeRenderer();
 
 	void init(const Transform* ptrTrans, sf::Shape* ptrShape, const Origin& origin);

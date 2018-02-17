@@ -9,10 +9,7 @@
 class SpriteRenderer : public Renderer
 {
 public:
-	SpriteRenderer() : Renderer()
-	{
-		pushInheritanceChain<SpriteRenderer>();
-	}
+	SpriteRenderer() : Renderer() {}
 	virtual ~SpriteRenderer()
 	{
 		delete m_ptr_sprite;

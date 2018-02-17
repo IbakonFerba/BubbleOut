@@ -9,10 +9,7 @@
 class UISpriteRenderer : public SpriteRenderer
 {
 public:
-	UISpriteRenderer() : SpriteRenderer()
-	{
-		pushInheritanceChain<UISpriteRenderer>();
-	}
+	UISpriteRenderer() : SpriteRenderer() {}
 	~UISpriteRenderer() {}
 };
 

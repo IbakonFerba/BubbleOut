@@ -4,17 +4,13 @@
 #define COLLIDER_H
 
 #include "stdafx.h"
-#include "EngineObject.h"
 #include "FloatVector2.h"
 #include "Transform.h"
 
-class Collider : public EngineObject
+class Collider
 {
 public:
-	Collider()
-	{
-		pushInheritanceChain<Collider>();
-	}
+	Collider() {}
 	virtual ~Collider() {}
 
 	void setTransform(const Transform* t) { m_ptr_transform = t; }

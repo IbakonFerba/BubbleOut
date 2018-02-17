@@ -16,10 +16,7 @@
 class PlayerPlatform : public Entity, public Observer, public Subject
 {
 public:
-	PlayerPlatform() : Entity()
-	{
-		pushInheritanceChain<PlayerPlatform>();
-	}
+	PlayerPlatform() : Entity() {}
 	~PlayerPlatform() {}
 
 	static const int MAX_LIVES = 4;

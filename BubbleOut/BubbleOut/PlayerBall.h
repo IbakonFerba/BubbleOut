@@ -14,10 +14,7 @@
 class PlayerBall : public Entity, public Observer, public Subject
 {
 public:
-	PlayerBall() :Entity()
-	{
-		pushInheritanceChain<PlayerBall>();
-	}
+	PlayerBall() :Entity() {}
 	~PlayerBall() {}
 
 	float speed = 10.0f;

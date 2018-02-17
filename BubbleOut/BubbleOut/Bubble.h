@@ -15,10 +15,7 @@
 class Bubble : public Entity, public Observer, public Subject
 {
 public:
-	Bubble() : Entity()
-	{
-		pushInheritanceChain<Bubble>();
-	}
+	Bubble() : Entity() {}
 	~Bubble() {}
 
 	const float MIN_SCALE = 0.5f;

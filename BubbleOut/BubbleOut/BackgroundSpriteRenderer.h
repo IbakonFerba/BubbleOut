@@ -9,10 +9,7 @@
 class BackgroundSpriteRenderer : public SpriteRenderer
 {
 public:
-	BackgroundSpriteRenderer() : SpriteRenderer()
-	{
-		pushInheritanceChain<BackgroundSpriteRenderer>();
-	}
+	BackgroundSpriteRenderer() : SpriteRenderer() {}
 	~BackgroundSpriteRenderer() {}
 };
 

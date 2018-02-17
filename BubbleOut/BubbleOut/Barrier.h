@@ -12,10 +12,7 @@
 class Barrier : public Entity
 {
 public:
-	Barrier() :Entity()
-	{
-		pushInheritanceChain<Barrier>();
-	}
+	Barrier() :Entity() {}
 	~Barrier() {}
 
 	void init(ObjectManager* ptrObjectManager, const FloatVector2& position, const float& width, const float& height, const Tag& _tag);

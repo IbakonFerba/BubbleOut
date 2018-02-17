@@ -4,24 +4,20 @@
 #define ENTITY_H
 
 #include "stdafx.h"
-#include "EngineObject.h"
+#include "ObjectManager.h"
 
-class Entity : public EngineObject
+class Entity
 {
 public:
-	Entity() : EngineObject()
+	Entity()
 	{
 		tag = Tag::NONE;
-		pushInheritanceChain<Entity>();
 	}
 	virtual ~Entity() {}
 
 	Tag tag;
 
-	virtual void init(ObjectManager* ptrObjectManager)
-	{
-		setObjectManager(ptrObjectManager);
-	}
+	virtual void init(ObjectManager* ptrObjectManager) {}
 };
 
 #endif

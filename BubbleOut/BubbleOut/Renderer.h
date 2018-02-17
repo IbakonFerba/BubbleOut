@@ -4,7 +4,6 @@
 #define RENDERER_H
 
 #include "stdafx.h"
-#include "EngineObject.h"
 #include "Transform.h"
 
 enum class RenderTag
@@ -14,13 +13,10 @@ enum class RenderTag
 	INGAME
 };
 
-class Renderer : public EngineObject
+class Renderer
 {
 public:
-	Renderer() : EngineObject(), m_offset(0.0f, 0.0f)
-	{
-		pushInheritanceChain<Renderer>();
-	}
+	Renderer() : m_offset(0.0f, 0.0f) {}
 	virtual ~Renderer() {}
 
 	RenderTag tag = RenderTag::DEFAULT;

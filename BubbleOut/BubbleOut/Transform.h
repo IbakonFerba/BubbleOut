@@ -4,16 +4,12 @@
 #define TRANSFORM_H
 
 #include "stdafx.h"
-#include "EngineObject.h"
 #include "FloatVector2.h"
 
-class Transform : public EngineObject
+class Transform
 {
 public:
-	Transform() : EngineObject(), position(0,0), scale(1, 1), rotation(0)
-	{
-		pushInheritanceChain<Transform>();
-	}
+	Transform() : position(0,0), scale(1, 1), rotation(0) {}
 	~Transform() {}
 
 	FloatVector2 position;

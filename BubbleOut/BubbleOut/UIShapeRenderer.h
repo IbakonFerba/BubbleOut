@@ -9,10 +9,7 @@
 class UIShapeRenderer : public ShapeRenderer
 {
 public:
-	UIShapeRenderer() : ShapeRenderer()
-	{
-		pushInheritanceChain<UIShapeRenderer>();
-	}
+	UIShapeRenderer() : ShapeRenderer() {}
 	~UIShapeRenderer() {}
 };
 

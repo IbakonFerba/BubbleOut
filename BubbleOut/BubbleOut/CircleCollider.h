@@ -9,10 +9,7 @@
 class CircleCollider : public Collider
 {
 public:
-	CircleCollider() : Collider()
-	{
-		pushInheritanceChain<CircleCollider>();
-	}
+	CircleCollider() : Collider() {}
 	~CircleCollider() {}
 
 	void init(const Transform* ptrTransform, const float radius);

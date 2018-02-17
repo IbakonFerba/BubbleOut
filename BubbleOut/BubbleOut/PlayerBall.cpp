@@ -5,13 +5,11 @@
 //init
 void PlayerBall::init(ObjectManager* ptrObjectManager)
 {
-	setObjectManager(ptrObjectManager);
-
 	//get objects
-	m_ptr_transform = m_ptr_objManager->getNewObject<Transform>();
-	m_ptr_col = m_ptr_objManager->getNewObject<CircleCollider>();
-	m_ptr_rigidbody = m_ptr_objManager->getNewObject<Rigidbody>();
-	m_ptr_rend = m_ptr_objManager->getNewObject<SpriteRenderer>();
+	m_ptr_transform = ptrObjectManager->getNewObject<Transform>();
+	m_ptr_col = ptrObjectManager->getNewObject<CircleCollider>();
+	m_ptr_rigidbody = ptrObjectManager->getNewObject<Rigidbody>();
+	m_ptr_rend = ptrObjectManager->getNewObject<SpriteRenderer>();
 
 	//init values
 	tag = Tag::PLAYER;

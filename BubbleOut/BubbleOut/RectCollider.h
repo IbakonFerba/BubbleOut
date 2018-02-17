@@ -9,10 +9,7 @@
 class RectCollider : public Collider
 {
 public:
-	RectCollider() : Collider()
-	{
-		pushInheritanceChain<RectCollider>();
-	}
+	RectCollider() : Collider() {}
 	~RectCollider() {}
 
 	void init(const Transform* ptrTransform, const float width, const float height);
