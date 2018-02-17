@@ -30,6 +30,7 @@ float FloatVector2::headingAngle()
 
 //------------------------------------------------------------------------------------------
 //operators
+
 FloatVector2 FloatVector2::operator*(const FloatVector2& rOther) const
 {
 	FloatVector2 returnVector;
@@ -75,6 +76,7 @@ void FloatVector2::operator+=(const float& rVal)
 
 //------------------------------------------------------------------------------------------
 //getter
+
 sf::Vector2f FloatVector2::getSfVector() const
 {
 	return sf::Vector2f(x, y);

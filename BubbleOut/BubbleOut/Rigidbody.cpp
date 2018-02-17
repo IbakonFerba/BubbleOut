@@ -3,6 +3,7 @@
 
 //----------------------------------------------------------------------
 //init
+
 void Rigidbody::init(const Entity* ptrEntity, CircleCollider* ptrCollider, Transform* ptrTransform, const float& rDrag, const float& rMass)
 {
 	m_ptr_entity = ptrEntity;
@@ -38,25 +39,34 @@ void Rigidbody::init(const Entity* ptrEntity, RectCollider* ptrCollider, Transfo
 
 //----------------------------------------------------------------------
 //collision
+
 void Rigidbody::collisionWith(const Rigidbody* other)
 {
+	//set up event message
 	m_observerMessage.type = MessageType::COLLISION_ENTER;
 	m_observerMessage.tag = other->getEntity()->tag;
 	m_observerMessage.ptr_circle_collider = other->getCircleCollider();
 	m_observerMessage.ptr_rect_collider = other->getRectCollider();
 
+	//Send event
 	notifyObservers();
+
+	//reset message
 	m_observerMessage.type = MessageType::DEFAULT;
 }
 
 void Rigidbody::collisionExitWith(const Rigidbody* other)
 {
+	//set up event message
 	m_observerMessage.type = MessageType::COLLISION_EXIT;
 	m_observerMessage.tag = other->getEntity()->tag;
 	m_observerMessage.ptr_circle_collider = other->getCircleCollider();
 	m_observerMessage.ptr_rect_collider = other->getRectCollider();
 
+	//Send event
 	notifyObservers();
+
+	//reset message
 	m_observerMessage.type = MessageType::DEFAULT;
 }
 
@@ -64,6 +74,7 @@ void Rigidbody::collisionExitWith(const Rigidbody* other)
 
 //----------------------------------------------------------------------
 //physics
+
 void Rigidbody::addForce(const FloatVector2& force)
 {
 	if (kinematic)
@@ -79,17 +90,24 @@ void Rigidbody::applyPhysics()
 	{
 		return;
 	}
-	m_velocity += m_acceleration;
-	m_acceleration.x = 0.0;
-	m_acceleration.y = 0.0;
 
+	//update velocity
+	m_velocity += m_acceleration;
+
+	//update position
 	m_ptr_transform->position += m_velocity;
 
+	//apply drag
 	m_velocity *= (1 / (drag*0.01f + 1));
+
+	//reset acceleration
+	m_acceleration.x = 0.0;
+	m_acceleration.y = 0.0;
 }
 
 //----------------------------------------------------------------------
 //getter
+
 const Entity* Rigidbody::getEntity() const
 {
 	return m_ptr_entity;

@@ -9,6 +9,7 @@ void SpriteRenderer::init(const Transform* ptrTrans, const std::string& rTexture
 	setTransform(ptrTrans);
 	m_ptr_sprite = new sf::Sprite(*TextureCache::getTexture(rTextureFilePath));
 
+	//set the origin of the sprite
 	const sf::FloatRect bounds = getBounds();
 	switch (rOrigin)
 	{

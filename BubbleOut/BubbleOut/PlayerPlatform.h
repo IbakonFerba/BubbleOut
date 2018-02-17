@@ -11,6 +11,9 @@
 #include "SoundSystem.h"
 #include "UISpriteRenderer.h"
 
+/*
+ * The Platform controlled by the Player
+ */
 class PlayerPlatform : public Entity, public Observer, public Subject
 {
 public:
@@ -26,18 +29,21 @@ public:
 
 	FloatVector2 movementDir;
 
+	//initialize the platform
 	void init(ObjectManager* ptrObjectManager, const sf::Vector2f& rPos, SoundSystem& rSoundSystem);
 	void reset(const sf::Vector2f& rPos);
 
 	void move() const;
 	void releaseBall();
 
+	//Send the game over event
 	void sendGameOver();
 
 
 	sf::Vector2f getBounds() const;
 	FloatVector2 getCenter() const;
 
+	//update observer
 	void update(const Message& rMessage) override;
 private:
 	Transform* m_ptr_trans;
@@ -52,6 +58,7 @@ private:
 
 	UISpriteRenderer* m_liveDisplays[MAX_LIVES];
 
+	//ofset of the ball when it is held
 	const float BALL_START_OFFSET = -35;
 
 	void resetBall();

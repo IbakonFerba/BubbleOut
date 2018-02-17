@@ -10,15 +10,20 @@
 #include "Rigidbody.h"
 #include "SpriteRenderer.h"
 
+/*
+ * This is the ball owned by the player.
+ * It can shrink bubbles.
+ */
 class PlayerBall : public Entity, public Observer, public Subject
 {
 public:
 	PlayerBall() : Entity(), m_ptr_transform(nullptr), m_ptr_col(nullptr), m_ptr_rigidbody(nullptr), m_ptr_rend(nullptr) {}
-
 	~PlayerBall() {}
 
+	//speed of the ball
 	float speed = 10.0f;
 
+	//initialize the ball
 	void init(ObjectManager* ptrObjectManager) override;
 
 
@@ -27,6 +32,7 @@ public:
 
 	Rigidbody* getRigidbody() const;
 
+	//update observer
 	void update(const Message& rMessage) override;
 private:
 	Transform* m_ptr_transform;

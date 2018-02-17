@@ -22,15 +22,22 @@ public:
 	float mass;
 	bool kinematic;
 	bool enabled = true;
+
 	std::vector<Rigidbody*> collidingRigidbodys;
 
+	//initialize the Rigidbody with a Circle Collider
 	void init(const Entity* ptrEntity, CircleCollider* ptrCollider, Transform* ptrTransform, const float& rDrag, const float& rMass);
+	//initialize the Rigidbody with a Rect Collider
 	void init(const Entity* ptrEntity, RectCollider* ptrCollider, Transform* ptrTransform, const float& rDrag, const float& rMass);
 
+	//call when colliding with a Rigdbody
 	void collisionWith(const Rigidbody* ptrOther);
+	//Call when stopping to collide with Rigidbody
 	void collisionExitWith(const Rigidbody* ptrOther);
+	//Add a force to be applied when the next physics update happens
 	void addForce(const FloatVector2& rForce);
 
+	//update velocity
 	void applyPhysics();
 
 	const Entity* getEntity() const;

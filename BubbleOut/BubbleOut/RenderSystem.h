@@ -10,6 +10,7 @@
 class RenderSystem
 {
 public:
+	//render all renderes with the given Tag
 	static void render(ObjectManager* objectManager, sf::RenderWindow& rWindow, const RenderTag& rTagToRender);
 };
 

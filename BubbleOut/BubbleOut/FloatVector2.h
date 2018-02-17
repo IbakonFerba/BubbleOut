@@ -5,6 +5,11 @@
 
 #include "stdafx.h"
 
+/*
+ * A improved 2D Float Vector with
+ * some vector functions and more operators
+ * that the sf::Vector2f
+ */
 class FloatVector2 : public sf::Vector2f
 {
 public:

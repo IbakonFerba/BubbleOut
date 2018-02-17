@@ -3,6 +3,7 @@
 
 //-----------------------------------------------
 //init
+
 void SoundSystem::loadSounds()
 {
 	sf::SoundBuffer buffer;
@@ -37,8 +38,10 @@ void SoundSystem::loadSounds()
 
 //---------------------------------------------
 //playsound
+
 void SoundSystem::playSound(const sf::SoundBuffer& rSound)
 {
+	//find a free voice and play the sound
 	for(int i = 0; i < VOICES; ++i)
 	{
 		if(m_voices[i].getStatus() != sf::SoundSource::Status::Playing)
@@ -63,8 +66,10 @@ void SoundSystem::stopMusic()
 
 //---------------------------------------------
 //observer
+
 void SoundSystem::update(const Message& rMessage)
 {
+	//if the event has a corresponding sound effect, play it
 	if(m_sounds.find(rMessage.type) != m_sounds.end())
 	{
 		playSound((m_sounds[rMessage.type]));

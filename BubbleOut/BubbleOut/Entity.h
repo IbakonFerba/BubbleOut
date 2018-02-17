@@ -6,6 +6,10 @@
 #include "stdafx.h"
 #include "ObjectManager.h"
 
+/*
+ * Base for all collections of Components
+ * (Basically like the Game Object in Unity)
+ */
 class Entity
 {
 public:
@@ -14,6 +18,7 @@ public:
 
 	Tag tag;
 
+	//initialize the entity
 	virtual void init(ObjectManager* ptrObjectManager) {}
 };
 

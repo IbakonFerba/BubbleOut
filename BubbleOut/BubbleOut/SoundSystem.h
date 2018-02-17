@@ -6,6 +6,9 @@
 #include "stdafx.h"
 #include "Observer.h"
 
+/*
+ * System for handeling music and sound
+ */
 class SoundSystem : public Observer
 {
 public:
@@ -17,6 +20,7 @@ public:
 	void startMusic();
 	void stopMusic();
 
+	//update observer
 	void update(const Message& rMessage) override;
 private:
 	static const int VOICES = 20;

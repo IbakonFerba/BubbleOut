@@ -14,6 +14,9 @@ enum class MovementDirection
 	RIGHT
 };
 
+/*
+ * This system handles everything concerning the player
+ */
 class PlayerSystem
 {
 public:

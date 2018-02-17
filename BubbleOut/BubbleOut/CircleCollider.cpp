@@ -3,6 +3,7 @@
 
 //----------------------------------------------------------------------
 //init
+
 void CircleCollider::init(const Transform* ptrTransform, const float& rRadius)
 {
 	setTransform(ptrTransform);
@@ -12,6 +13,7 @@ void CircleCollider::init(const Transform* ptrTransform, const float& rRadius)
 
 //----------------------------------------------------------------------
 //setter
+
 void CircleCollider::setRadius(const float& rRadius)
 {
 	m_radius = rRadius;
@@ -19,7 +21,9 @@ void CircleCollider::setRadius(const float& rRadius)
 
 //----------------------------------------------------------------------
 //getter
+
 float CircleCollider::getRadius() const
 {
+	//return the radius scaled with the biggerscaling value of the transform
 	return m_radius * ((m_ptr_transform->scale.x >= m_ptr_transform->scale.y) ? m_ptr_transform->scale.x : m_ptr_transform->scale.y);
 }

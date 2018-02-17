@@ -3,6 +3,7 @@
 
 //-------------------------------------------------------
 //init
+
 void Bubble::init(ObjectManager* ptrObjectManager, const float& rPosX, const float& rPosY)
 {
 	//get components
@@ -63,13 +64,17 @@ void Bubble::disable()
 //ovbserver
 void Bubble::update(const Message& rMessage)
 {
+	//only execute the code on collision exit
 	if (rMessage.type == MessageType::COLLISION_EXIT)
 	{
+		//event for sound
 		m_observerMessage.type = MessageType::BUBBLE_IMPACT;
 		notifyObservers();
 
+		//check if bubble was hit by another Bubble or by the player
 		if (rMessage.tag == Tag::BUBBLE)
 		{
+			//if the bubble that hit this bubble is smaller than this bubble, grow this bubble, if it is bigger, shrink this bubble
 			if (rMessage.ptr_circle_collider->getScale().x < m_ptr_trans->scale.x)
 			{
 				if (m_ptr_trans->scale.x < MAX_SCALE)
@@ -89,6 +94,7 @@ void Bubble::update(const Message& rMessage)
 		}
 		else if (rMessage.tag == Tag::PLAYER)
 		{
+			//shrink the bubble
 			if (m_ptr_trans->scale.x > MIN_SCALE)
 			{
 				m_ptr_trans->scale -= SCALE_STEP;
@@ -102,6 +108,7 @@ void Bubble::update(const Message& rMessage)
 
 //-------------------------------------------------------
 //getter
+
 FloatVector2 Bubble::getScale() const
 {
 	return m_ptr_trans->scale;

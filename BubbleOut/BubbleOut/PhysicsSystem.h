@@ -9,10 +9,16 @@
 #include "RectCollider.h"
 #include "Rigidbody.h"
 
+/*
+ * This system handles all collision
+ * and physics of Rigidbodies
+ */
 class PhysicsSystem
 {
 public:
+	//detects collisions and adds the resolving forces to the Rigidbodies but does not execute the Physics on the rigidbodies
 	static void handleCollision(ObjectManager* ptrObjectManager, const float& rWindowWidth, const float& rWindowHeight);
+	//executes Physics on the Rigidbodies
 	static void applyPhysics(ObjectManager* ptrObjectManager);
 
 private:

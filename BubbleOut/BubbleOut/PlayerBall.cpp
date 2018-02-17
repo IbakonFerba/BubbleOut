@@ -3,6 +3,7 @@
 
 //-------------------------------------------------------------
 //init
+
 void PlayerBall::init(ObjectManager* ptrObjectManager)
 {
 	//get objects
@@ -31,6 +32,7 @@ void PlayerBall::init(ObjectManager* ptrObjectManager)
 
 //-------------------------------------------------------------
 //setter
+
 void PlayerBall::setPosition(const FloatVector2& pos) const
 {
 	m_ptr_transform->position = pos;
@@ -38,6 +40,7 @@ void PlayerBall::setPosition(const FloatVector2& pos) const
 
 //-------------------------------------------------------------
 //getter
+
 Rigidbody* PlayerBall::getRigidbody() const
 {
 	return m_ptr_rigidbody;
@@ -47,10 +50,13 @@ Rigidbody* PlayerBall::getRigidbody() const
 
 //-------------------------------------------------------------
 //observer
+
 void PlayerBall::update(const Message& rMessage)
 {
+	//check collision type
 	if(rMessage.type == MessageType::COLLISION_ENTER)
 	{
+		//if ball collided with bottom of the window, post an event that triggers life decrement or game over
 		if (rMessage.tag == Tag::BORDER_BOTTOM)
 		{
 			m_observerMessage.type = MessageType::PLAYER_BALL_HIT_BOTTOM;
@@ -58,6 +64,7 @@ void PlayerBall::update(const Message& rMessage)
 		}
 	} else if(rMessage.type == MessageType::COLLISION_EXIT)
 	{
+		//sound event
 		m_observerMessage.type = MessageType::PLAYER_BALL_IMPACT;
 		notifyObservers();
 	}

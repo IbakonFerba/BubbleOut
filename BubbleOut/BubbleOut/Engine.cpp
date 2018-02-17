@@ -18,11 +18,9 @@ void Engine::run()
 {
 	//Setup texture cache
 	TextureCache textureChache;
-	setup();
 
-	//======================================
-	//TESTING AREA
-	//======================================
+	//Setup the game
+	setup();
 
 	//main loop with fixed update rate and variable render time
 	sf::Clock clock;
@@ -48,17 +46,19 @@ void Engine::run()
 //engine functions
 void Engine::setup()
 {
+	//Create a transform for all backgrounds in the TOP LEFT corner of the Window
 	Transform* ptrBackgroundTransform = m_objectManager->getNewObject<Transform>();
 
-	//loading screen:
+	//setup the loading screen and render once to show it while loading
 	SpriteRenderer* ptrLoadingScreen = m_objectManager->getNewObject<SpriteRenderer>();
 	ptrLoadingScreen->init(ptrBackgroundTransform, "Assets/graphics/LoadingScreen.png", Origin::TOP_LEFT);
 	render();
 
-	//setting up of needed systems
+
+	//set up sound system
 	m_soundSystem.loadSounds();
-	BubbleSystem::spawnBubbles(m_objectManager, 4, 120, WINDOW_WIDTH, m_soundSystem);
 	addObserver(&m_soundSystem);
+
 
 	//Setup info screens
 	ptrLoadingScreen->enabled = false;
@@ -66,16 +66,20 @@ void Engine::setup()
 	m_ptr_infoScreen->init(ptrBackgroundTransform, "Assets/graphics/StartupScreen.png", Origin::TOP_LEFT);
 	m_ptr_infoScreen->tag = RenderTag::INFO_SCREEN;
 
+
 	//setup game background
 	BackgroundSpriteRenderer* bg = m_objectManager->getNewObject<BackgroundSpriteRenderer>();
 	bg->init(ptrBackgroundTransform, "Assets/graphics/GameBackground.png", Origin::TOP_LEFT);
 	bg->tag = RenderTag::INGAME;
 
+
 	//setup objects
+	BubbleSystem::spawnBubbles(m_objectManager, 4, 120, WINDOW_WIDTH, m_soundSystem);
+
 	PlayerPlatform* player = m_objectManager->getNewObject<PlayerPlatform>();
 	player->init(m_objectManager, sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 50), m_soundSystem);
 
-	//barrier
+	//create boundaries
 	const float barrierThickness = 100;
 	Barrier* ptrBTop = m_objectManager->getNewObject<Barrier>();
 	ptrBTop->init(m_objectManager, FloatVector2(WINDOW_WIDTH / 2, -barrierThickness / 2), WINDOW_WIDTH + barrierThickness, barrierThickness, Tag::BORDER_TOP);
@@ -162,7 +166,8 @@ void Engine::update()
 {
 	switch (m_state)
 	{
-	case GameState::STARTUP: break;
+	case GameState::STARTUP: 
+		break;
 	case GameState::PLAYING:
 		PlayerSystem::updatePlayer(m_objectManager, WINDOW_WIDTH, m_state);
 

@@ -11,6 +11,12 @@
 #include "Rigidbody.h"
 #include "SpriteRenderer.h"
 
+/*
+ * A Bubble that has physics
+ * and shrinks when it is hit by the player.
+ * If it hits another bubble it grows if it is bigger than
+ * the other bubble and shrinks if it is smaller
+ */
 class Bubble : public Entity, public Observer, public Subject
 {
 public:
@@ -25,11 +31,15 @@ public:
 
 	bool enabled = true;
 
+	//initialize the bubble
 	void init(ObjectManager* ptrObjectManager, const float& rPosX, const float& rPosY);
 
+	//set the bubble back to its start position and start scale and resets all values
 	void reset();
+	//disables the bubble
 	void disable();
 
+	//update observer
 	void update(const Message& rMessage) override;
 
 	FloatVector2 getScale() const;

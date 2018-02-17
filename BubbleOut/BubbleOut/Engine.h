@@ -65,9 +65,8 @@ private:
 	void update();
 	void render();
 
-	void startGame();
-
 	//game
+	void startGame();
 	void reset();
 };
 

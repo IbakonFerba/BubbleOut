@@ -20,7 +20,7 @@ struct ObjectCollection
 
 /*
  * Central object manager of the Engine.
- * All object creation and deletion should happen through
+ * All object creation should happen through
  * this class
  */
 class ObjectManager

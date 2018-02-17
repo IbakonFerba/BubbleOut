@@ -28,7 +28,6 @@ public:
 	void setOffset(const FloatVector2& rOffset) { m_offset = rOffset; }
 
 	virtual sf::FloatRect getBounds() const = 0;
-
 protected:
 	const Transform* m_ptr_transform;
 	FloatVector2 m_offset;

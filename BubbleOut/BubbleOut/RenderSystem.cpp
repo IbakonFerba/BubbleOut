@@ -7,6 +7,7 @@
 
 void RenderSystem::render(ObjectManager* objectManager, sf::RenderWindow& rWindow, const RenderTag& rTagToRender)
 {
+	//render all background renderes
 	const ObjectCollection<BackgroundSpriteRenderer> bgSpr = objectManager->getObjectsOfType<BackgroundSpriteRenderer>();
 
 	for (unsigned i = 0; i < bgSpr.object_list_starts.size(); ++i)
@@ -21,7 +22,7 @@ void RenderSystem::render(ObjectManager* objectManager, sf::RenderWindow& rWindo
 	}
 
 
-
+	//render all normal renderers
 	const ObjectCollection<SpriteRenderer> spr = objectManager->getObjectsOfType<SpriteRenderer>();
 
 	for (unsigned i = 0; i < spr.object_list_starts.size(); ++i)
@@ -38,7 +39,7 @@ void RenderSystem::render(ObjectManager* objectManager, sf::RenderWindow& rWindo
 
 
 
-
+	//Render all UI renderers
 	const ObjectCollection<UISpriteRenderer> uiSpr = objectManager->getObjectsOfType<UISpriteRenderer>();
 
 	for (unsigned i = 0; i < uiSpr.object_list_starts.size(); ++i)

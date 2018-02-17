@@ -4,8 +4,10 @@
 
 //-----------------------------------------------------------
 //init
+
 void PlayerPlatform::init(ObjectManager* ptrObjectManager, const sf::Vector2f& rPos, SoundSystem& rSoundSystem)
 {
+	//get all components
 	m_ptr_trans = ptrObjectManager->getNewObject<Transform>();
 	m_ptr_rend = ptrObjectManager->getNewObject<SpriteRenderer>();
 	m_ptr_rend2 = ptrObjectManager->getNewObject<SpriteRenderer>();
@@ -16,6 +18,7 @@ void PlayerPlatform::init(ObjectManager* ptrObjectManager, const sf::Vector2f& r
 
 	m_ptr_ball = ptrObjectManager->getNewObject<PlayerBall>();
 
+	//initializer life display
 	for(int i = 0; i < MAX_LIVES; ++i)
 	{
 		const float lifeRad = 5;
@@ -78,6 +81,7 @@ void PlayerPlatform::reset(const sf::Vector2f& rPos)
 
 //-----------------------------------------------------------
 //move
+
 void PlayerPlatform::move() const
 {
 	m_ptr_trans->position += movementDir;
@@ -90,6 +94,7 @@ void PlayerPlatform::move() const
 
 //-----------------------------------------------------------
 //ball
+
 void PlayerPlatform::resetBall()
 {
 	m_ptr_ball->setPosition(FloatVector2(m_ptr_trans->position.x, m_ptr_trans->position.y + BALL_START_OFFSET));
@@ -109,6 +114,7 @@ void PlayerPlatform::releaseBall()
 
 //-----------------------------------------------------------
 //getter
+
 sf::Vector2f PlayerPlatform::getBounds() const
 {
 	return m_ptr_col->getDimensions().getSfVector();
@@ -121,6 +127,7 @@ FloatVector2 PlayerPlatform::getCenter() const
 
 //-----------------------------------------------------------
 //observer
+
 void PlayerPlatform::sendGameOver()
 {
 	m_observerMessage.type = MessageType::GAME_OVER;

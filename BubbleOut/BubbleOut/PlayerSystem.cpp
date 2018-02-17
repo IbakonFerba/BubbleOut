@@ -50,12 +50,14 @@ void PlayerSystem::updatePlayer(ObjectManager* ptrObjManager, const float& rWind
 	{
 		for (PlayerPlatform* ptrPlayer = players.object_list_starts.at(i); ptrPlayer <= players.object_list_ends.at(i); ++ptrPlayer)
 		{
+			//if there are no lifes left, change to game over state
 			if(ptrPlayer->lives < 1)
 			{
 				ptrPlayer->sendGameOver();
 				rState = GameState::GAME_OVER;
 			}
 
+			//make sure player stays inside window
 			const FloatVector2 center = ptrPlayer->getCenter();
 			const sf::Vector2f dim = ptrPlayer->getBounds();
 
@@ -79,6 +81,7 @@ void PlayerSystem::updatePlayer(ObjectManager* ptrObjManager, const float& rWind
 	{
 		for (PlayerBall* ptrBall = balls.object_list_starts.at(i); ptrBall <= balls.object_list_ends.at(i); ++ptrBall)
 		{
+			//make sure player ball holds constant speed
 			Rigidbody* rb = ptrBall->getRigidbody();
 			FloatVector2 vel = rb->getVelocity();
 			const float desiredSpeed = ptrBall->speed;

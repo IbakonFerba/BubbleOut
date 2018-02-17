@@ -12,6 +12,7 @@ public:
 	CircleCollider() : Collider(), m_radius(0){}
 	~CircleCollider() {}
 
+	//initialize the collider
 	void init(const Transform* ptrTransform, const float& rRadius);
 	void setRadius(const float& rRadius);
 

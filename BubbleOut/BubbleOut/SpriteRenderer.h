@@ -15,7 +15,9 @@ public:
 		delete m_ptr_sprite;
 	}
 
+	//initialize the sprite renderer
 	void init(const Transform* ptrTrans, const std::string& rTextureFilePath, const Origin& rOrigin);
+	//render the sprite renderer
 	void render(sf::RenderWindow& rWindow) override;
 
 	sf::FloatRect getBounds() const override;

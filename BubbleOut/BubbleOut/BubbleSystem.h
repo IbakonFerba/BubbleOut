@@ -9,6 +9,10 @@
 #include "SoundSystem.h"
 #include "Bubble.h"
 
+/*
+ * This system manages the bubbles.
+ * It spawns them, updates them and resets them.
+ */
 class BubbleSystem
 {
 public:
