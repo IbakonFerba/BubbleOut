@@ -3,14 +3,14 @@
 
 //----------------------------------------------------------------------
 //init
-void Rigidbody::init(const Entity* ptrEntity, CircleCollider* ptrCollider, Transform* ptrTransform, const float _drag, const float _mass)
+void Rigidbody::init(const Entity* ptrEntity, CircleCollider* ptrCollider, Transform* ptrTransform, const float& rDrag, const float& rMass)
 {
 	m_ptr_entity = ptrEntity;
 	m_ptr_circleCollider = ptrCollider;
 	m_ptr_rectCollider = nullptr;
 	m_ptr_transform = ptrTransform;
-	drag = _drag;
-	mass = _mass;
+	drag = rDrag;
+	mass = rMass;
 
 	m_velocity.x = 0.0f;
 	m_velocity.y = 0.0f;
@@ -19,14 +19,14 @@ void Rigidbody::init(const Entity* ptrEntity, CircleCollider* ptrCollider, Trans
 	m_acceleration.y = 0.0f;
 }
 
-void Rigidbody::init(const Entity* ptrEntity, RectCollider* ptrCollider, Transform* ptrTransform, const float _drag, const float _mass)
+void Rigidbody::init(const Entity* ptrEntity, RectCollider* ptrCollider, Transform* ptrTransform, const float& rDrag, const float& rMass)
 {
 	m_ptr_entity = ptrEntity;
 	m_ptr_circleCollider = nullptr;
 	m_ptr_rectCollider = ptrCollider;
 	m_ptr_transform = ptrTransform;
-	drag = _drag;
-	mass = _mass;
+	drag = rDrag;
+	mass = rMass;
 
 	m_velocity.x = 0.0f;
 	m_velocity.y = 0.0f;
@@ -42,26 +42,19 @@ void Rigidbody::collisionWith(const Rigidbody* other)
 {
 	m_observerMessage.type = MessageType::COLLISION_ENTER;
 	m_observerMessage.tag = other->getEntity()->tag;
-	m_observerMessage.circle_collider = other->getCircleCollider();
-	m_observerMessage.rect_collider = other->getRectCollider();
+	m_observerMessage.ptr_circle_collider = other->getCircleCollider();
+	m_observerMessage.ptr_rect_collider = other->getRectCollider();
 
 	notifyObservers();
 	m_observerMessage.type = MessageType::DEFAULT;
-}
-
-void Rigidbody::collisionWith(const Tag& tag)
-{
-	m_observerMessage.type = MessageType::COLLISION_ENTER;
-	m_observerMessage.tag = tag;
-	notifyObservers();
 }
 
 void Rigidbody::collisionExitWith(const Rigidbody* other)
 {
 	m_observerMessage.type = MessageType::COLLISION_EXIT;
 	m_observerMessage.tag = other->getEntity()->tag;
-	m_observerMessage.circle_collider = other->getCircleCollider();
-	m_observerMessage.rect_collider = other->getRectCollider();
+	m_observerMessage.ptr_circle_collider = other->getCircleCollider();
+	m_observerMessage.ptr_rect_collider = other->getRectCollider();
 
 	notifyObservers();
 	m_observerMessage.type = MessageType::DEFAULT;

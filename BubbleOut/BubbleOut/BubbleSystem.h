@@ -12,13 +12,13 @@
 class BubbleSystem
 {
 public:
-	static void spawnBubbles(ObjectManager* ptrObjManager, const int rows, const float spacing, const int windowWidth, SoundSystem& soundSystem);
+	static void spawnBubbles(ObjectManager* ptrObjManager, const int& rRows, const float& rSpacing, const int& rWindowWidth, SoundSystem& soundSystem);
 	static void resetBubbles(ObjectManager* ptrObjManager);
 
-	static void updateBubbles(ObjectManager* ptrObjManager, GameState& gameState, const int& windowWidth, const int& windowHeight);
+	static void updateBubbles(ObjectManager* ptrObjManager, GameState& rGameState, const int& rWindowWidth, const int& rWindowHeight);
 
 private:
-	static void checkBubblePos(Bubble* bubble, const int& windowWidth, const int& windowHeight);
+	static void checkBubblePos(Bubble* ptrBubble, const int& rWindowWidth, const int& rWindowHeight);
 };
 
 #endif

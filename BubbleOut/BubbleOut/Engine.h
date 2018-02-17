@@ -25,10 +25,12 @@ enum class GameState
 class Engine : public Subject
 {
 public:
-	Engine() : m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "BubbleOut", sf::Style::Default), m_playerStartPos(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 50)
+	Engine() : m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "BubbleOut", sf::Style::Default),
+	           m_ptr_infoScreen(nullptr), m_playerStartPos(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 50), m_state(GameState::STARTUP)
 	{
 		m_objectManager = new ObjectManager();
 	}
+
 	~Engine()
 	{
 		delete m_objectManager;

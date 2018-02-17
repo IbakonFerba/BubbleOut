@@ -9,10 +9,7 @@
 class Entity
 {
 public:
-	Entity()
-	{
-		tag = Tag::NONE;
-	}
+	Entity() : tag(Tag::NONE) {}
 	virtual ~Entity() {}
 
 	Tag tag;

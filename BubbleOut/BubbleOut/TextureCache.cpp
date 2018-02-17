@@ -12,20 +12,14 @@ TextureCache::TextureCache()
 }
 
 //------------------------------------------------------------------------------------------
-//destructor
-TextureCache::~TextureCache()
-{
-}
-
-//------------------------------------------------------------------------------------------
 //get textures
 sf::Texture* TextureCache::getTexture(const std::string& rFilename)
 {
-	auto& textureCache = m_s_instance_->m_textures;
-	auto const cacheElement = textureCache.find(rFilename);
+	auto& rTextureCache = m_s_instance_->m_textures;
+	auto const cacheElement = rTextureCache.find(rFilename);
 
 	//find out wether we found a match
-	if (cacheElement != textureCache.end())
+	if (cacheElement != rTextureCache.end())
 	{
 		return cacheElement->second;
 	}
@@ -37,7 +31,7 @@ sf::Texture* TextureCache::getTexture(const std::string& rFilename)
 		ptrTexture->loadFromFile(rFilename); //that (->) loads the value of the pointer, could also write (*texture)
 		ptrTexture->setSmooth(false);
 
-		textureCache[rFilename] = ptrTexture;
+		rTextureCache[rFilename] = ptrTexture;
 
 		return ptrTexture;
 	}

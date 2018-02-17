@@ -2,24 +2,24 @@
 #include "PlayerSystem.h"
 #include "PlayerPlatform.h"
 
-void PlayerSystem::movePlayer(ObjectManager* ptrObjManager, const MovementDirection& dir)
+void PlayerSystem::movePlayer(ObjectManager* ptrObjManager, const MovementDirection& rDir)
 {
-	ObjectCollection<PlayerPlatform> players = ptrObjManager->getObjectsOfType<PlayerPlatform>();
+	const ObjectCollection<PlayerPlatform> players = ptrObjManager->getObjectsOfType<PlayerPlatform>();
 
 	for (unsigned i = 0; i < players.object_list_starts.size(); ++i)
 	{
-		for (PlayerPlatform* player = players.object_list_starts.at(i); player <= players.object_list_ends.at(i); ++player)
+		for (PlayerPlatform* ptrPlayer = players.object_list_starts.at(i); ptrPlayer <= players.object_list_ends.at(i); ++ptrPlayer)
 		{
-			switch (dir)
+			switch (rDir)
 			{
 			case MovementDirection::NONE:
-				player->movementDir = FloatVector2(0, 0);
+				ptrPlayer->movementDir = FloatVector2(0, 0);
 				break;
 			case MovementDirection::LEFT:
-				player->movementDir = FloatVector2(-player->speed, 0);
+				ptrPlayer->movementDir = FloatVector2(-ptrPlayer->SPEED, 0);
 				break;
 			case MovementDirection::RIGHT:
-				player->movementDir = FloatVector2(player->speed, 0);
+				ptrPlayer->movementDir = FloatVector2(ptrPlayer->SPEED, 0);
 				break;
 			}
 		}
@@ -28,60 +28,60 @@ void PlayerSystem::movePlayer(ObjectManager* ptrObjManager, const MovementDirect
 
 void PlayerSystem::releaseBall(ObjectManager* ptrObjManager)
 {
-	ObjectCollection<PlayerPlatform> players = ptrObjManager->getObjectsOfType<PlayerPlatform>();
+	const ObjectCollection<PlayerPlatform> players = ptrObjManager->getObjectsOfType<PlayerPlatform>();
 
 	for (unsigned i = 0; i < players.object_list_starts.size(); ++i)
 	{
-		for (PlayerPlatform* player = players.object_list_starts.at(i); player <= players.object_list_ends.at(i); ++player)
+		for (PlayerPlatform* ptrPlayer = players.object_list_starts.at(i); ptrPlayer <= players.object_list_ends.at(i); ++ptrPlayer)
 		{
-			if(player->holdingBall)
+			if(ptrPlayer->holdingBall)
 			{
-				player->releaseBall();
+				ptrPlayer->releaseBall();
 			}
 		}
 	}
 }
 
-void PlayerSystem::updatePlayer(ObjectManager* ptrObjManager, const float windowWidth, GameState& state)
+void PlayerSystem::updatePlayer(ObjectManager* ptrObjManager, const float& rWindowWidth, GameState& rState)
 {
-	ObjectCollection<PlayerPlatform> players = ptrObjManager->getObjectsOfType<PlayerPlatform>();
+	const ObjectCollection<PlayerPlatform> players = ptrObjManager->getObjectsOfType<PlayerPlatform>();
 
 	for (unsigned i = 0; i < players.object_list_starts.size(); ++i)
 	{
-		for (PlayerPlatform* player = players.object_list_starts.at(i); player <= players.object_list_ends.at(i); ++player)
+		for (PlayerPlatform* ptrPlayer = players.object_list_starts.at(i); ptrPlayer <= players.object_list_ends.at(i); ++ptrPlayer)
 		{
-			if(player->lives < 1)
+			if(ptrPlayer->lives < 1)
 			{
-				player->sendGameOver();
-				state = GameState::GAME_OVER;
+				ptrPlayer->sendGameOver();
+				rState = GameState::GAME_OVER;
 			}
 
-			const FloatVector2 center = player->getCenter();
-			sf::Vector2f dim = player->getBounds();
+			const FloatVector2 center = ptrPlayer->getCenter();
+			const sf::Vector2f dim = ptrPlayer->getBounds();
 
-			if (center.x - dim.x / 2 < 0 && player->movementDir.x < 0)
-			{
-				return;
-			}
-			else if (center.x + dim.x / 2 > windowWidth && player->movementDir.x > 0)
+			if (center.x - dim.x / 2 < 0 && ptrPlayer->movementDir.x < 0)
 			{
 				return;
 			}
+			else if (center.x + dim.x / 2 > rWindowWidth && ptrPlayer->movementDir.x > 0)
+			{
+				return;
+			}
 
-			player->move();
+			ptrPlayer->move();
 		}
 	}
 
 
-	ObjectCollection<PlayerBall> balls = ptrObjManager->getObjectsOfType<PlayerBall>();
+	const ObjectCollection<PlayerBall> balls = ptrObjManager->getObjectsOfType<PlayerBall>();
 
 	for (unsigned i = 0; i < balls.object_list_starts.size(); ++i)
 	{
-		for (PlayerBall* ball = balls.object_list_starts.at(i); ball <= balls.object_list_ends.at(i); ++ball)
+		for (PlayerBall* ptrBall = balls.object_list_starts.at(i); ptrBall <= balls.object_list_ends.at(i); ++ptrBall)
 		{
-			Rigidbody* rb = ball->getRigidbody();
+			Rigidbody* rb = ptrBall->getRigidbody();
 			FloatVector2 vel = rb->getVelocity();
-			const float desiredSpeed = ball->speed;
+			const float desiredSpeed = ptrBall->speed;
 			if(vel.magnitude() < desiredSpeed)
 			{
 				vel.normalize();
@@ -97,15 +97,15 @@ void PlayerSystem::updatePlayer(ObjectManager* ptrObjManager, const float window
 	}
 }
 
-void PlayerSystem::resetPlayer(ObjectManager* ptrObjManager, const sf::Vector2f& playerPos)
+void PlayerSystem::resetPlayer(ObjectManager* ptrObjManager, const sf::Vector2f& rPlayerPos)
 {
-	ObjectCollection<PlayerPlatform> players = ptrObjManager->getObjectsOfType<PlayerPlatform>();
+	const ObjectCollection<PlayerPlatform> players = ptrObjManager->getObjectsOfType<PlayerPlatform>();
 
 	for (unsigned i = 0; i < players.object_list_starts.size(); ++i)
 	{
-		for (PlayerPlatform* player = players.object_list_starts.at(i); player <= players.object_list_ends.at(i); ++player)
+		for (PlayerPlatform* ptrPlayer = players.object_list_starts.at(i); ptrPlayer <= players.object_list_ends.at(i); ++ptrPlayer)
 		{
-			player->reset(playerPos);
+			ptrPlayer->reset(rPlayerPos);
 		}
 	}
 }

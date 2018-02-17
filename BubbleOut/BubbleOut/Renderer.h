@@ -16,7 +16,7 @@ enum class RenderTag
 class Renderer
 {
 public:
-	Renderer() : m_offset(0.0f, 0.0f) {}
+	Renderer() : m_ptr_transform(nullptr), m_offset(0.0f, 0.0f) {}
 	virtual ~Renderer() {}
 
 	RenderTag tag = RenderTag::DEFAULT;
@@ -24,8 +24,8 @@ public:
 
 	virtual void render(sf::RenderWindow& rWindow) {}
 
-	void setTransform(const Transform* t) { m_ptr_transform = t; }
-	void setOffset(const FloatVector2& offset) { m_offset = offset; }
+	void setTransform(const Transform* ptrTrans) { m_ptr_transform = ptrTrans; }
+	void setOffset(const FloatVector2& rOffset) { m_offset = rOffset; }
 
 	virtual sf::FloatRect getBounds() const = 0;
 

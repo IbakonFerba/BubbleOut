@@ -1,14 +1,14 @@
 #include "stdafx.h"
 #include "Subject.h"
 
-void Subject::addObserver(Observer* o)
+void Subject::addObserver(Observer* ptrObserver)
 {
-	m_observers.push_back(o);
+	m_observers.push_back(ptrObserver);
 }
 
-void Subject::removeObserver(Observer* o)
+void Subject::removeObserver(Observer* ptrObserver)
 {
-	m_observers.erase(std::remove(m_observers.begin(), m_observers.end(), o), m_observers.end());
+	m_observers.erase(std::remove(m_observers.begin(), m_observers.end(), ptrObserver), m_observers.end());
 }
 
 

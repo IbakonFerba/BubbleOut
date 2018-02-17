@@ -10,7 +10,7 @@
 class RenderSystem
 {
 public:
-	static void render(ObjectManager* objectManager, sf::RenderWindow& rWindow, const RenderTag& tagToRender);
+	static void render(ObjectManager* objectManager, sf::RenderWindow& rWindow, const RenderTag& rTagToRender);
 };
 
 #endif

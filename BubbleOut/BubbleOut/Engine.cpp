@@ -37,7 +37,6 @@ void Engine::run()
 		while (lag >= MS_PER_UPDATE)
 		{
 			update();
-			//m_objectManager->deleteObjects();
 			lag -= MS_PER_UPDATE;
 		}
 		
@@ -71,9 +70,6 @@ void Engine::setup()
 	BackgroundSpriteRenderer* bg = m_objectManager->getNewObject<BackgroundSpriteRenderer>();
 	bg->init(ptrBackgroundTransform, "Assets/graphics/GameBackground.png", Origin::TOP_LEFT);
 	bg->tag = RenderTag::INGAME;
-
-	//setup state
-	m_state = GameState::STARTUP;
 
 	//setup objects
 	PlayerPlatform* player = m_objectManager->getNewObject<PlayerPlatform>();

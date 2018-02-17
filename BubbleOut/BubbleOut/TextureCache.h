@@ -9,7 +9,7 @@ class TextureCache
 {
 public:
 	TextureCache();
-	~TextureCache();
+	~TextureCache() {}
 
 	static sf::Texture* getTexture(const std::string& rFilename);
 

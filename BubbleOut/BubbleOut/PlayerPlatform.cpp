@@ -4,7 +4,7 @@
 
 //-----------------------------------------------------------
 //init
-void PlayerPlatform::init(ObjectManager* ptrObjectManager, const sf::Vector2f& pos, SoundSystem& soundSystem)
+void PlayerPlatform::init(ObjectManager* ptrObjectManager, const sf::Vector2f& rPos, SoundSystem& rSoundSystem)
 {
 	m_ptr_trans = ptrObjectManager->getNewObject<Transform>();
 	m_ptr_rend = ptrObjectManager->getNewObject<SpriteRenderer>();
@@ -26,8 +26,8 @@ void PlayerPlatform::init(ObjectManager* ptrObjectManager, const sf::Vector2f& p
 	}
 
 	//init objects
-	m_ptr_trans->position.x = pos.x;
-	m_ptr_trans->position.y = pos.y;
+	m_ptr_trans->position.x = rPos.x;
+	m_ptr_trans->position.y = rPos.y;
 
 	m_ptr_rend->init(m_ptr_trans, "Assets/graphics/Platform1.png", Origin::CENTER);
 	m_ptr_rend->tag = RenderTag::INGAME;
@@ -52,7 +52,7 @@ void PlayerPlatform::init(ObjectManager* ptrObjectManager, const sf::Vector2f& p
 
 	m_ptr_ball->init(ptrObjectManager);
 	m_ptr_ball->addObserver(this);
-	m_ptr_ball->addObserver(&soundSystem);
+	m_ptr_ball->addObserver(&rSoundSystem);
 
 	resetBall();
 
@@ -60,12 +60,12 @@ void PlayerPlatform::init(ObjectManager* ptrObjectManager, const sf::Vector2f& p
 	tag = Tag::PLAYER;
 
 	//add observer
-	addObserver(&soundSystem);
+	addObserver(&rSoundSystem);
 }
 
-void PlayerPlatform::reset(const sf::Vector2f& pos)
+void PlayerPlatform::reset(const sf::Vector2f& rPos)
 {
-	m_ptr_trans->position = pos;
+	m_ptr_trans->position = rPos;
 	lives = MAX_LIVES;
 
 	for (int i = 0; i < MAX_LIVES; ++i)
@@ -84,7 +84,7 @@ void PlayerPlatform::move() const
 
 	if(holdingBall)
 	{
-		m_ptr_ball->setPosition(FloatVector2(m_ptr_trans->position.x, m_ptr_trans->position.y + m_ballStartOffset));
+		m_ptr_ball->setPosition(FloatVector2(m_ptr_trans->position.x, m_ptr_trans->position.y + BALL_START_OFFSET));
 	}
 }
 
@@ -92,7 +92,7 @@ void PlayerPlatform::move() const
 //ball
 void PlayerPlatform::resetBall()
 {
-	m_ptr_ball->setPosition(FloatVector2(m_ptr_trans->position.x, m_ptr_trans->position.y + m_ballStartOffset));
+	m_ptr_ball->setPosition(FloatVector2(m_ptr_trans->position.x, m_ptr_trans->position.y + BALL_START_OFFSET));
 	m_ptr_ball->getRigidbody()->kinematic = true;
 	holdingBall = true;
 }
@@ -111,7 +111,7 @@ void PlayerPlatform::releaseBall()
 //getter
 sf::Vector2f PlayerPlatform::getBounds() const
 {
-	return m_ptr_col->getDimensions();
+	return m_ptr_col->getDimensions().getSfVector();
 }
 
 FloatVector2 PlayerPlatform::getCenter() const
@@ -128,9 +128,9 @@ void PlayerPlatform::sendGameOver()
 }
 
 
-void PlayerPlatform::update(const Message& message)
+void PlayerPlatform::update(const Message& rMessage)
 {
-	if(message.type == MessageType::PLAYER_BALL_HIT_BOTTOM)
+	if(rMessage.type == MessageType::PLAYER_BALL_HIT_BOTTOM)
 	{
 		lives--;
 		if(lives > 0)

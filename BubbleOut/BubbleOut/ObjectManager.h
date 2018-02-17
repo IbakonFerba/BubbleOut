@@ -77,7 +77,7 @@ public:
 			ObjectPoolBase* ptrPoolBase = m_ptr_pools->at(i);
 			ObjectPool<T>* ptrPool = static_cast<ObjectPool<T>*>(ptrPoolBase);
 
-			if (ptrPool->getTypeInfo().hash_code() == typeInfo.hash_code() /*|| ptrPool->getDummy()->isDerivedFrom(typeInfo.hash_code())*/)
+			if (ptrPool->getTypeInfo().hash_code() == typeInfo.hash_code())
 			{
 				objectCollection.object_list_starts.push_back(ptrPool->getObjects());
 				objectCollection.object_list_ends.push_back(ptrPool->getLastObject());
@@ -88,33 +88,6 @@ public:
 		return objectCollection;
 	}
 
-	//deletion
-
-	////mark the given object for deletion after this frame
-	//template <typename T>
-	//void destroyObject(T* obj)
-	//{
-	//	//get typeinfo
-	//	const std::type_info& typeInfo = typeid(T);
-
-	//	//iterate trhough pools to fins object
-	//	for (unsigned i = 0; i < m_ptr_pools->size(); ++i)
-	//	{
-	//		ObjectPoolBase* ptrPoolBase = m_ptr_pools->at(i);
-	//		ObjectPool<T>* ptrPool = static_cast<ObjectPool<T>*>(ptrPoolBase);
-
-	//		if (ptrPool->getTypeInfo().hash_code() == typeInfo.hash_code() || ptrPool->getDummy()->isDerivedFrom(typeInfo.hash_code()))
-	//		{
-	//			if(ptrPool->containsObject(obj))
-	//			{
-	//				ptrPool->markForDelete(obj);
-	//				return;
-	//			}
-	//		}
-	//	}
-	//}
-
-	//void deleteObjects();
 private:
 	std::vector<ObjectPoolBase*>* m_ptr_pools;
 };

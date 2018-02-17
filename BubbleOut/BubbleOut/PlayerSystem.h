@@ -17,12 +17,12 @@ enum class MovementDirection
 class PlayerSystem
 {
 public:
-	static void movePlayer(ObjectManager* ptrObjManager, const MovementDirection& dir);
-	static void updatePlayer(ObjectManager* ptrObjManager, const float windowWidth, GameState& state);
+	static void movePlayer(ObjectManager* ptrObjManager, const MovementDirection& rDir);
+	static void updatePlayer(ObjectManager* ptrObjManager, const float& rWindowWidth, GameState& rState);
 
 	static void releaseBall(ObjectManager* ptrObjManager);
 
-	static void resetPlayer(ObjectManager* ptrObjManager, const sf::Vector2f& playerPos);
+	static void resetPlayer(ObjectManager* ptrObjManager, const sf::Vector2f& rPlayerPos);
 };
 
 #endif

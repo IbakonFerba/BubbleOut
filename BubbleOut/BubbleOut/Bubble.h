@@ -14,7 +14,7 @@
 class Bubble : public Entity, public Observer, public Subject
 {
 public:
-	Bubble() : Entity() {}
+	Bubble() : Entity(), m_ptr_trans(nullptr), m_ptr_rend(nullptr), m_ptr_col(nullptr), m_ptr_rigidbody(nullptr), m_startDrag(0), m_startMass(1) {}
 	~Bubble() {}
 
 	const float MIN_SCALE = 0.5f;
@@ -22,14 +22,15 @@ public:
 	const float SCALE_STEP = 0.1f;
 	const float DRAG_STEP = 0.5;
 	const float MASS_STEP = 0.1;
+
 	bool enabled = true;
 
-	void init(ObjectManager* ptrObjectManager, const float posX, const float posY);
-	void reset();
+	void init(ObjectManager* ptrObjectManager, const float& rPosX, const float& rPosY);
 
+	void reset();
 	void disable();
 
-	void update(const Message& message) override;
+	void update(const Message& rMessage) override;
 
 	FloatVector2 getScale() const;
 	FloatVector2 getPosition() const;

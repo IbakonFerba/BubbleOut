@@ -25,8 +25,8 @@ struct Message
 {
 	MessageType type = MessageType::DEFAULT;
 	Tag tag;
-	CircleCollider* circle_collider;
-	RectCollider* rect_collider;
+	CircleCollider* ptr_circle_collider;
+	RectCollider* ptr_rect_collider;
 };
 
 class Observer
@@ -34,7 +34,7 @@ class Observer
 public:
 	Observer() {}
 	virtual ~Observer() {}
-	virtual void update(const Message& message) = 0;
+	virtual void update(const Message& rMessage) = 0;
 };
 
 #endif

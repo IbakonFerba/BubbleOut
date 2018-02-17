@@ -1,54 +1,53 @@
-
 #include "stdafx.h"
 #include "BubbleSystem.h"
 #include "Bubble.h"
 
-void BubbleSystem::spawnBubbles(ObjectManager* ptrObjManager, const int rows, const float spacing, const int windowWidth, SoundSystem& soundSystem)
+void BubbleSystem::spawnBubbles(ObjectManager* ptrObjManager, const int& rRows, const float& rSpacing, const int& rWindowWidth, SoundSystem& soundSystem)
 {
-	int cols = (windowWidth / spacing)-1;
-	float freeSpace = windowWidth - (cols-1) * spacing;
-	for(int y = 0; y < rows; ++y)
+	const int cols = (rWindowWidth / rSpacing)-1;
+	const float freeSpace = rWindowWidth - (cols-1) * rSpacing;
+	for(int y = 0; y < rRows; ++y)
 	{
 		for(int x = 0; x < cols; ++x)
 		{
-			Bubble* bubble = ptrObjManager->getNewObject<Bubble>();
-			bubble->addObserver(&soundSystem);
-			bubble->init(ptrObjManager, (x* spacing) + freeSpace/2, (y*spacing) + spacing);
+			Bubble* ptrBubble = ptrObjManager->getNewObject<Bubble>();
+			ptrBubble->addObserver(&soundSystem);
+			ptrBubble->init(ptrObjManager, (x* rSpacing) + freeSpace/2, (y*rSpacing) + rSpacing);
 		}
 	}
 }
 
 void BubbleSystem::resetBubbles(ObjectManager* ptrObjManager)
 {
-	ObjectCollection<Bubble> bubbles = ptrObjManager->getObjectsOfType<Bubble>();
+	const ObjectCollection<Bubble> bubbles = ptrObjManager->getObjectsOfType<Bubble>();
 
 	for (unsigned i = 0; i < bubbles.object_list_starts.size(); ++i)
 	{
-		for (Bubble* bubble = bubbles.object_list_starts.at(i); bubble <= bubbles.object_list_ends.at(i); ++bubble)
+		for (Bubble* ptrBubble = bubbles.object_list_starts.at(i); ptrBubble <= bubbles.object_list_ends.at(i); ++ptrBubble)
 		{
-			bubble->reset();
+			ptrBubble->reset();
 		}
 	}
 }
 
-void BubbleSystem::updateBubbles(ObjectManager* ptrObjManager, GameState& gameState, const int& windowWidth, const int& windowHeight)
+void BubbleSystem::updateBubbles(ObjectManager* ptrObjManager, GameState& rGameState, const int& rWindowWidth, const int& rWindowHeight)
 {
-	ObjectCollection<Bubble> bubbles = ptrObjManager->getObjectsOfType<Bubble>();
+	const ObjectCollection<Bubble> bubbles = ptrObjManager->getObjectsOfType<Bubble>();
 
 	bool allBubblesDisabled = true;
 	for (unsigned i = 0; i < bubbles.object_list_starts.size(); ++i)
 	{
-		for (Bubble* bubble = bubbles.object_list_starts.at(i); bubble <= bubbles.object_list_ends.at(i); ++bubble)
+		for (Bubble* ptrBubble = bubbles.object_list_starts.at(i); ptrBubble <= bubbles.object_list_ends.at(i); ++ptrBubble)
 		{
-			if(bubble->getScale().x < bubble->MIN_SCALE && bubble->enabled)
+			if(ptrBubble->getScale().x < ptrBubble->MIN_SCALE && ptrBubble->enabled)
 			{
-				bubble->disable();
+				ptrBubble->disable();
 			}
 
-			checkBubblePos(bubble, windowWidth, windowHeight);
+			checkBubblePos(ptrBubble, rWindowWidth, rWindowHeight);
 			
 
-			if(bubble->enabled)
+			if(ptrBubble->enabled)
 			{
 				allBubblesDisabled = false;
 			}
@@ -57,16 +56,16 @@ void BubbleSystem::updateBubbles(ObjectManager* ptrObjManager, GameState& gameSt
 
 	if(allBubblesDisabled)
 	{
-		gameState = GameState::WON;
+		rGameState = GameState::WON;
 	}
 }
 
-void BubbleSystem::checkBubblePos(Bubble* bubble, const int& windowWidth, const int& windowHeight)
+void BubbleSystem::checkBubblePos(Bubble* ptrBubble, const int& rWindowWidth, const int& rWindowHeight)
 {
-	const FloatVector2 pos = bubble->getPosition();
+	const FloatVector2 pos = ptrBubble->getPosition();
 
-	if(pos.x < 0 || pos.x > windowWidth || pos.y < 0 || pos.y > windowHeight)
+	if(pos.x < 0 || pos.x > rWindowWidth || pos.y < 0 || pos.y > rWindowHeight)
 	{
-		bubble->enabled = false;
+		ptrBubble->enabled = false;
 	}
 }

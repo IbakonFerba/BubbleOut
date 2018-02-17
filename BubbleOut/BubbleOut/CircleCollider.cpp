@@ -3,18 +3,18 @@
 
 //----------------------------------------------------------------------
 //init
-void CircleCollider::init(const Transform* ptrTransform, const float radius)
+void CircleCollider::init(const Transform* ptrTransform, const float& rRadius)
 {
 	setTransform(ptrTransform);
 
-	m_radius = radius;
+	m_radius = rRadius;
 }
 
 //----------------------------------------------------------------------
 //setter
-void CircleCollider::setRadius(const float radius)
+void CircleCollider::setRadius(const float& rRadius)
 {
-	m_radius = radius;
+	m_radius = rRadius;
 }
 
 //----------------------------------------------------------------------

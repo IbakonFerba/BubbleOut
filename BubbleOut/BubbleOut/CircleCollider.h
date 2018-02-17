@@ -9,11 +9,11 @@
 class CircleCollider : public Collider
 {
 public:
-	CircleCollider() : Collider() {}
+	CircleCollider() : Collider(), m_radius(0){}
 	~CircleCollider() {}
 
-	void init(const Transform* ptrTransform, const float radius);
-	void setRadius(const float radius);
+	void init(const Transform* ptrTransform, const float& rRadius);
+	void setRadius(const float& rRadius);
 
 	float getRadius() const;
 private:

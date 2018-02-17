@@ -30,44 +30,44 @@ float FloatVector2::headingAngle()
 
 //------------------------------------------------------------------------------------------
 //operators
-FloatVector2 FloatVector2::operator*(const FloatVector2& other) const
+FloatVector2 FloatVector2::operator*(const FloatVector2& rOther) const
 {
 	FloatVector2 returnVector;
-	returnVector.x = x * other.x;
-	returnVector.y = y * other.y;
+	returnVector.x = x * rOther.x;
+	returnVector.y = y * rOther.y;
 	return returnVector;
 }
 
-FloatVector2 FloatVector2::operator*(const sf::Vector2f& other) const
+FloatVector2 FloatVector2::operator*(const sf::Vector2f& rOther) const
 {
 	FloatVector2 returnVector;
-	returnVector.x = x * other.x;
-	returnVector.y = y * other.y;
+	returnVector.x = x * rOther.x;
+	returnVector.y = y * rOther.y;
 	return returnVector;
 }
 
-void FloatVector2::operator*=(const FloatVector2& other)
+void FloatVector2::operator*=(const FloatVector2& rOther)
 {
-	x *= other.x;
-	y *= other.y;
+	x *= rOther.x;
+	y *= rOther.y;
 }
 
-void FloatVector2::operator*=(const sf::Vector2f& other)
+void FloatVector2::operator*=(const sf::Vector2f& rOther)
 {
-	x *= other.x;
-	y *= other.y;
+	x *= rOther.x;
+	y *= rOther.y;
 }
 
-void FloatVector2::operator-=(const float& val)
+void FloatVector2::operator-=(const float& rVal)
 {
-	x -= val;
-	y -= val;
+	x -= rVal;
+	y -= rVal;
 }
 
-void FloatVector2::operator+=(const float& val)
+void FloatVector2::operator+=(const float& rVal)
 {
-	x += val;
-	y += val;
+	x += rVal;
+	y += rVal;
 }
 
 

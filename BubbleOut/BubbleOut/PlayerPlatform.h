@@ -14,18 +14,20 @@
 class PlayerPlatform : public Entity, public Observer, public Subject
 {
 public:
-	PlayerPlatform() : Entity() {}
+	PlayerPlatform() : Entity(), m_ptr_trans(nullptr), m_ptr_rend(nullptr), m_ptr_rend2(nullptr), m_ptr_col(nullptr),
+	                   m_ptr_col2(nullptr), m_ptr_rigidbody(nullptr), m_ptr_rigidbody2(nullptr), m_ptr_ball(nullptr) {}
 	~PlayerPlatform() {}
 
 	static const int MAX_LIVES = 4;
-	int lives = MAX_LIVES;
+	const float SPEED = 10.0;
 
-	const float speed = 10.0;
-	FloatVector2 movementDir;
+	int lives = MAX_LIVES;
 	bool holdingBall = true;
 
-	void init(ObjectManager* ptrObjectManager, const sf::Vector2f& pos, SoundSystem& soundSystem);
-	void reset(const sf::Vector2f& pos);
+	FloatVector2 movementDir;
+
+	void init(ObjectManager* ptrObjectManager, const sf::Vector2f& rPos, SoundSystem& rSoundSystem);
+	void reset(const sf::Vector2f& rPos);
 
 	void move() const;
 	void releaseBall();
@@ -36,7 +38,7 @@ public:
 	sf::Vector2f getBounds() const;
 	FloatVector2 getCenter() const;
 
-	void update(const Message& message) override;
+	void update(const Message& rMessage) override;
 private:
 	Transform* m_ptr_trans;
 	SpriteRenderer* m_ptr_rend;
@@ -50,7 +52,7 @@ private:
 
 	UISpriteRenderer* m_liveDisplays[MAX_LIVES];
 
-	float m_ballStartOffset = -35;
+	const float BALL_START_OFFSET = -35;
 
 	void resetBall();
 };

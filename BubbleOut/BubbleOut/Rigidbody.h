@@ -13,7 +13,9 @@
 class Rigidbody : public Subject
 {
 public:
-	Rigidbody() : m_velocity(0.0, 0.0), m_acceleration(0.0, 0.0), mass(1), drag(0), kinematic(false) {}
+	Rigidbody() : drag(0), mass(1), kinematic(false), m_ptr_entity(nullptr), m_ptr_circleCollider(nullptr),
+	              m_ptr_rectCollider(nullptr), m_ptr_transform(nullptr),
+	              m_velocity(0.0, 0.0), m_acceleration(0.0, 0.0) {}
 	~Rigidbody() {}
 
 	float drag;
@@ -22,13 +24,12 @@ public:
 	bool enabled = true;
 	std::vector<Rigidbody*> collidingRigidbodys;
 
-	void init(const Entity* ptrEntity, CircleCollider* ptrCollider, Transform* ptrTransform, const float _drag, const float _mass);
-	void init(const Entity* ptrEntity, RectCollider* ptrCollider, Transform* ptrTransform, const float _drag, const float _mass);
+	void init(const Entity* ptrEntity, CircleCollider* ptrCollider, Transform* ptrTransform, const float& rDrag, const float& rMass);
+	void init(const Entity* ptrEntity, RectCollider* ptrCollider, Transform* ptrTransform, const float& rDrag, const float& rMass);
 
-	void collisionWith(const Rigidbody* other);
-	void collisionWith(const Tag& tag);
-	void collisionExitWith(const Rigidbody* other);
-	void addForce(const FloatVector2& force);
+	void collisionWith(const Rigidbody* ptrOther);
+	void collisionExitWith(const Rigidbody* ptrOther);
+	void addForce(const FloatVector2& rForce);
 
 	void applyPhysics();
 
@@ -37,8 +38,7 @@ public:
 	RectCollider* getRectCollider() const;
 	FloatVector2 getVelocity() const;
 
-	void setVelocity(const FloatVector2& newVel);
-
+	void setVelocity(const FloatVector2& rNewVel);
 private:
 	const Entity* m_ptr_entity;
 	CircleCollider* m_ptr_circleCollider;

@@ -12,10 +12,10 @@
 class Barrier : public Entity
 {
 public:
-	Barrier() :Entity() {}
+	Barrier() :Entity(), m_ptr_trans(nullptr), m_ptr_col(nullptr), m_ptr_rigidbody(nullptr) {}
 	~Barrier() {}
 
-	void init(ObjectManager* ptrObjectManager, const FloatVector2& position, const float& width, const float& height, const Tag& _tag);
+	void init(ObjectManager* ptrObjectManager, const FloatVector2& rPosition, const float& rWidth, const float& rHeight, const Tag& rTag);
 private:
 	Transform* m_ptr_trans;
 	RectCollider* m_ptr_col;

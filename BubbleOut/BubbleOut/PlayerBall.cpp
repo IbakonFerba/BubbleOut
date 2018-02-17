@@ -31,14 +31,14 @@ void PlayerBall::init(ObjectManager* ptrObjectManager)
 
 //-------------------------------------------------------------
 //setter
-void PlayerBall::setPosition(const FloatVector2& pos)
+void PlayerBall::setPosition(const FloatVector2& pos) const
 {
 	m_ptr_transform->position = pos;
 }
 
 //-------------------------------------------------------------
 //getter
-Rigidbody* PlayerBall::getRigidbody()
+Rigidbody* PlayerBall::getRigidbody() const
 {
 	return m_ptr_rigidbody;
 }
@@ -47,16 +47,16 @@ Rigidbody* PlayerBall::getRigidbody()
 
 //-------------------------------------------------------------
 //observer
-void PlayerBall::update(const Message& message)
+void PlayerBall::update(const Message& rMessage)
 {
-	if(message.type == MessageType::COLLISION_ENTER)
+	if(rMessage.type == MessageType::COLLISION_ENTER)
 	{
-		if (message.tag == Tag::BORDER_BOTTOM)
+		if (rMessage.tag == Tag::BORDER_BOTTOM)
 		{
 			m_observerMessage.type = MessageType::PLAYER_BALL_HIT_BOTTOM;
 			notifyObservers();
 		}
-	} else if(message.type == MessageType::COLLISION_EXIT)
+	} else if(rMessage.type == MessageType::COLLISION_EXIT)
 	{
 		m_observerMessage.type = MessageType::PLAYER_BALL_IMPACT;
 		notifyObservers();

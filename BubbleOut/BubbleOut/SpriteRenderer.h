@@ -9,13 +9,13 @@
 class SpriteRenderer : public Renderer
 {
 public:
-	SpriteRenderer() : Renderer() {}
+	SpriteRenderer() : Renderer(), m_ptr_sprite(nullptr) {}
 	virtual ~SpriteRenderer()
 	{
 		delete m_ptr_sprite;
 	}
 
-	void init(const Transform* ptrTrans, const std::string& rTextureFilePath, const Origin& origin);
+	void init(const Transform* ptrTrans, const std::string& rTextureFilePath, const Origin& rOrigin);
 	void render(sf::RenderWindow& rWindow) override;
 
 	sf::FloatRect getBounds() const override;

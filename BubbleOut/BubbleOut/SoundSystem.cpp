@@ -3,8 +3,6 @@
 
 //-----------------------------------------------
 //init
-
-
 void SoundSystem::loadSounds()
 {
 	sf::SoundBuffer buffer;
@@ -39,13 +37,13 @@ void SoundSystem::loadSounds()
 
 //---------------------------------------------
 //playsound
-void SoundSystem::playSound(const sf::SoundBuffer& sound)
+void SoundSystem::playSound(const sf::SoundBuffer& rSound)
 {
 	for(int i = 0; i < VOICES; ++i)
 	{
 		if(m_voices[i].getStatus() != sf::SoundSource::Status::Playing)
 		{
-			m_voices[i].setBuffer(sound);
+			m_voices[i].setBuffer(rSound);
 			m_voices[i].play();
 			return;
 		}
@@ -63,23 +61,12 @@ void SoundSystem::stopMusic()
 }
 
 
-
-
 //---------------------------------------------
 //observer
-void SoundSystem::update(const Message& message)
+void SoundSystem::update(const Message& rMessage)
 {
-	if(m_sounds.find(message.type) != m_sounds.end())
+	if(m_sounds.find(rMessage.type) != m_sounds.end())
 	{
-		playSound((m_sounds[message.type]));
+		playSound((m_sounds[rMessage.type]));
 	}
-	/*if(message.type == MessageType::BUBBLE_IMPACT)
-	{
-		playSound(m_sounds[MessageType::BUBBLE_IMPACT]);
-	}
-
-	if(message.type == MessageType::PLAYER_BALL_IMPACT)
-	{
-		playSound(m_sounds[MessageType::PLAYER_BALL_IMPACT]);
-	}*/
 }

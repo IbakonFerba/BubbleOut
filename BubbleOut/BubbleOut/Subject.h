@@ -10,8 +10,8 @@ class Subject
 {
 public:
 	virtual ~Subject() {}
-	void addObserver(Observer* o);
-	void removeObserver(Observer* o);
+	void addObserver(Observer* ptrObserver);
+	void removeObserver(Observer* ptrObserver);
 protected:
 	std::vector<Observer*> m_observers;
 	Message m_observerMessage;

@@ -12,16 +12,16 @@
 class PhysicsSystem
 {
 public:
-	static void handleCollision(ObjectManager* ptrObjectManager, const float windowWidth, const float windowHeight);
+	static void handleCollision(ObjectManager* ptrObjectManager, const float& rWindowWidth, const float& rWindowHeight);
 	static void applyPhysics(ObjectManager* ptrObjectManager);
 
 private:
-	static void checkCircleCircle(Rigidbody* rb1, Rigidbody* rb2, const CircleCollider* c1, const CircleCollider* c2);
-	static void checkRectRect(Rigidbody* rb1, Rigidbody* rb2, const RectCollider* r1, const RectCollider* r2);
-	static void checkCircleRect(Rigidbody* rbC, Rigidbody* rbR, const CircleCollider* c, const RectCollider* r);
+	static void checkCircleCircle(Rigidbody* ptrRb1, Rigidbody* ptrRb2, const CircleCollider* ptrC1, const CircleCollider* ptrC2);
+	static void checkRectRect(Rigidbody* ptrRb1, Rigidbody* ptrRb2, const RectCollider* ptrR1, const RectCollider* ptrR2);
+	static void checkCircleRect(Rigidbody* ptrRbC, Rigidbody* ptrRbR, const CircleCollider* ptrC, const RectCollider* ptrR);
 
-	static void addToCollidingRbs(Rigidbody* rb, Rigidbody* collidingRb);
-	static void removeFromCollidingRbs(Rigidbody* rb, Rigidbody* collidingRb);
+	static void addToCollidingRbs(Rigidbody* ptrRb, Rigidbody* ptrCollidingRb);
+	static void removeFromCollidingRbs(Rigidbody* ptrRb, Rigidbody* ptrCollidingRb);
 };
 
 #endif

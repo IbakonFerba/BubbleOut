@@ -17,7 +17,7 @@ public:
 	void startMusic();
 	void stopMusic();
 
-	void update(const Message& message) override;
+	void update(const Message& rMessage) override;
 private:
 	static const int VOICES = 20;
 	sf::Sound m_voices[VOICES];
@@ -26,7 +26,7 @@ private:
 	sf::SoundBuffer m_musicBuffer;
 	sf::Sound m_music;
 
-	void playSound(const sf::SoundBuffer& sound);
+	void playSound(const sf::SoundBuffer& rSound);
 };
 
 #endif

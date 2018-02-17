@@ -12,8 +12,8 @@ public:
 	RectCollider() : Collider() {}
 	~RectCollider() {}
 
-	void init(const Transform* ptrTransform, const float width, const float height);
-	void setDimensions(const float width, const float height);
+	void init(const Transform* ptrTransform, const float& rWidth, const float& rHeight);
+	void setDimensions(const float& rWidth, const float& rHeight);
 
 	FloatVector2 getDimensions() const;
 private:

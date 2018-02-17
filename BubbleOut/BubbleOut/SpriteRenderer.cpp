@@ -4,13 +4,13 @@
 
 //----------------------------------------------------------------------
 //init
-void SpriteRenderer::init(const Transform* ptrTrans, const std::string& rTextureFilePath, const Origin& origin)
+void SpriteRenderer::init(const Transform* ptrTrans, const std::string& rTextureFilePath, const Origin& rOrigin)
 {
 	setTransform(ptrTrans);
 	m_ptr_sprite = new sf::Sprite(*TextureCache::getTexture(rTextureFilePath));
 
 	const sf::FloatRect bounds = getBounds();
-	switch (origin)
+	switch (rOrigin)
 	{
 	case Origin::TOP_LEFT: 
 		m_ptr_sprite->setOrigin(0, 0);
