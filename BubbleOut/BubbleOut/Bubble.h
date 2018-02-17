@@ -36,6 +36,7 @@ public:
 	void update(const Message& message) override;
 
 	FloatVector2 getScale() const;
+	FloatVector2 getPosition() const;
 private:
 	Transform* m_ptr_trans;
 	ShapeRenderer* m_ptr_rend;

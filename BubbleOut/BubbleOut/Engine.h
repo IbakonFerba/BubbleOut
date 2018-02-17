@@ -6,6 +6,7 @@
 #include "stdafx.h"
 #include "ObjectManager.h"
 #include "SoundSystem.h"
+#include "Subject.h"
 
 enum class GameState
 {
@@ -20,7 +21,7 @@ enum class GameState
  * the main loop with updating, rendering and
  * managing objects
  */
-class Engine
+class Engine : public Subject
 {
 public:
 	Engine() : m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "BubbleOut", sf::Style::Default), m_playerStartPos(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 50)
@@ -41,6 +42,9 @@ public:
 
 	//run the engine
 	void run();
+
+	//observer
+	void notifyObservers() const override;
 private:
 	ObjectManager* m_objectManager;
 	sf::RenderWindow m_window;
@@ -50,6 +54,10 @@ private:
 	const sf::Vector2f m_playerStartPos;
 
 	GameState m_state;
+
+	Message m_observerMessage;
+
+	bool m_sentWinEvent = false;
 
 	//engine functions
 	void setup();

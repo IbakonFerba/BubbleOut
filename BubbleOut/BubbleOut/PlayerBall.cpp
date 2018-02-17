@@ -59,10 +59,6 @@ void PlayerBall::update(const Message& message)
 		{
 			m_observerMessage.type = MessageType::PLAYER_BALL_HIT_BOTTOM;
 			notifyObservers();
-		} else if(message.tag == Tag::BORDER_LEFT || message.tag == Tag::BORDER_RIGHT || message.tag == Tag::BORDER_TOP)
-		{
-			m_observerMessage.type = MessageType::PLAYER_BALL_IMPACT;
-			notifyObservers();
 		}
 	} else if(message.type == MessageType::COLLISION_EXIT)
 	{

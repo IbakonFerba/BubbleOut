@@ -31,7 +31,7 @@ void BubbleSystem::resetBubbles(ObjectManager* ptrObjManager)
 	}
 }
 
-void BubbleSystem::updateBubbles(ObjectManager* ptrObjManager, GameState& gameState)
+void BubbleSystem::updateBubbles(ObjectManager* ptrObjManager, GameState& gameState, const int& windowWidth, const int& windowHeight)
 {
 	ObjectCollection<Bubble> bubbles = ptrObjManager->getObjectsOfType<Bubble>();
 
@@ -40,10 +40,13 @@ void BubbleSystem::updateBubbles(ObjectManager* ptrObjManager, GameState& gameSt
 	{
 		for (Bubble* bubble = bubbles.object_list_starts.at(i); bubble <= bubbles.object_list_ends.at(i); ++bubble)
 		{
-			if(bubble->getScale().x < bubble->MIN_SCALE)
+			if(bubble->getScale().x < bubble->MIN_SCALE && bubble->enabled)
 			{
 				bubble->disable();
 			}
+
+			checkBubblePos(bubble, windowWidth, windowHeight);
+			
 
 			if(bubble->enabled)
 			{
@@ -55,5 +58,15 @@ void BubbleSystem::updateBubbles(ObjectManager* ptrObjManager, GameState& gameSt
 	if(allBubblesDisabled)
 	{
 		gameState = GameState::WON;
+	}
+}
+
+void BubbleSystem::checkBubblePos(Bubble* bubble, const int& windowWidth, const int& windowHeight)
+{
+	const FloatVector2 pos = bubble->getPosition();
+
+	if(pos.x < 0 || pos.x > windowWidth || pos.y < 0 || pos.y > windowHeight)
+	{
+		bubble->enabled = false;
 	}
 }

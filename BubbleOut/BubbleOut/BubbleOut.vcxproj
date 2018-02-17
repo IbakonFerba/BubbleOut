@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Barrier.cpp" />
     <ClCompile Include="Bubble.cpp" />
     <ClCompile Include="BubbleSystem.cpp" />
     <ClCompile Include="CircleCollider.cpp" />
@@ -174,6 +175,7 @@
     <ClCompile Include="TextureCache.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Barrier.h" />
     <ClInclude Include="Bubble.h" />
     <ClInclude Include="BubbleSystem.h" />
     <ClInclude Include="CircleCollider.h" />

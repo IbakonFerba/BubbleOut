@@ -14,7 +14,7 @@ public:
 
 	void update(const Message& message) override;
 private:
-	static const int VOICES = 10;
+	static const int VOICES = 20;
 	sf::Sound m_voices[VOICES];
 	std::map<MessageType, sf::SoundBuffer> m_sounds;
 

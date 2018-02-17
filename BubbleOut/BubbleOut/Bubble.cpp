@@ -56,6 +56,9 @@ void Bubble::disable()
 	enabled = false;
 	m_ptr_rend->enabled = false;
 	m_ptr_rigidbody->enabled = false;
+
+	m_observerMessage.type = MessageType::BUBBLE_DESTROYED;
+	notifyObservers();
 }
 
 
@@ -115,4 +118,9 @@ void Bubble::notifyObservers() const
 FloatVector2 Bubble::getScale() const
 {
 	return m_ptr_trans->scale;
+}
+
+FloatVector2 Bubble::getPosition() const
+{
+	return m_ptr_trans->position;
 }

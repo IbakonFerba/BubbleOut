@@ -20,11 +20,12 @@ void PlayerPlatform::init(ObjectManager* ptrObjectManager, const sf::Vector2f& p
 
 	for(int i = 0; i < MAX_LIVES; ++i)
 	{
+		const float lifeRad = 5;
 		m_liveDisplays[i] = m_ptr_objManager->getNewObject<UIShapeRenderer>();
-		sf::CircleShape* liveBall = new sf::CircleShape(5);
+		sf::CircleShape* liveBall = new sf::CircleShape(lifeRad);
 		liveBall->setFillColor(sf::Color::Red);
 		m_liveDisplays[i]->init(m_ptr_trans, liveBall, Origin::CENTER);
-		m_liveDisplays[i]->setOffset(FloatVector2(-10 + i * 10, 0));
+		m_liveDisplays[i]->setOffset(FloatVector2(-lifeRad*(MAX_LIVES-1) + i * lifeRad*2, 0));
 		m_liveDisplays[i]->tag = RenderTag::INGAME;
 	}
 
@@ -65,6 +66,9 @@ void PlayerPlatform::init(ObjectManager* ptrObjectManager, const sf::Vector2f& p
 
 	//init values
 	tag = Tag::PLAYER;
+
+	//add observer
+	addObserver(&soundSystem);
 }
 
 void PlayerPlatform::reset(const sf::Vector2f& pos)
@@ -125,6 +129,21 @@ FloatVector2 PlayerPlatform::getCenter() const
 
 //-----------------------------------------------------------
 //observer
+void PlayerPlatform::sendGameOver()
+{
+	m_observerMessage.type = MessageType::GAME_OVER;
+	notifyObservers();
+}
+
+void PlayerPlatform::notifyObservers() const
+{
+	for (unsigned i = 0; i < m_observers.size(); ++i)
+	{
+		m_observers.at(i)->update(m_observerMessage);
+	}
+}
+
+
 void PlayerPlatform::update(const Message& message)
 {
 	if(message.type == MessageType::PLAYER_BALL_HIT_BOTTOM)

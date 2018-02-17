@@ -11,6 +11,21 @@ SoundSystem::SoundSystem()
 
 	buffer.loadFromFile("Assets/sound/BallImpact.wav");
 	m_sounds[MessageType::PLAYER_BALL_IMPACT] = buffer;
+
+	buffer.loadFromFile("Assets/sound/GameOver.wav");
+	m_sounds[MessageType::GAME_OVER] = buffer;
+
+	buffer.loadFromFile("Assets/sound/StartGame.wav");
+	m_sounds[MessageType::START_GAME] = buffer;
+
+	buffer.loadFromFile("Assets/sound/Win.wav");
+	m_sounds[MessageType::WIN_GAME] = buffer;
+
+	buffer.loadFromFile("Assets/sound/BallDestroyed.wav");
+	m_sounds[MessageType::PLAYER_BALL_HIT_BOTTOM] = buffer;
+
+	buffer.loadFromFile("Assets/sound/BubbleDestroyed.wav");
+	m_sounds[MessageType::BUBBLE_DESTROYED] = buffer;
 }
 
 //---------------------------------------------
@@ -33,7 +48,11 @@ void SoundSystem::playSound(const sf::SoundBuffer& sound)
 //observer
 void SoundSystem::update(const Message& message)
 {
-	if(message.type == MessageType::BUBBLE_IMPACT)
+	if(m_sounds.find(message.type) != m_sounds.end())
+	{
+		playSound((m_sounds[message.type]));
+	}
+	/*if(message.type == MessageType::BUBBLE_IMPACT)
 	{
 		playSound(m_sounds[MessageType::BUBBLE_IMPACT]);
 	}
@@ -41,5 +60,5 @@ void SoundSystem::update(const Message& message)
 	if(message.type == MessageType::PLAYER_BALL_IMPACT)
 	{
 		playSound(m_sounds[MessageType::PLAYER_BALL_IMPACT]);
-	}
+	}*/
 }

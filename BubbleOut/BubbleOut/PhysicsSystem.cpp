@@ -50,17 +50,6 @@ void PhysicsSystem::handleCollision(ObjectManager* ptrObjectManager, const float
 					}
 				}
 			}
-
-			FloatVector2 f;
-			if(circleCol1 != nullptr)
-			{
-				f = checkEdges(rigidbody1, circleCol1, windowWidth, windowHeight);
-			} else
-			{
-				f = checkEdges(rigidbody1, rectCol1, windowWidth, windowHeight);
-			}
-
-			rigidbody1->addForce(f);
 		}
 	}
 }
@@ -196,69 +185,6 @@ void PhysicsSystem::checkRectRect(Rigidbody* rb1, Rigidbody* rb2, const RectColl
 	force *= 0.5f;
 	rb1->addForce(force);
 	rb2->addForce(-force);
-}
-
-
-
-FloatVector2 PhysicsSystem::checkEdges(Rigidbody* rb, const CircleCollider* c, const float windowWidth, const float windowHeight)
-{
-	FloatVector2 force;
-
-	const FloatVector2 center = c->getCenter();
-	const float r = c->getRadius();
-	if(center.x - r < 0)
-	{
-		force.x = 0 - (center.x - r);
-		rb->collisionWith(Tag::BORDER_LEFT);
-	} else if(center.x + r > windowWidth)
-	{
-		force.x = windowWidth - (center.x + r);
-		rb->collisionWith(Tag::BORDER_RIGHT);
-	} 
-	
-	if(center.y - r < 0)
-	{
-		force.y = 0 - (center.y - r);
-		rb->collisionWith(Tag::BORDER_TOP);
-	}
-	else if (center.y + r > windowHeight)
-	{
-		force.y = windowHeight - (center.y + r);
-		rb->collisionWith(Tag::BORDER_BOTTOM);
-	}
-
-	return force;
-}
-
-FloatVector2 PhysicsSystem::checkEdges(Rigidbody* rb, const RectCollider* r, const float windowWidth, const float windowHeight)
-{
-	FloatVector2 force;
-
-	const FloatVector2 center = r->getCenter();
-	const FloatVector2 dim = r->getDimensions();
-
-	if(center.x - dim.x/2 < 0)
-	{
-		force.x = 0 - (center.x - dim.x / 2);
-		rb->collisionWith(Tag::BORDER_LEFT);
-	} else if(center.x + dim.x/2 > windowWidth)
-	{
-		force.x = windowWidth - (center.x + dim.x / 2);
-		rb->collisionWith(Tag::BORDER_RIGHT);
-	}
-
-	if (center.y - dim.y / 2 < 0)
-	{
-		force.y = 0 - (center.y - dim.y / 2);
-		rb->collisionWith(Tag::BORDER_TOP);
-	}
-	else if (center.y + dim.y / 2 > windowHeight)
-	{
-		force.y = windowHeight - (center.y + dim.y / 2);
-		rb->collisionWith(Tag::BORDER_BOTTOM);
-	}
-
-	return force;
 }
 
 void PhysicsSystem::addToCollidingRbs(Rigidbody* rb, Rigidbody* collidingRb)

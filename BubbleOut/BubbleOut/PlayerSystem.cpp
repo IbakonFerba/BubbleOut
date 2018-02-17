@@ -52,6 +52,7 @@ void PlayerSystem::updatePlayer(ObjectManager* ptrObjManager, const float window
 		{
 			if(player->lives < 1)
 			{
+				player->sendGameOver();
 				state = GameState::GAME_OVER;
 			}
 

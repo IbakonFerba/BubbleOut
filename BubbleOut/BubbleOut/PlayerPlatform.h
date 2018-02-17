@@ -12,7 +12,7 @@
 #include "UIShapeRenderer.h"
 #include "SoundSystem.h"
 
-class PlayerPlatform : public Entity, public Observer
+class PlayerPlatform : public Entity, public Observer, public Subject
 {
 public:
 	PlayerPlatform() : Entity()
@@ -21,7 +21,7 @@ public:
 	}
 	~PlayerPlatform() {}
 
-	static const int MAX_LIVES = 3;
+	static const int MAX_LIVES = 4;
 	int lives = MAX_LIVES;
 
 	const float speed = 10.0;
@@ -34,11 +34,14 @@ public:
 	void move() const;
 	void releaseBall();
 
+	void sendGameOver();
+
 
 	sf::Vector2f getBounds() const;
 	FloatVector2 getCenter() const;
 
 	void update(const Message& message) override;
+	void notifyObservers() const override;
 private:
 	Transform* m_ptr_trans;
 	ShapeRenderer* m_ptr_rend;
@@ -53,6 +56,8 @@ private:
 	UIShapeRenderer* m_liveDisplays[MAX_LIVES];
 
 	float m_ballStartOffset = -35;
+
+	Message m_observerMessage;
 
 	void resetBall();
 };

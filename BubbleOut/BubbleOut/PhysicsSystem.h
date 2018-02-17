@@ -20,9 +20,6 @@ private:
 	static void checkRectRect(Rigidbody* rb1, Rigidbody* rb2, const RectCollider* r1, const RectCollider* r2);
 	static void checkCircleRect(Rigidbody* rbC, Rigidbody* rbR, const CircleCollider* c, const RectCollider* r);
 
-	static FloatVector2 checkEdges(Rigidbody* rb, const CircleCollider* c, const float windowWidth, const float windowHeight);
-	static FloatVector2 checkEdges(Rigidbody* rb, const RectCollider* r, const float windowWidth, const float windowHeight);
-
 	static void addToCollidingRbs(Rigidbody* rb, Rigidbody* collidingRb);
 	static void removeFromCollidingRbs(Rigidbody* rb, Rigidbody* collidingRb);
 };
