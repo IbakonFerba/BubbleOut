@@ -74,7 +74,7 @@ void Engine::setup()
 
 
 	//setup objects
-	BubbleSystem::spawnBubbles(m_objectManager, 4, 120, WINDOW_WIDTH, m_soundSystem);
+	BubbleSystem::spawnBubbles(m_objectManager, 4, 140, WINDOW_WIDTH, m_soundSystem);
 
 	PlayerPlatform* player = m_objectManager->getNewObject<PlayerPlatform>();
 	player->init(m_objectManager, sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 50), m_soundSystem);

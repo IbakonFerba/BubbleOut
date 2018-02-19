@@ -4,7 +4,7 @@
 
 void BubbleSystem::spawnBubbles(ObjectManager* ptrObjManager, const int& rRows, const float& rSpacing, const int& rWindowWidth, SoundSystem& soundSystem)
 {
-	const int cols = (rWindowWidth / rSpacing)-1; //calc number of colums
+	const int cols = (rWindowWidth / rSpacing); //calc number of colums
 	const float freeSpace = rWindowWidth - (cols-1) * rSpacing; //calculate how much space is left in the x Axis (needed for centering the field)
 
 	for(int y = 0; y < rRows; ++y)
