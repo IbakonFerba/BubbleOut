@@ -21,7 +21,7 @@ void PlayerPlatform::init(ObjectManager* ptrObjectManager, const sf::Vector2f& r
 	//initializer life display
 	for(int i = 0; i < MAX_LIVES; ++i)
 	{
-		const float lifeRad = 5;
+		const float lifeRad = 6;
 		m_liveDisplays[i] = ptrObjectManager->getNewObject<UISpriteRenderer>();
 		m_liveDisplays[i]->init(m_ptr_trans, "Assets/graphics/Life.png", Origin::CENTER);
 		m_liveDisplays[i]->setOffset(FloatVector2(-lifeRad*(MAX_LIVES-1) + i * lifeRad*2, 0));

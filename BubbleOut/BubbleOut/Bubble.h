@@ -23,8 +23,8 @@ public:
 	Bubble() : Entity(), m_ptr_trans(nullptr), m_ptr_rend(nullptr), m_ptr_col(nullptr), m_ptr_rigidbody(nullptr), m_startDrag(0), m_startMass(1) {}
 	~Bubble() {}
 
-	const float MIN_SCALE = 0.5f;
-	const float MAX_SCALE = 1.5;
+	const float MIN_SCALE = 0.3f;
+	const float MAX_SCALE = 1.2;
 	const float SCALE_STEP = 0.1f;
 	const float DRAG_STEP = 0.5;
 	const float MASS_STEP = 0.1;

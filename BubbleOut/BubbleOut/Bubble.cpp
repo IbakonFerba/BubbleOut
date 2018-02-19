@@ -17,7 +17,7 @@ void Bubble::init(ObjectManager* ptrObjectManager, const float& rPosX, const flo
 	m_startPos.y = rPosY;
 
 	m_startMass = 2;
-	m_startDrag = 2;
+	m_startDrag = 3;
 	tag = Tag::BUBBLE;
 
 	//setup components
