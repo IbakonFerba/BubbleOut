@@ -116,7 +116,7 @@ void Engine::processInput()
 
 	if(m_state == GameState::STARTUP)
 	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 		{
 			startGame();
 		}
@@ -146,14 +146,14 @@ void Engine::processInput()
 		}
 	} else if(m_state == GameState::GAME_OVER)
 	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 		{
 			reset();
 			startGame();
 		}
 	} else if(m_state == GameState::WON)
 	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 		{
 			reset();
 			startGame();
