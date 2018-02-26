@@ -9,8 +9,12 @@ void SoundSystem::loadSounds()
 	sf::SoundBuffer buffer;
 
 	//music
-	m_musicBuffer.loadFromFile("Assets/sound/Music/Sinnoh_Game_Corner_Remix_V_II.wav");
-	m_music.setBuffer(m_musicBuffer);
+	m_musicStartSeq.openFromFile("Assets/sound/Music/GameCornerStart.wav"); //chiptune cover of the Game Corner Theme from Pokémon Diamond and Pearl arranged and produced by me 
+	m_musicStartSeq.setVolume(50);
+	m_musicWaitTime = m_musicStartSeq.getDuration().asMicroseconds();
+
+	m_music.openFromFile("Assets/sound/Music/GameCornerLoop.wav"); //chiptune cover of the Game Corner Theme from Pokémon Diamond and Pearl arranged and produced by me 
+	m_music.setVolume(50);
 	m_music.setLoop(true);
 
 	//sound effects
@@ -55,11 +59,22 @@ void SoundSystem::playSound(const sf::SoundBuffer& rSound)
 
 void SoundSystem::startMusic()
 {
-	m_music.play();
+	m_musicStartSeq.play();
+	m_musicTimer.restart();
 }
+
+void SoundSystem::updateMusic()
+{
+	if(m_musicTimer.getElapsedTime().asMicroseconds() >= m_musicWaitTime && m_music.getStatus() != sf::SoundStream::Status::Playing)
+	{
+		m_music.play();
+	}
+}
+
 
 void SoundSystem::stopMusic()
 {
+	m_musicStartSeq.stop();
 	m_music.stop();
 }
 

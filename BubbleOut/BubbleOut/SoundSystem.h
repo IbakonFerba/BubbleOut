@@ -18,6 +18,7 @@ public:
 	void loadSounds();
 
 	void startMusic();
+	void updateMusic();
 	void stopMusic();
 
 	//update observer
@@ -26,9 +27,12 @@ private:
 	static const int VOICES = 20;
 	sf::Sound m_voices[VOICES];
 	std::map<MessageType, sf::SoundBuffer> m_sounds;
+	
+	sf::Music m_musicStartSeq;
+	sf::Music m_music;
 
-	sf::SoundBuffer m_musicBuffer;
-	sf::Sound m_music;
+	float m_musicWaitTime;
+	sf::Clock m_musicTimer;
 
 	void playSound(const sf::SoundBuffer& rSound);
 };

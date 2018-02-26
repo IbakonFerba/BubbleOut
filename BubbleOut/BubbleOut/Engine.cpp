@@ -169,6 +169,7 @@ void Engine::update()
 	case GameState::STARTUP: 
 		break;
 	case GameState::PLAYING:
+		m_soundSystem.updateMusic();
 		PlayerSystem::updatePlayer(m_objectManager, WINDOW_WIDTH, m_state);
 
 		PhysicsSystem::handleCollision(m_objectManager, WINDOW_WIDTH, WINDOW_HEIGHT);

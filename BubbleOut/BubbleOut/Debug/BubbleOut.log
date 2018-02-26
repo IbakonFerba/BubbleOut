@@ -1,2 +1,3 @@
-﻿  PlayerPlatform.cpp
+﻿  SoundSystem.cpp
+c:\users\rhino\documents\studium\c++\bubbleout\bubbleout\bubbleout\soundsystem.cpp(14): warning C4244: '=': conversion from 'sf::Int64' to 'float', possible loss of data
   BubbleOut.vcxproj -> C:\Users\Rhino\Documents\Studium\C++\BubbleOut\BubbleOut\Debug\BubbleOut.exe
