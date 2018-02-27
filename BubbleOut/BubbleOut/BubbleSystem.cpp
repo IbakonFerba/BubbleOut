@@ -47,7 +47,10 @@ void BubbleSystem::updateBubbles(ObjectManager* ptrObjManager, GameState& rGameS
 			}
 
 			//disable bubbles that managed to fly out of the window
-			checkBubblePos(ptrBubble, rWindowWidth, rWindowHeight);
+			if(ptrBubble->enabled)
+			{
+				checkBubblePos(ptrBubble, rWindowWidth, rWindowHeight);
+			}
 			
 
 			if(ptrBubble->enabled)
