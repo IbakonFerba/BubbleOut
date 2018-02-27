@@ -42,6 +42,7 @@ void Bubble::reset()
 	m_ptr_rigidbody->setVelocity(FloatVector2(0, 0));
 	m_ptr_rigidbody->drag = m_startDrag;
 	m_ptr_rigidbody->mass = m_startMass;
+	m_ptr_rigidbody->collidingRigidbodys.clear();
 
 	m_ptr_rend->enabled = true;
 	m_ptr_rigidbody->enabled = true;

@@ -99,6 +99,7 @@ void PlayerPlatform::resetBall()
 {
 	m_ptr_ball->setPosition(FloatVector2(m_ptr_trans->position.x, m_ptr_trans->position.y + BALL_START_OFFSET));
 	m_ptr_ball->getRigidbody()->kinematic = true;
+	m_ptr_ball->getRigidbody()->collidingRigidbodys.clear();
 	holdingBall = true;
 }
 
