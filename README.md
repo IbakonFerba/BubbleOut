@@ -75,7 +75,7 @@ When you have **no lifes left** and the ball hits the bottom of the window, it i
 ## Dependencies
 My Engine uses **SFML**, which is included in the Project Folder.
 
-To make the linker aware it is there, paste **$(SolutionDir)SFML\include;%(AdditionalIncludeDirectories)** into the *Additional Library Directories* field at the **linker settings**.
+To make the linker aware it is there, paste **$(SolutionDir)SFML\include;%(AdditionalIncludeDirectories)** into the *Additional Include Directories* field at the **C/C++ settings** and **$(SolutionDir)SFML\lib;%(AdditionalLibraryDirectories)** into the *Additional Library Directories* field at the **linker settings**.
 
 It does not use any other libraries appart from the *standard library* and does not have other dependencies.
 
