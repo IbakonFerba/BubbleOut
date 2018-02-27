@@ -1,4 +1,4 @@
-![BubbleOut Logo](https://lh3.googleusercontent.com/ynk20U_RPt39-8-QBdfEcfZynEsouKCXT3JuWxt3QFxvLzsrzRNoO6HcAsh5E16u66T7h6TI8m2d5_DSzi02=w1920-h949-rw)
+![BubbleOut Logo](https://preview.ibb.co/jvBALx/Bubble_Out_Logo.png)
 # BubbleOut
 
 **BubbleOut** is basically a **BreakOut** clone with a twist: 
