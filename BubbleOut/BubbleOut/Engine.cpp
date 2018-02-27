@@ -73,25 +73,25 @@ void Engine::setup()
 	bg->tag = RenderTag::INGAME;
 
 
-	//setup objects
-	BubbleSystem::spawnBubbles(m_objectManager, 4, 140, WINDOW_WIDTH, m_soundSystem);
-
-	PlayerPlatform* player = m_objectManager->getNewObject<PlayerPlatform>();
-	player->init(m_objectManager, sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 50), m_soundSystem);
-
 	//create boundaries
 	const float barrierThickness = 100;
 	Barrier* ptrBTop = m_objectManager->getNewObject<Barrier>();
 	ptrBTop->init(m_objectManager, FloatVector2(WINDOW_WIDTH / 2, -barrierThickness / 2), WINDOW_WIDTH + barrierThickness, barrierThickness, Tag::BORDER_TOP);
 
 	Barrier* ptrBRight = m_objectManager->getNewObject<Barrier>();
-	ptrBRight->init(m_objectManager, FloatVector2(WINDOW_WIDTH + barrierThickness/2, WINDOW_HEIGHT/2), barrierThickness, WINDOW_HEIGHT + barrierThickness, Tag::BORDER_RIGHT);
+	ptrBRight->init(m_objectManager, FloatVector2(WINDOW_WIDTH + barrierThickness / 2, WINDOW_HEIGHT / 2), barrierThickness, WINDOW_HEIGHT + barrierThickness, Tag::BORDER_RIGHT);
 
 	Barrier* ptrBBottom = m_objectManager->getNewObject<Barrier>();
 	ptrBBottom->init(m_objectManager, FloatVector2(WINDOW_WIDTH / 2, WINDOW_HEIGHT + barrierThickness / 2), WINDOW_WIDTH + barrierThickness, barrierThickness, Tag::BORDER_BOTTOM);
 
 	Barrier* ptrBLeft = m_objectManager->getNewObject<Barrier>();
 	ptrBLeft->init(m_objectManager, FloatVector2(-barrierThickness / 2, WINDOW_HEIGHT / 2), barrierThickness, WINDOW_HEIGHT + barrierThickness, Tag::BORDER_LEFT);
+
+	//setup objects    
+	BubbleSystem::spawnBubbles(m_objectManager, 4, 140, WINDOW_WIDTH, m_soundSystem);
+
+	PlayerPlatform* player = m_objectManager->getNewObject<PlayerPlatform>();
+	player->init(m_objectManager, sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 50), m_soundSystem);
 }
 
 void Engine::reset()
@@ -116,7 +116,7 @@ void Engine::processInput()
 
 	if(m_state == GameState::STARTUP)
 	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
 		{
 			startGame();
 		}
@@ -146,14 +146,14 @@ void Engine::processInput()
 		}
 	} else if(m_state == GameState::GAME_OVER)
 	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
 		{
 			reset();
 			startGame();
 		}
 	} else if(m_state == GameState::WON)
 	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
 		{
 			reset();
 			startGame();

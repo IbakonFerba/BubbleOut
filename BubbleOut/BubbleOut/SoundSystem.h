@@ -28,8 +28,12 @@ private:
 	sf::Sound m_voices[VOICES];
 	std::map<MessageType, sf::SoundBuffer> m_sounds;
 	
-	sf::Music m_musicStartSeq;
-	sf::Music m_music;
+
+	sf::SoundBuffer m_musicStartSeqBuffer;
+	sf::SoundBuffer m_musicBuffer;
+
+	sf::Sound m_musicStartSeq;
+	sf::Sound m_music;
 
 	float m_musicWaitTime;
 	sf::Clock m_musicTimer;

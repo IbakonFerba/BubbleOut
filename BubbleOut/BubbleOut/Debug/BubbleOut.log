@@ -1,2 +1,23 @@
-﻿  PlayerPlatform.cpp
+﻿  SoundSystem.cpp
+c:\users\rhino\documents\studium\c++\bubbleout\bubbleout\bubbleout\soundsystem.cpp(15): warning C4244: '=': conversion from 'sf::Int64' to 'float', possible loss of data
+  Generating Code...
+  Compiling...
+  main.cpp
+c:\users\rhino\documents\studium\c++\bubbleout\bubbleout\bubbleout\engine.h(44): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  PlayerSystem.cpp
+c:\users\rhino\documents\studium\c++\bubbleout\bubbleout\bubbleout\engine.h(44): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  PlayerPlatform.cpp
+  Engine.cpp
+c:\users\rhino\documents\studium\c++\bubbleout\bubbleout\bubbleout\engine.h(44): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\rhino\documents\studium\c++\bubbleout\bubbleout\bubbleout\bubble.h(27): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\rhino\documents\studium\c++\bubbleout\bubbleout\bubbleout\bubble.h(30): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\rhino\documents\studium\c++\bubbleout\bubbleout\bubbleout\engine.cpp(173): warning C4244: 'argument': conversion from 'const int' to 'const float', possible loss of data
+c:\users\rhino\documents\studium\c++\bubbleout\bubbleout\bubbleout\engine.cpp(175): warning C4244: 'argument': conversion from 'const int' to 'const float', possible loss of data
+  BubbleSystem.cpp
+c:\users\rhino\documents\studium\c++\bubbleout\bubbleout\bubbleout\engine.h(44): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\rhino\documents\studium\c++\bubbleout\bubbleout\bubbleout\bubble.h(27): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\rhino\documents\studium\c++\bubbleout\bubbleout\bubbleout\bubble.h(30): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\rhino\documents\studium\c++\bubbleout\bubbleout\bubbleout\bubblesystem.cpp(7): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+c:\users\rhino\documents\studium\c++\bubbleout\bubbleout\bubbleout\bubblesystem.cpp(7): warning C4244: 'initializing': conversion from 'float' to 'const int', possible loss of data
+  Generating Code...
   BubbleOut.vcxproj -> C:\Users\Rhino\Documents\Studium\C++\BubbleOut\BubbleOut\Debug\BubbleOut.exe

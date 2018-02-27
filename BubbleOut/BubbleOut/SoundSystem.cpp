@@ -9,11 +9,14 @@ void SoundSystem::loadSounds()
 	sf::SoundBuffer buffer;
 
 	//music
-	m_musicStartSeq.openFromFile("Assets/sound/Music/GameCornerStart.wav"); //chiptune cover of the Game Corner Theme from Pokémon Diamond and Pearl arranged and produced by me 
+	m_musicStartSeqBuffer.loadFromFile("Assets/sound/Music/GameCornerStart.wav"); //chiptune cover of the Game Corner Theme from Pokémon Diamond and Pearl arranged and produced by me 
+	m_musicStartSeq.setBuffer(m_musicStartSeqBuffer);
 	m_musicStartSeq.setVolume(50);
-	m_musicWaitTime = m_musicStartSeq.getDuration().asMicroseconds();
+	m_musicWaitTime = m_musicStartSeqBuffer.getDuration().asMicroseconds();
 
-	m_music.openFromFile("Assets/sound/Music/GameCornerLoop.wav"); //chiptune cover of the Game Corner Theme from Pokémon Diamond and Pearl arranged and produced by me 
+
+	m_musicBuffer.loadFromFile("Assets/sound/Music/GameCornerLoop.wav"); //chiptune cover of the Game Corner Theme from Pokémon Diamond and Pearl arranged and produced by me 
+	m_music.setBuffer(m_musicBuffer);
 	m_music.setVolume(50);
 	m_music.setLoop(true);
 
