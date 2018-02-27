@@ -76,7 +76,10 @@ When you have **no lifes left** and the ball hits the bottom of the window, it i
 My Engine uses **SFML**, which is included in the Project Folder.
 
 To make the linker aware it is there, paste **$(SolutionDir)SFML\include;%(AdditionalIncludeDirectories)** into the *Additional Include Directories* field at the **C/C++ settings** and **$(SolutionDir)SFML\lib;%(AdditionalLibraryDirectories)** into the *Additional Library Directories* field at the **linker settings**.
-You also hav to paste **SFML_STATIC** into the *Preprocessor Definitions* field at the **preprocessor settings*
+You also hav to paste **SFML_STATIC;WIN32;** into the *Preprocessor Definitions* field at the **preprocessor settings**
+In the **Linker Input settings** paste the following into the *Additional Dependencies* field:
+For Debug: **sfml-graphics-s-d.lib;sfml-system-s-d.lib;sfml-window-s-d.lib;sfml-audio-s-d.lib;sfml-network-s-d.lib;opengl32.lib;freetype.lib;jpeg.lib;winmm.lib;gdi32.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;ws2_32.lib;%(AdditionalDependencies)**
+For Release: **sfml-graphics-s.lib;sfml-system-s.lib;sfml-window-s.lib;sfml-audio-s.lib;sfml-network-s.lib;opengl32.lib;freetype.lib;jpeg.lib;winmm.lib;gdi32.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;ws2_32.lib;%(AdditionalDependencies)**
 
 It does not use any other libraries appart from the *standard library* and does not have other dependencies.
 
