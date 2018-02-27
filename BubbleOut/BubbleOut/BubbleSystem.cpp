@@ -71,6 +71,6 @@ void BubbleSystem::checkBubblePos(Bubble* ptrBubble, const int& rWindowWidth, co
 	//check if bubble is outside the window
 	if(pos.x < 0 || pos.x > rWindowWidth || pos.y < 0 || pos.y > rWindowHeight)
 	{
-		ptrBubble->enabled = false;
+		ptrBubble->disable();
 	}
 }
