@@ -1,5 +1,6 @@
 ![BubbleOut Logo](https://preview.ibb.co/jvBALx/Bubble_Out_Logo.png)
-by Fabian Kober
+
+*by Fabian Kober*
 
 # BubbleOut
 
