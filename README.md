@@ -1,4 +1,6 @@
 ![BubbleOut Logo](https://preview.ibb.co/jvBALx/Bubble_Out_Logo.png)
+by Fabian Kober
+
 # BubbleOut
 
 **BubbleOut** is basically a **BreakOut** clone with a twist: 
